@@ -15,6 +15,106 @@ namespace DiXit
         public Form4()
         {
             InitializeComponent();
+
+            CreateButtons(12);
+
+
+        }
+
+
+
+        protected void button_Click(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            // identify which button was clicked and perform necessary actions
+
+
+            //  ColectData(button);
+
+            //    ConfirmButton();
+
+
+
+
+        }
+
+        protected void button_Clk(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            // identify which button was clicked and perform necessary actions
+
+
+            //    ColectDataChallange(button);
+
+            //    ConfirmButton();
+
+
+
+
+        }
+
+        private void CreateButtons(int numbers)
+        {
+            int top = 50;
+            int left = 100;
+            int height = 80;
+            int widht = 80;
+
+            for (int i = 1; i <= numbers; i++)
+            {
+                Button button = new Button();
+                button.BackColor = Color.GreenYellow;
+                button.Width = widht;
+                button.Height = height;
+                button.Left = left;
+                button.Top = top;
+                button.Text = i.ToString();
+                button.Name = i.ToString();
+                this.Controls.Add(button);
+                button.Click += new EventHandler(button_Click);            // podpinamy zdarzenie, króre jest reakcją na kliknienicie w strorzony button
+                left += button.Height + 2 + widht / 3;
+                int a = (int)Math.Round(Math.Sqrt(numbers));
+                if (i % a == 0)
+                {
+                    top += button.Height + 2 + height / 3;
+                    left = 100;
+                }
+            }
+        }
+
+
+        protected void ConfirmButton()
+        {
+            Button confirm = new Button();
+            confirm.Top = 500;
+            confirm.Left = 100;
+            Controls.Add(confirm);
+            confirm.Text = "SEND";
+            confirm.Width = 300;
+            confirm.Height = 100;
+            confirm.BackColor = Color.Red;
+
+            confirm.Click += (object send, EventArgs ee) =>
+            {
+
+                    
+
+            };
+
+
+        }
+
+        protected void ColectData(Button b, int glosy)
+        {
+
+
+       
+        }
+
+
+        private void Form4_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
