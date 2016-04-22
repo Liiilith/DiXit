@@ -1,1 +1,2 @@
 D:\DiXit\DiXit\bin\Debug\DiXit.exe.config
+D:\C#\DiXit\DiXit\bin\Debug\DiXit.exe.config
