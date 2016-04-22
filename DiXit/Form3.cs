@@ -15,7 +15,8 @@ namespace DiXit
         // deklaracja zmiennych dla Ekranu 3
 
 
-       Player 
+        Player one = new Player();
+        = 
 
        
 

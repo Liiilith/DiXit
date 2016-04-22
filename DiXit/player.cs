@@ -14,11 +14,11 @@ namespace DiXit
 
 
 
-    class Player
+     class Player
     {
 
 
-        playerType type;
+        private playerType type;
 
         public void setTyp (playerType a)      // procedura ustawiajaca gracza 
 
