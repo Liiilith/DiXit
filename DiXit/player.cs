@@ -20,6 +20,37 @@ namespace DiXit
 
         private playerType type = playerType.unsign; //zaczynamy od typu nieokreslonego
 
+        private string iPadd;
+        private string playerID;
+        private System.Drawing.Color rabbitColor;
+        private int result;// ilość punktów w rundzie
+        private int[] cards;
+        /*
+        cards[0]- własna karta
+        cards[1] cards[2] głosy gracza
+>>>>>>> 8356a40847c86025f3e28e343f9a81cc888f550a
+
+
+
+        */
+
+        public Player(string ip,string login)
+        {
+            iPadd = ip;
+            cards = new int[3];
+            cards[0] = -1;
+            cards[1] = -1;
+            cards[2] = -1;
+        }
+
+        // update gracza po msg:&id_gracza, &karta, &ch_flag/g_flag
+        
+        public void updatePlayer(int ownCard, playerType type)
+        {
+            this.type = type;
+            this.cards[0] = ownCard;
+        }
+      
         public void setTyp (playerType a)      // procedura ustawiajaca gracza 
 
         { type = a; }

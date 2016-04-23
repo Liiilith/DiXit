@@ -1,5 +1,4 @@
-﻿
-namespace DiXit
+﻿namespace DiXit
 {
     partial class Form4
     {
