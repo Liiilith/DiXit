@@ -70,6 +70,15 @@ namespace DiXit
         }
 
 
+        public string getIpAddress()                               // getter do ip 
+
+        {
+
+            return iPadd;
+
+        }
+             
+
         public void setTyp (playerType a)      // procedura ustawiajaca typ gracza 
 
         {
