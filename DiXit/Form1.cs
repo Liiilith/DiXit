@@ -19,15 +19,22 @@ namespace DiXit
             
         
 
-        public Form1()
+        public Form1(string gameIP,string plID,bool srv)
         {
+            server = srv;
             InitializeComponent();
-            buttonsLook();         // nazwy buttonów i inne
+            buttonsLook();   
+            // nazwy buttonów i inne
         }
 
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        public void serverSet(bool set)
+        {
+            server = set;
         }
 
         private void button1_Click(object sender, EventArgs e)
