@@ -47,31 +47,33 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(40, 223);
+            this.button1.Location = new System.Drawing.Point(40, 404);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(420, 56);
             this.button1.TabIndex = 2;
+            this.button1.Tag = "SRV";
             this.button1.Text = "SERVER";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.runForm1);
             // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button2.Location = new System.Drawing.Point(40, 501);
+            this.button2.Location = new System.Drawing.Point(40, 497);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(420, 56);
             this.button2.TabIndex = 5;
             this.button2.Text = "PLAY";
             this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.runForm1);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(166, 358);
+            this.label2.Location = new System.Drawing.Point(161, 230);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label2.Size = new System.Drawing.Size(168, 39);
@@ -83,7 +85,7 @@
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox2.Location = new System.Drawing.Point(40, 418);
+            this.textBox2.Location = new System.Drawing.Point(40, 292);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(420, 53);
             this.textBox2.TabIndex = 3;
