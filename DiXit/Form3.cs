@@ -49,13 +49,37 @@ namespace DiXit
 
         private void button3_Click(object sender, EventArgs e)
         {
-            player1.setTyp(playerType.guesser);
+            switchButtons(false);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            player1.setTyp(playerType.challanger);
+            switchButtons(true);
         }
+
+        protected void switchButtons (bool change)
+
+
+        {
+            if (change)
+            {
+
+                player1.setTyp(playerType.challanger);
+                button2.BackColor = Color.Blue;
+                button3.BackColor = Color.DarkGray;
+            }
+
+            else
+
+
+            {
+                player1.setTyp(playerType.guesser);
+                button3.BackColor = Color.Blue;
+                button2.BackColor = Color.DarkGray;
+            }
+
+        }
+
 
 
         private void buttonsLook()
@@ -63,22 +87,13 @@ namespace DiXit
             button1.Text = "Start";
             button2.Text = "CHALLANGE";
             button3.Text = "GUESS";
+            button1.BackColor = Color.DarkGray;
+            button2.BackColor = Color.DarkGray;
+            button3.BackColor = Color.DarkGray;
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-
-        }
+      
+     
     }
 
 }
