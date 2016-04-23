@@ -84,28 +84,30 @@ namespace DiXit
 //tymczasowe wyswietlanie
              for(int i = 0; i < 12; i++)
             {
+                int posy = (i / 2) * 40;
+                int posx = (i % 2) * 250;
                 System.Windows.Forms.Button button;
                 System.Windows.Forms.Label label;
                 button = new System.Windows.Forms.Button();
                 label = new System.Windows.Forms.Label();
 
-                button.Location = new System.Drawing.Point(379, 10 + i * 60);
+                button.Location = new System.Drawing.Point(160 + posx, 10 + posy);
                 button.Name = "button";
-                button.Size = new System.Drawing.Size(60, 39);
+                button.Size = new System.Drawing.Size(30, 30);
 
                 button.UseVisualStyleBackColor = true;
-                button.BackColor = player2.Color;
+                button.BackColor = System.Drawing.Color.IndianRed;
                 button.Text = "";
 
 
                 label.AutoSize = true;
                 label.BackColor = System.Drawing.Color.Transparent;
                 label.Cursor = System.Windows.Forms.Cursors.AppStarting;
-                label.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-                label.Location = new System.Drawing.Point(10, 10+i*60);
+                label.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                label.Location = new System.Drawing.Point(10 + posx, 10 + posy);
                 label.Name = "label";
                 label.RightToLeft = System.Windows.Forms.RightToLeft.No;
-                label.Size = new System.Drawing.Size(128, 39);
+                label.Size = new System.Drawing.Size(100, 25);
                 label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                 label.Text = player1.PlayerID;
                 panel1.Controls.Add(label);
@@ -116,7 +118,10 @@ namespace DiXit
 
 
         }
-           
-     
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

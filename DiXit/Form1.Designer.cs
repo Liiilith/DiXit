@@ -35,6 +35,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -78,7 +79,7 @@
             // 
             this.button2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button2.Location = new System.Drawing.Point(14, 576);
+            this.button2.Location = new System.Drawing.Point(15, 549);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(458, 50);
             this.button2.TabIndex = 6;
@@ -104,17 +105,29 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Location = new System.Drawing.Point(15, 148);
+            this.panel1.Location = new System.Drawing.Point(15, 179);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(458, 391);
+            this.panel1.Size = new System.Drawing.Size(458, 321);
             this.panel1.TabIndex = 9;
+            // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button3.Location = new System.Drawing.Point(427, 607);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(45, 43);
+            this.button3.TabIndex = 10;
+            this.button3.Text = "X";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1
             // 
-         //   this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::DiXit.Properties.Resources.background;
-            //this.ClientSize = new System.Drawing.Size(484, 662);
+            this.ClientSize = new System.Drawing.Size(484, 662);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
@@ -125,7 +138,7 @@
             this.Text = "DiXit";
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.Size = new System.Drawing.Size(Constance.formSeixeX, Constance.formSeixeX);
+
         }
 
         #endregion
@@ -137,6 +150,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button3;
     }
 }
 
