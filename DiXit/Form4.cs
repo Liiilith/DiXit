@@ -31,10 +31,11 @@ namespace DiXit
         protected void setLabels ()
 
         {
-            Label informm = new Label;
+            Label informm = new Label();
 
             informm.Text = "Zagłosuj na kartę";
 
+            informm.Text = " Podaj swoją kartę";
         }
 
 
