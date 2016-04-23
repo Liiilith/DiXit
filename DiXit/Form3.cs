@@ -22,8 +22,8 @@ namespace DiXit
             buttonsLook();         // nazwy buttonów i inne
 
 
-      
-          
+
+
         }
 
         private void Form3_Load(object sender, EventArgs e)
@@ -34,25 +34,25 @@ namespace DiXit
         private void button1_Click(object sender, EventArgs e)
         {
 
-            
+
             if (player1.getType() == playerType.challanger)
-                
-                
-                {
 
-                   // tu if jesteś serverem to odpalaj server a inaczej klienta
-                    
-                   // startujemy nową forme 4, z ustawianiami w zależności od typu gracza 
-                   
 
-                }
-                    
-             else if (player1.getType() == playerType.guesser)
+            {
+
+                // tu if jesteś serverem to odpalaj server a inaczej klienta
+
+                // startujemy nową forme 4, z ustawianiami w zależności od typu gracza 
+
+
+            }
+
+            else if (player1.getType() == playerType.guesser)
             {
 
                 // jw  
 
-            }        
+            }
 
 
         }
@@ -79,9 +79,20 @@ namespace DiXit
             button3.Text = "GUESS";
         }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
 
-      
+        }
 
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

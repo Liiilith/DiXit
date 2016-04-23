@@ -35,40 +35,39 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(123, 24);
+            this.button1.Location = new System.Drawing.Point(53, 38);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(238, 66);
+            this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(289, 156);
+            this.button2.Location = new System.Drawing.Point(187, 37);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(170, 83);
+            this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(32, 156);
+            this.button3.Location = new System.Drawing.Point(144, 125);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(178, 83);
+            this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 2;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::DiXit.Properties.Resources.background;
-            this.ClientSize = new System.Drawing.Size(484, 661);
+            this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);

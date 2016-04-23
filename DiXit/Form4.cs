@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -95,7 +95,7 @@ namespace DiXit
             confirm.Click += (object send, EventArgs ee) =>
             {
 
-                    
+
 
             };
 
@@ -106,7 +106,7 @@ namespace DiXit
         {
 
 
-       
+
         }
 
 
