@@ -15,11 +15,8 @@ namespace DiXit
         challanger, guesser, unsign
     };
 
-
-
      class Player
     {
-
 
         private playerType type = playerType.unsign; //zaczynamy od typu nieokreslonego
 
@@ -49,8 +46,7 @@ namespace DiXit
         //ustaw color
         public void selectColor(System.Drawing.Color rc)
         {
-        
-            rabbitColor = rc;
+                    rabbitColor = rc;
         }
 
         // update gracza po msg:&id_gracza, &karta, &ch_flag/g_flag
@@ -80,9 +76,7 @@ namespace DiXit
         public string getIpAddress()                               // getter do ip 
 
         {
-
             return iPadd;
-
         }
              
 

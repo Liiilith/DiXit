@@ -12,16 +12,31 @@ namespace DiXit
 {
     public partial class Form4 : Form
     {
-        public Form4()
+
+        int playersNumb;                                             // forma 4 to ekran głosowania, liczba graczy powinna się zawrzeć w konstruktorze 
+        bool challenger;                                             // zmienna informująca czy gracz zadaje kartę czy zgaduje 
+
+        public Form4(int playersNumber, bool playerType)                             // konstruktor dla formy 4
         {
             InitializeComponent();
 
+            playersNumb = playersNumber;
+            challenger = playerType;
 
-// tu juz powinienem znac info o ilosci graczy ktorzy uczestnicza w rozgrywce
-            CreateButtons(12);
+            CreateButtons(playersNumb);                        // tu juz powinienem znac info o ilosci graczy ktorzy uczestnicza w rozgrywce
 
 
         }
+
+        protected void setLabels ()
+
+        {
+            Label informm = new Label;
+
+            informm.Text = "Zagłosuj na kartę";
+
+        }
+
 
         protected void button_Click(object sender, EventArgs e)
         {
