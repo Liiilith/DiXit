@@ -31,5 +31,24 @@ namespace DiXit
 
             return false;
         }
+
+        public static string GetLocalIPAddress()
+        {
+
+            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                var host = Dns.GetHostEntry(Dns.GetHostName());
+                foreach (var ip in host.AddressList)
+                {
+                    if (ip.AddressFamily == AddressFamily.InterNetwork)
+                    {
+                        return ip.ToString();
+                    }
+                }
+                throw new Exception("Local IP Address Not Found!");
+            }
+            else return "No connection";
+        }
+
     }
 }

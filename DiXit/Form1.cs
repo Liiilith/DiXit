@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -24,11 +25,24 @@ namespace DiXit
             server = srv;
             InitializeComponent();
             buttonsLook(gameIP, plID);
-            // nazwy buttonów i inne
             this.Show();
+
+        /*    //test połączenia
+            Thread serwerThread = new Thread(new ThreadStart(serverStart));     // wyrzucamy serwer do innego wątku 
+            serwerThread.Start();*/
+
         }
-
-
+        ////test połączenia
+    /*    private void serverStart()
+        {
+            Player player1 = new Player(Constance.GetLocalIPAddress(), "gracz1");
+            Server serwer = new Server(player1);                   // czekamy na odbiór wyników
+            string my = serwer.runServer();
+            if (my == "test")
+            {
+                textBox1.Text = "test";
+            }
+        }*/
 
         public void serverSet(bool set)
         {
@@ -44,18 +58,28 @@ namespace DiXit
             // See if user pressed ok.
             if (result == DialogResult.OK)
             {   //trzeba bedzie sprawdzic jakos czy kolor jest dostepny
-                //while(! gra.Check_rabbit( c)){
+                //while(! gra.Check_rabbit( c)){//potrzebna jest klasa nadrzedna monitorująca całość
                 // result = colorDialog1.ShowDialog();
                 // if (result == DialogResult.OK)
                 //{
-                c = colorDialog1.Color;
+
+                bt.BackColor = colorDialog1.Color;
+                player1.Color = colorDialog1.Color;
                 // }
 
             }
 
-            bt.BackColor = c;
-            player1.Color = c;
+            //  bt.BackColor = c;
+            // player1.Color = c;
+
             updatePlayerList();
+            //test połączenia
+        /*    if (!server)
+            {
+                Player pl = new Player("22", "gracz2");
+                Client client = new Client(pl);
+                client.runClient("test");
+            }*/
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -64,6 +88,7 @@ namespace DiXit
             F3.Show();
             this.Hide();
             F3.Visible = true;
+            
         }
 
         private void buttonsLook(string gameIP, string plID)

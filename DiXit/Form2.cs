@@ -24,27 +24,11 @@ namespace DiXit
 
             InitializeComponent();
           
-            textBox2.Text = GetLocalIPAddress();
+            textBox2.Text = Constance.GetLocalIPAddress();
         }
 
 
-        public string GetLocalIPAddress()
-        {
-
-            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-            {
-                var host = Dns.GetHostEntry(Dns.GetHostName());
-                foreach (var ip in host.AddressList)
-                {
-                    if (ip.AddressFamily == AddressFamily.InterNetwork)
-                    {
-                        return ip.ToString();
-                    }
-                }
-                throw new Exception("Local IP Address Not Found!");
-            }
-            else return "No connection";
-        }
+       
 
         private void Form2_Load(object sender, EventArgs e)
         {
