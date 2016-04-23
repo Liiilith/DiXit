@@ -15,3 +15,4 @@ D:\C#\DiXit\DiXit\obj\Debug\DiXit.Form1.resources
 D:\DiXit\DiXit\obj\Debug\DiXit.exe
 D:\DiXit\DiXit\obj\Debug\DiXit.pdb
 >>>>>>> ae52f465cade870d337ba0f3177f38494d3847ab
+D:\C#\DiXit\DiXit\obj\Debug\DiXit.Form4.resources

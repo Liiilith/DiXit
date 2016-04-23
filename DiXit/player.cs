@@ -18,7 +18,7 @@ namespace DiXit
     {
 
 
-        private playerType type;
+        private playerType type = playerType.unsign; //zaczynamy od typu nieokreslonego
 
         public void setTyp (playerType a)      // procedura ustawiajaca gracza 
 

@@ -14,12 +14,17 @@ namespace DiXit
     public partial class Form3 : Form
     {
         // deklaracja zmiennych dla Ekranu 3
+        Player player1 = new Player();        // to tak naprawdę zostanie stworzone wyżej
+
 
         public Form3()
         {
             InitializeComponent();
             buttonsLook();         // nazwy buttonów i inne
 
+
+      
+          
         }
 
         private void Form3_Load(object sender, EventArgs e)
@@ -30,18 +35,41 @@ namespace DiXit
         private void button1_Click(object sender, EventArgs e)
         {
 
+            
+            if (player1.getType() == playerType.challanger)
+                
+                
+                {
+
+                   // tu if jesteś serverem to odpalaj server a inaczej klienta
+                    
+                   // startujemy nową forme 4, z ustawianiami w zależności od typu gracza 
+                   
+
+                }
+                    
+             else if (player1.getType() == playerType.guesser)
+            {
+
+                // jw  
+
+            }        
 
 
         }
 
+
+
+
+
         private void button3_Click(object sender, EventArgs e)
         {
-
+            player1.setTyp(playerType.guesser);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            player1.setTyp(playerType.challanger);
         }
 
 
