@@ -26,7 +26,7 @@ namespace DiXit
         }
 
 
-        public static string GetLocalIPAddress()
+        public string GetLocalIPAddress()
         {
 
             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
@@ -77,7 +77,6 @@ namespace DiXit
                 this.Hide();
                 F1.Visible = true;
                 srv = new Server(player1);
-               // Application.Run(new Form1(textBox2.Text, textBox1.Text, isServer)); 
             }
            
 
