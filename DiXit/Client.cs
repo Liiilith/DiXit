@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace DiXit
 {
-    class Client
+    class Client:Game
     {
-        playersData playersList;
+     public Client(Player pl) : base(pl)
+        {
+
+        }
     }
 }

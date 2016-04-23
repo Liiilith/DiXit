@@ -14,12 +14,15 @@ namespace DiXit
         public void AddToPlayerList(Player pl)                                 // tutaj sobie dodajemy do listy graczy 
 
         {
-            Player checkPlayer = getPlayerByIp(pl.getIpAddress());                // sprawdzmy czy już go nie ma na liscie
+            
+                Player checkPlayer = getPlayerByIp(pl.getIpAddress());                // sprawdzmy czy już go nie ma na liscie
 
-            if (checkPlayer.getIpAddress() == "unknown")
-            {
-                playersList.Add(pl);
-            }
+                if (checkPlayer.getIpAddress() == "unknown")
+                {
+                    playersList.Add(pl);
+                }
+            
+            
         }
               
         public void RemoveFromPlayerList (Player pl)                            // a tu odejmujemy z listy graczy, na podstawie IP 
@@ -36,19 +39,21 @@ namespace DiXit
             }
         }
 
-        public Player getPlayerByIp (string ip)                                      // zwróci nam playera z podanym IP gracza
-
-        {
+        public Player getPlayerByIp (string ip)                                    // zwróci nam playera z podanym IP gracza
+       {
             Player foundPlayer;
             foundPlayer = new Player("unknown", "unknown");
-
-            for (int i=0; i <= playersList.Count;i++)
-            {
-                if (playersList[i].getIpAddress() == ip)
+            if (playersList.Count > 0)//inaczej rzuca index out of range 
+            { 
+                for (int i = 0; i <= playersList.Count; i++)
                 {
-                    foundPlayer = playersList[i];
-                    break;
+                    if (playersList[i].getIpAddress() == ip)
+                    {
+                        foundPlayer = playersList[i];
+                        break;
+                    }
                 }
+               
             }
             return foundPlayer;
         }
@@ -58,16 +63,32 @@ namespace DiXit
         {
             Player foundPlayer;
             foundPlayer = new Player("unknown", "unknown");
-
-            for (int i = 0; i <= playersList.Count; i++)
+            if (playersList.Count > 0)//inaczej rzuca index out of range 
             {
-                if (playersList[i].getIpAddress() == login)
+                for (int i = 0; i <= playersList.Count; i++)
                 {
-                    foundPlayer = playersList[i];
-                    break;
+                    if (playersList[i].getIpAddress() == login)
+                     {
+                        foundPlayer = playersList[i];
+                        break;
+                    }
                 }
             }
             return foundPlayer;
+        }
+
+        public bool checkColor(System.Drawing.Color c)//czy możemy wybrać sobie kolor
+        {
+            bool result = true;
+            if (playersList.Count > 0)//inaczej rzuca index out of range 
+            {
+                for (int i = 0; i <= playersList.Count; i++)
+                {
+                    if (playersList[i].Color == c) result = false;
+                }
+
+            }
+            return result;
         }
 
     }
