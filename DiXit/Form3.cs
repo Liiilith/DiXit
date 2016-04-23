@@ -49,57 +49,36 @@ namespace DiXit
 
         private void button3_Click(object sender, EventArgs e)
         {
-            switchSides(false);
+            player1.setTyp(playerType.guesser);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            switchSides(true);
+            player1.setTyp(playerType.challanger);
         }
 
-
-        private void switchSides(bool challange)
-
-
-        {
-            if (challange)
-            {
-                player1.setTyp(playerType.challanger);
-                button2.BackColor = Color.Blue;
-                button3.BackColor = Color.DarkGray;
-            }
-            else
-
-            {
-                player1.setTyp(playerType.guesser);
-                button3.BackColor = Color.Blue;
-                button2.BackColor = Color.DarkGray;
-
-            }
-
-        }
 
         private void buttonsLook()
         {
             button1.Text = "Start";
             button2.Text = "CHALLANGE";
             button3.Text = "GUESS";
-            button3.Width = 100;
-            button3.Height = 50;
-            button2.Width = 100;
-            button2.Height = 50;
-            button1.Width = 100;
-            button1.Height = 50;
+        }
 
-            button3.BackColor = Color.DarkGray;
-            
-            button2.BackColor = Color.DarkGray;
-           
-            button1.BackColor = Color.DarkGray;
-           
-        }                  // ustawienia wygladu przyciskow
+        private void button1_Click_1(object sender, EventArgs e)
+        {
 
-      
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
