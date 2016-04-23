@@ -111,10 +111,10 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+         //   this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::DiXit.Properties.Resources.background;
-            this.ClientSize = new System.Drawing.Size(484, 662);
+            //this.ClientSize = new System.Drawing.Size(484, 662);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
@@ -125,7 +125,7 @@
             this.Text = "DiXit";
             this.ResumeLayout(false);
             this.PerformLayout();
-
+            this.Size = new System.Drawing.Size(Constance.formSeixeX, Constance.formSeixeX);
         }
 
         #endregion

@@ -61,7 +61,7 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button2.Location = new System.Drawing.Point(40, 497);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(420, 56);
+            this.button2.Size = new System.Drawing.Size(420, 60);
             this.button2.TabIndex = 5;
             this.button2.Text = "PLAY";
             this.button2.UseVisualStyleBackColor = true;
