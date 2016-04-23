@@ -9,4 +9,9 @@ D:\C#\DiXit\DiXit\obj\Debug\DiXit.csproj.GenerateResource.Cache
 D:\C#\DiXit\DiXit\obj\Debug\DiXit.exe
 D:\C#\DiXit\DiXit\obj\Debug\DiXit.pdb
 D:\C#\DiXit\DiXit\obj\Debug\DiXit.Form3.resources
+<<<<<<< HEAD
 D:\C#\DiXit\DiXit\obj\Debug\DiXit.Form1.resources
+=======
+D:\DiXit\DiXit\obj\Debug\DiXit.exe
+D:\DiXit\DiXit\obj\Debug\DiXit.pdb
+>>>>>>> ae52f465cade870d337ba0f3177f38494d3847ab

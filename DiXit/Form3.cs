@@ -1,3 +1,4 @@
+﻿
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,10 +14,6 @@ namespace DiXit
     public partial class Form3 : Form
     {
         // deklaracja zmiennych dla Ekranu 3
-
-
-
-
 
         public Form3()
         {
