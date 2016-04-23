@@ -14,21 +14,21 @@ namespace DiXit
     {
         //bedzie już istnieć
         bool server = false;
-       // Player player1 = new Player("22", "gracz1");       
-      //  Player player2 = new Player("22", "gracz2");   
-            
-        
+        // Player player1 = new Player("22", "gracz1");       
+        //  Player player2 = new Player("22", "gracz2");   
 
-        public Form1(string gameIP,string plID,bool srv)
+
+
+        public Form1(string gameIP, string plID, bool srv)
         {
             server = srv;
             InitializeComponent();
-            buttonsLook(gameIP,plID);
+            buttonsLook(gameIP, plID);
             // nazwy buttonów i inne
             this.Show();
         }
 
-      
+
 
         public void serverSet(bool set)
         {
@@ -39,15 +39,22 @@ namespace DiXit
         {
             Player player1 = new Player("22", "gracz1");
             Button bt = sender as Button;
+            System.Drawing.Color c = new System.Drawing.Color();
             DialogResult result = colorDialog1.ShowDialog();
             // See if user pressed ok.
             if (result == DialogResult.OK)
             {   //trzeba bedzie sprawdzic jakos czy kolor jest dostepny
-                //if( gra.Check_rabbit(colorDialog1.Color)){
-                bt.BackColor = colorDialog1.Color;
-                player1.Color=colorDialog1.Color;    
+                //while(! gra.Check_rabbit( c)){
+                // result = colorDialog1.ShowDialog();
+                // if (result == DialogResult.OK)
+                //{
+                c = colorDialog1.Color;
                 // }
+
             }
+
+            bt.BackColor = c;
+            player1.Color = c;
             updatePlayerList();
         }
 
@@ -67,8 +74,8 @@ namespace DiXit
             label1.Text = gameIP;
             label2.Text = plID;
         }
-           public void updatePlayerList()// List<Player> players) vs nie przyjmuje listy jako arg przez ograniczenia dostepu (?)
-            {
+        public void updatePlayerList()// List<Player> players) vs nie przyjmuje listy jako arg przez ograniczenia dostepu (?)
+        {
             Player player1 = new Player("22", "gracz1");
             Player player2 = new Player("22", "gracz2");
             player2.Color = System.Drawing.Color.Black;
@@ -76,13 +83,13 @@ namespace DiXit
             tempeGracze.Add(player1);
             tempeGracze.Add(player2);
             tempeGracze.Remove(player1);
-        
-            foreach(Player p in tempeGracze)
-             {
+
+            foreach (Player p in tempeGracze)
+            {
                 //wyswietlanie listy graczy
-              }
-//tymczasowe wyswietlanie
-             for(int i = 0; i < 12; i++)
+            }
+            //tymczasowe wyswietlanie
+            for (int i = 0; i < 12; i++)
             {
                 int posy = (i / 2) * 40;
                 int posx = (i % 2) * 250;
@@ -113,8 +120,8 @@ namespace DiXit
                 panel1.Controls.Add(label);
                 panel1.Controls.Add(button);
             }
-                 
-            
+
+
 
 
         }

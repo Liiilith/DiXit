@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.Text.RegularExpressions;
+
 namespace DiXit
 {
     public partial class Form2 : Form
@@ -62,29 +64,36 @@ namespace DiXit
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
+           
+
+
         }
 
 
         private void runForm1(object sender, EventArgs e)
         {
             Button b = sender as Button;
-            Player player1 = new Player(textBox1.Text, textBox2.Text);
-            if (b.Tag == "SRV") isServer = true;
-            if (textBox1.Text != "")
+            if (Constance.IsIPv4(textBox2.Text))
             {
-                Form1 F1 = new Form1(player1.PlayerID, player1.getIpAddress(), isServer);
-                F1.Show();
-                this.Hide();
-                F1.Visible = true;
-                srv = new Server(player1);
+                Player player1 = new Player(textBox1.Text, textBox2.Text);
+                if (b.Tag == "SRV") isServer = true;
+                if (textBox1.Text != "")
+                {
+                    Form1 F1 = new Form1(player1.PlayerID, player1.getIpAddress(), isServer);
+                    F1.Show();
+                    this.Hide();
+                    F1.Visible = true;
+                    srv = new Server(player1);
+                }
             }
-           
+            else { textBox2.Text = "No valid IP"; }
+            
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-          // this.Close();
+           this.Close();
         }
     }
 }
