@@ -17,7 +17,7 @@ namespace DiXit
 
 
 
-     class Player
+    class Player
     {
 
 
@@ -25,7 +25,27 @@ namespace DiXit
 
         private string iPadd;
         private string playerID;
+        public string PlayerID
+        {
+            get
+            {
+                return playerID;
+            }
+        }
         private System.Drawing.Color rabbitColor;
+        public System.Drawing.Color Color
+        {
+            get
+            {
+                return rabbitColor;
+            }
+            set
+            {
+                rabbitColor = value;
+            }
+        }
+
+
         private int result;// ilość punktów w rundzie
         private int[] cards;
         /*
@@ -37,24 +57,19 @@ namespace DiXit
 
         */
 
-        public Player(string ip,string login)
+        public Player(string ip, string login)
         {
             iPadd = ip;
-            playerID = login;            
+            playerID = login;
             cards = new int[3];
             cards[0] = -1;
             cards[1] = -1;
             cards[2] = -1;
         }
-        //ustaw color
-        public void selectColor(System.Drawing.Color rc)
-        {
-        
-            rabbitColor = rc;
-        }
+
 
         // update gracza po msg:&id_gracza, &karta, &ch_flag/g_flag
-        
+
         public void updatePlayer(int ownCard, playerType type)
         {
             this.type = type;
@@ -69,13 +84,12 @@ namespace DiXit
         }
 
 
-        public void updateVote(int firstCard ,int secondCard)      // update wyboru gracza w przypadku głosowania na dwie karty
+        public void updateVote(int firstCard, int secondCard)      // update wyboru gracza w przypadku głosowania na dwie karty
 
         {
             this.cards[1] = firstCard;
             this.cards[2] = secondCard;
         }
-
 
         public string getIpAddress()                               // getter do ip 
 
@@ -84,9 +98,8 @@ namespace DiXit
             return iPadd;
 
         }
-             
 
-        public void setTyp (playerType a)      // procedura ustawiajaca typ gracza 
+        public void setTyp(playerType a)      // procedura ustawiajaca typ gracza 
 
         {
             type = a;
@@ -96,6 +109,6 @@ namespace DiXit
         public playerType getType()           // zwraca typ gracza
         {
             return type;
-        } 
+        }
     }
 }
