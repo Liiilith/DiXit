@@ -23,8 +23,9 @@ namespace DiXit
         {
             server = srv;
             InitializeComponent();
-            buttonsLook();   
+            buttonsLook(gameIP,plID);
             // nazwy buttonów i inne
+            this.Show();
         }
 
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
@@ -55,14 +56,19 @@ namespace DiXit
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            Form3 F3 = new Form3();
+            F3.Show();
+            this.Hide();
+            F3.Visible = true;
         }
 
-        private void buttonsLook()
+        private void buttonsLook(string gameIP, string plID)
         {
             button2.Visible = server;
             button2.Enabled = server;
             button2.Text = "START";
+            label1.Text = gameIP;
+            label2.Text = plID;
         }
            public void updatePlayerList()// List<Player> players) vs nie przyjmuje listy jako arg przez ograniczenia dostepu (?)
             {

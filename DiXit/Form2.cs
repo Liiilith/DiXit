@@ -71,7 +71,9 @@ namespace DiXit
             if (textBox1.Text != "")
             {
                 Form1 F1 = new Form1(textBox2.Text, textBox1.Text, isServer);
-                
+                F1.Show();
+                this.Hide();
+                F1.Visible = true;
                // Application.Run(new Form1(textBox2.Text, textBox1.Text, isServer)); 
             }
            

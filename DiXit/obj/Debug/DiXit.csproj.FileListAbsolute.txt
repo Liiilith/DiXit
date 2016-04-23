@@ -12,7 +12,6 @@ D:\C#\DiXit\DiXit\obj\Debug\DiXit.pdb
 D:\DiXit\DiXit\bin\Debug\DiXit.exe.config
 D:\DiXit\DiXit\obj\Debug\DiXit.exe
 D:\DiXit\DiXit\obj\Debug\DiXit.pdb
-D:\DiXit\DiXit\obj\Debug\DiXit.csprojResolveAssemblyReference.cache
 D:\DiXit\DiXit\obj\Debug\DiXit.Form1.resources
 D:\DiXit\DiXit\obj\Debug\DiXit.Form2.resources
 D:\DiXit\DiXit\obj\Debug\DiXit.Form3.resources
@@ -21,3 +20,4 @@ D:\DiXit\DiXit\obj\Debug\DiXit.Properties.Resources.resources
 D:\DiXit\DiXit\obj\Debug\DiXit.csproj.GenerateResource.Cache
 D:\DiXit\DiXit\bin\Debug\DiXit.exe
 D:\DiXit\DiXit\bin\Debug\DiXit.pdb
+D:\DiXit\DiXit\obj\Debug\DiXit.csprojResolveAssemblyReference.cache
