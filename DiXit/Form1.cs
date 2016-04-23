@@ -101,7 +101,7 @@ namespace DiXit
                 label.AutoSize = true;
                 label.BackColor = System.Drawing.Color.Transparent;
                 label.Cursor = System.Windows.Forms.Cursors.AppStarting;
-                label.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                label.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
                 label.Location = new System.Drawing.Point(10, 10+i*60);
                 label.Name = "label";
                 label.RightToLeft = System.Windows.Forms.RightToLeft.No;
