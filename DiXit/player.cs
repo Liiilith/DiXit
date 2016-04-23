@@ -40,10 +40,17 @@ namespace DiXit
         public Player(string ip,string login)
         {
             iPadd = ip;
+            playerID = login;            
             cards = new int[3];
             cards[0] = -1;
             cards[1] = -1;
             cards[2] = -1;
+        }
+        //ustaw color
+        public void selectColor(System.Drawing.Color rc)
+        {
+        
+            rabbitColor = rc;
         }
 
         // update gracza po msg:&id_gracza, &karta, &ch_flag/g_flag
