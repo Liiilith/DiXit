@@ -20,10 +20,6 @@ namespace DiXit
         {
             InitializeComponent();
             buttonsLook();         // nazwy buttonów i inne
-
-
-
-
         }
 
         private void Form3_Load(object sender, EventArgs e)
@@ -39,27 +35,17 @@ namespace DiXit
 
 
             {
-
                 // tu if jesteś serverem to odpalaj server a inaczej klienta
-
                 // startujemy nową forme 4, z ustawianiami w zależności od typu gracza 
-
-
             }
 
             else if (player1.getType() == playerType.guesser)
             {
 
                 // jw  
-
+           
             }
-
-
         }
-
-
-
-
 
         private void button3_Click(object sender, EventArgs e)
         {

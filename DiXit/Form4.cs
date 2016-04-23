@@ -16,6 +16,8 @@ namespace DiXit
         {
             InitializeComponent();
 
+
+// tu juz powinienem znac info o ilosci graczy ktorzy uczestnicza w rozgrywce
             CreateButtons(12);
 
 

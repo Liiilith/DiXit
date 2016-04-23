@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
+
 namespace DiXit
 {
 
@@ -50,19 +53,33 @@ namespace DiXit
             this.type = type;
             this.cards[0] = ownCard;
         }
-      
-        public void setTyp (playerType a)      // procedura ustawiajaca gracza 
 
-        { type = a; }
+
+        public void updateVote(int firstCard)                      // update wyboru gracza w przypadku głosowania na jedną kartę
+
+        {
+            this.cards[1] = firstCard;
+        }
+
+
+        public void updateVote(int firstCard ,int secondCard)      // update wyboru gracza w przypadku głosowania na dwie karty
+
+        {
+            this.cards[1] = firstCard;
+            this.cards[2] = secondCard;
+        }
+
+
+        public void setTyp (playerType a)      // procedura ustawiajaca typ gracza 
+
+        {
+            type = a;
+        }
 
 
         public playerType getType()           // zwraca typ gracza
         {
             return type;
         } 
-
-
-
-
     }
 }
