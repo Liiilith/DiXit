@@ -8,5 +8,6 @@ namespace DiXit
 {
     class Server
     {
+        playersData playersList;
     }
 }
