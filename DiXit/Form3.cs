@@ -13,7 +13,7 @@ namespace DiXit
     public partial class Form3 : Form
     {
         // deklaracja zmiennych dla Ekranu 3
-        Player player1 = new Player();        // to tak naprawdę zostanie stworzone wyżej
+        Player player1 = new Player("22","11");        // to tak naprawdę zostanie stworzone wyżej
 
 
         public Form3()

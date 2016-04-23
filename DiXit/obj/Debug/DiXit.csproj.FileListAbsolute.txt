@@ -1,7 +1,0 @@
-D:\C#\DiXit\DiXit\obj\Debug\DiXit.csprojResolveAssemblyReference.cache
-D:\C#\DiXit\DiXit\obj\Debug\DiXit.Form1.resources
-D:\C#\DiXit\DiXit\obj\Debug\DiXit.Form2.resources
-D:\C#\DiXit\DiXit\obj\Debug\DiXit.Form3.resources
-D:\C#\DiXit\DiXit\obj\Debug\DiXit.Form4.resources
-D:\C#\DiXit\DiXit\obj\Debug\DiXit.Properties.Resources.resources
-D:\C#\DiXit\DiXit\obj\Debug\DiXit.csproj.GenerateResource.Cache
