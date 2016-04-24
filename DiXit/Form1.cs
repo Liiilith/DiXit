@@ -9,23 +9,26 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace DiXit
 {
     public partial class Form1 : Form
     {
         //bedzie już istnieć
         bool server = false;
+        Player pl;
         // Player player1 = new Player("22", "gracz1");       
         //  Player player2 = new Player("22", "gracz2");   
 
 
 
-        public Form1(string gameIP, string plID, bool srv)
+        public Form1(string gameIP, string plID, bool srv, Player p)
         {
             server = srv;
             InitializeComponent();
             buttonsLook(gameIP, plID);
             this.Show();
+            pl = p;
 
         /*    //test połączenia
             Thread serwerThread = new Thread(new ThreadStart(serverStart));     // wyrzucamy serwer do innego wątku 
@@ -84,10 +87,11 @@ namespace DiXit
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form3 F3 = new Form3();
+            Form3 F3 = new Form3(pl);
+            
             F3.Show();
             this.Hide();
-            F3.Visible = true;
+            F3.Visible = true;//
             
         }
 
@@ -153,6 +157,7 @@ namespace DiXit
 
         private void button3_Click(object sender, EventArgs e)
         {
+             // przed zamknięciem trzeba ubić wątki
             this.Close();
         }
     }
