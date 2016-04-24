@@ -184,12 +184,12 @@ namespace DiXit
             {
               case 1:
 
-                    myPlayer.updateVote(Int32.Parse(listOfButtons[0].Name));
+                    myPlayer.updateVote(vote[0]);
                     break;
                case 2:
 
-                    myPlayer.updateVote(Int32.Parse(listOfButtons[0].Name));
-                    myPlayer.updateVote(Int32.Parse(listOfButtons[0].Name));
+                    myPlayer.updateVote(vote[0],vote[1]);
+                 
                     break;
                
             }

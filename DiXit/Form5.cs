@@ -24,7 +24,7 @@ namespace DiXit
             this.Location = location;
 
             InitializeComponent();
-
+            setLabels();
             CreateButtons(playersNumb);
 
         }
@@ -45,12 +45,12 @@ namespace DiXit
             Label informm = new Label();
             informm.Left = 100;
             informm.Top = 20;
-
+            informm.Font = new Font("Arial",10);
 
             this.Controls.Add(informm);
 
                 informm.Text = " SHOW YOUR CARD";
-          
+            
 
         }
 
@@ -99,10 +99,11 @@ namespace DiXit
 
             confirm.Click += (object send, EventArgs ee) =>
             {
-                    myPlayer.updatePlayer(collectData(), playerType.guesser);          // w przypadku podającego kartę
+                int test = collectData();
+                    myPlayer.updatePlayer(test, playerType.guesser);          // w przypadku podającego kartę
             };
 
-
+            Player testPlayer = myPlayer;                                // PLAYER TESTOWY DO SPRAWDZENIA POPRAWNOSCI DANYCH  !!!!!!!!
         }
 
         protected int collectData()
