@@ -25,7 +25,7 @@ namespace DiXit
             {
                 TcpClient tcpclnt = new TcpClient();
                 Console.WriteLine("Connecting.....");
-                tcpclnt.Connect("89.79.186.247", 21);
+                tcpclnt.Connect("89.79.186.247", 50201);
                 // use the ipaddress as in the server program
 
                 Console.WriteLine("Connected");

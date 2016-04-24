@@ -14,27 +14,31 @@ namespace DiXit
         public void AddToPlayerList(Player pl)                                 // tutaj sobie dodajemy do listy graczy 
 
         {
-            
+            if (playersList.Count > 0)//inaczej rzuca index out of range 
+            {
                 Player checkPlayer = getPlayerByIp(pl.getIpAddress());                // sprawdzmy czy już go nie ma na liscie
 
                 if (checkPlayer.getIpAddress() == "unknown")
                 {
                     playersList.Add(pl);
                 }
-            
-            
+
+            }
         }
               
         public void RemoveFromPlayerList (Player pl)                            // a tu odejmujemy z listy graczy, na podstawie IP 
    
         {
-            for (int i =0; i<=playersList.Count;i++)
+            if (playersList.Count > 0)//inaczej rzuca index out of range 
             {
-
-                if (pl.getIpAddress() == playersList[i].getIpAddress())
-
+                for (int i = 0; i <= playersList.Count; i++)
                 {
-                    playersList.RemoveAt(i);
+
+                    if (pl.getIpAddress() == playersList[i].getIpAddress())
+
+                    {
+                        playersList.RemoveAt(i);
+                    }
                 }
             }
         }
@@ -65,7 +69,7 @@ namespace DiXit
             foundPlayer = new Player("unknown", "unknown");
             if (playersList.Count > 0)//inaczej rzuca index out of range 
             {
-                for (int i = 0; i <= playersList.Count; i++)
+                for (int i = 0; i < playersList.Count; i++)
                 {
                     if (playersList[i].getIpAddress() == login)
                      {
@@ -77,12 +81,30 @@ namespace DiXit
             return foundPlayer;
         }
 
+        public int getChallenger()                                    // zwróci nam playera z podanym IP gracza
+        {
+            int foundPlayer;
+            foundPlayer = -1;
+            
+                for (int i = 0; i < playersList.Count; i++)
+                {
+                    if (playersList[i].getType() == playerType.challanger)
+                    {
+                        foundPlayer = i;
+                        break;
+                    }
+                }
+
+          
+            return foundPlayer;
+        }
+
         public bool checkColor(System.Drawing.Color c)//czy możemy wybrać sobie kolor
         {
             bool result = true;
             if (playersList.Count > 0)//inaczej rzuca index out of range 
             {
-                for (int i = 0; i <= playersList.Count; i++)
+                for (int i = 0; i < playersList.Count; i++)
                 {
                     if (playersList[i].Color == c) result = false;
                 }
@@ -91,5 +113,31 @@ namespace DiXit
             return result;
         }
 
+        public void sumUpMainCard()
+        {
+            int chPlayer = getChallenger();//szukamy indexu dajacego skojarzenie
+            int mainCard = playersList[chPlayer].getMyCard();//i jego karty
+            int voted = 0;
+            
+            for (int i = 0; i < playersList.Count; i++)
+            {
+                voted += playersList[i].checkVote(mainCard);
+            }
+            if (voted == 0 || voted == playersList.Count - 1) voted = 0;
+            else voted = 3;
+            playersList[chPlayer].guessed(voted);
+
+            for (int i = 0; i < playersList.Count; i++)
+            {
+                for (int j = 0; j < playersList.Count; j++)
+                {
+                    playersList[j].checkVoteElse(playersList[i].getMyCard());
+                    playersList[i].updateVotingList(playersList[j]);
+                }
+
+            }
+
+
+        }
     }
 }

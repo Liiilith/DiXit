@@ -5,8 +5,10 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace DiXit
 {
@@ -14,21 +16,36 @@ namespace DiXit
     {
         //bedzie już istnieć
         bool server = false;
-       // Player player1 = new Player("22", "gracz1");       
-      //  Player player2 = new Player("22", "gracz2");   
-            
-        
+        Player pl;
+        // Player player1 = new Player("22", "gracz1");       
+        //  Player player2 = new Player("22", "gracz2");   
 
-        public Form1(string gameIP,string plID,bool srv)
+
+
+        public Form1(string gameIP, string plID, bool srv, Player p)
         {
             server = srv;
             InitializeComponent();
-            buttonsLook(gameIP,plID);
-            // nazwy buttonów i inne
+            buttonsLook(gameIP, plID);
             this.Show();
-        }
+            pl = p;
 
-      
+        /*    //test połączenia
+            Thread serwerThread = new Thread(new ThreadStart(serverStart));     // wyrzucamy serwer do innego wątku 
+            serwerThread.Start();*/
+
+        }
+        ////test połączenia
+    /*    private void serverStart()
+        {
+            Player player1 = new Player(Constance.GetLocalIPAddress(), "gracz1");
+            Server serwer = new Server(player1);                   // czekamy na odbiór wyników
+            string my = serwer.runServer();
+            if (my == "test")
+            {
+                textBox1.Text = "test";
+            }
+        }*/
 
         public void serverSet(bool set)
         {
@@ -39,24 +56,43 @@ namespace DiXit
         {
             Player player1 = new Player("22", "gracz1");
             Button bt = sender as Button;
+            System.Drawing.Color c = new System.Drawing.Color();
             DialogResult result = colorDialog1.ShowDialog();
             // See if user pressed ok.
             if (result == DialogResult.OK)
             {   //trzeba bedzie sprawdzic jakos czy kolor jest dostepny
-                //if( gra.Check_rabbit(colorDialog1.Color)){
+                //while(! gra.Check_rabbit( c)){//potrzebna jest klasa nadrzedna monitorująca całość
+                // result = colorDialog1.ShowDialog();
+                // if (result == DialogResult.OK)
+                //{
+
                 bt.BackColor = colorDialog1.Color;
-                player1.Color=colorDialog1.Color;    
+                player1.Color = colorDialog1.Color;
                 // }
+
             }
+
+            //  bt.BackColor = c;
+            // player1.Color = c;
+
             updatePlayerList();
+            //test połączenia
+        /*    if (!server)
+            {
+                Player pl = new Player("22", "gracz2");
+                Client client = new Client(pl);
+                client.runClient("test");
+            }*/
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form3 F3 = new Form3();
+            Form3 F3 = new Form3(pl);
+            
             F3.Show();
             this.Hide();
-            F3.Visible = true;
+            F3.Visible = true;//
+            
         }
 
         private void buttonsLook(string gameIP, string plID)
@@ -67,8 +103,8 @@ namespace DiXit
             label1.Text = gameIP;
             label2.Text = plID;
         }
-           public void updatePlayerList()// List<Player> players) vs nie przyjmuje listy jako arg przez ograniczenia dostepu (?)
-            {
+        public void updatePlayerList()// List<Player> players) vs nie przyjmuje listy jako arg przez ograniczenia dostepu (?)
+        {
             Player player1 = new Player("22", "gracz1");
             Player player2 = new Player("22", "gracz2");
             player2.Color = System.Drawing.Color.Black;
@@ -76,13 +112,13 @@ namespace DiXit
             tempeGracze.Add(player1);
             tempeGracze.Add(player2);
             tempeGracze.Remove(player1);
-        
-            foreach(Player p in tempeGracze)
-             {
+
+            foreach (Player p in tempeGracze)
+            {
                 //wyswietlanie listy graczy
-              }
-//tymczasowe wyswietlanie
-             for(int i = 0; i < 12; i++)
+            }
+            //tymczasowe wyswietlanie
+            for (int i = 0; i < 12; i++)
             {
                 int posy = (i / 2) * 40;
                 int posx = (i % 2) * 250;
@@ -113,14 +149,15 @@ namespace DiXit
                 panel1.Controls.Add(label);
                 panel1.Controls.Add(button);
             }
-                 
-            
+
+
 
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+             // przed zamknięciem trzeba ubić wątki
             this.Close();
         }
     }

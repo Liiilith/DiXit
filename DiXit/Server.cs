@@ -24,7 +24,7 @@ namespace DiXit
                 // use the same in the client
 
                 /* Initializes the Listener */
-                TcpListener myList = new TcpListener(ipAd, 50201);
+                TcpListener myList = new TcpListener(ipAd, 21);
 
                 /* Start Listeneting at the specified port */
                 myList.Start();

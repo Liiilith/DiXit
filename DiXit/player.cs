@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 namespace DiXit
 {
 
-  public enum playerType
+   public  enum playerType
     {
         challanger, guesser, unsign
     };
 
 
 
-  public class Player
+    public class Player
     {
 
         private playerType type = playerType.unsign; //zaczynamy od typu nieokreslonego
@@ -44,8 +44,16 @@ namespace DiXit
             }
         }
 
-
+        List<Player> votedOnMe;
         private int result;// ilość punktów w rundzie
+        public int Result
+        {
+            get
+            {
+                return result;
+            }
+        }
+        private int myVotes;
         private int[] cards;
         /*
         cards[0]- własna karta
@@ -60,10 +68,12 @@ namespace DiXit
         {
             iPadd = ip;
             playerID = login;
+           
             cards = new int[3];
             cards[0] = -1;
             cards[1] = -1;
             cards[2] = -1;
+            votedOnMe = new List<Player>();
         }
         //ustaw color
         public void selectColor(System.Drawing.Color rc)
@@ -82,17 +92,22 @@ namespace DiXit
 
 
         public void updateVote(int firstCard)                      // update wyboru gracza w przypadku głosowania na jedną kartę
-
         {
-            this.cards[1] = firstCard;
+            if (type == playerType.guesser)//coby nie oszukiwac
+            {
+                this.cards[1] = firstCard;
+            }
         }
 
 
         public void updateVote(int firstCard, int secondCard)      // update wyboru gracza w przypadku głosowania na dwie karty
 
         {
-            this.cards[1] = firstCard;
-            this.cards[2] = secondCard;
+            if (type == playerType.guesser)//coby nie oszukiwac
+            {
+                this.cards[1] = firstCard;
+                this.cards[2] = secondCard;
+            }
         }
 
         public string getIpAddress()                               // getter do ip 
@@ -111,6 +126,65 @@ namespace DiXit
         public playerType getType()           // zwraca typ gracza
         {
             return type;
+        }
+
+        public void updateVotingList(Player pl)         // dorzucamy glosujacego
+        {
+            // sprawdzmy czy już go nie ma na liscie
+
+            if (!votedOnMe.Contains(pl))
+            {
+                votedOnMe.Add(pl);
+                if (myVotes < 3) myVotes++;
+            }
+
+         }
+
+        public void resetRound()   // czyscimy na koniec rundy
+        {
+            votedOnMe.Clear();
+            myVotes = 0;
+            result = 0;
+            type = playerType.unsign;
+            cards[0] = -1;
+            cards[1] = -1;
+            cards[2] = -1;
+
+        }
+
+        public int getMyCard()//zwraca kartę rzucną przez gracza
+        {
+            return cards[0];
+        }
+        public void  guessed(int p)
+        {
+            result = p;
+        }
+
+        public void setFinalScore() //koncowy winik
+        {
+            result += myVotes;
+        }
+
+        public int checkVote(int win) //spradz za ile gracz zgadl
+        {
+            int res = 0;
+            if (type == playerType.guesser)
+            {
+                result = 0;
+                if (cards[1] == win) result = 2;//gracz zgadł
+                if (cards[2] == -1) result++;  // i głosował 1 grzybkiem
+            }
+            return res;
+        }
+
+        public bool checkVoteElse(int win) //spradz za ile gracz zgadl
+        {
+            if (type == playerType.guesser)
+            {
+                if (cards[1] == win || cards[2] == win) return true; //gracz głosował na daną kartę
+            }
+            return false;
         }
     }
 }
