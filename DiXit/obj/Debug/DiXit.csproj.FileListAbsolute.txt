@@ -26,3 +26,4 @@ D:\C#\DiXit\DiXit\obj\Debug\DiXit.Form5.resources
 D:\C#\DiXit\DiXit\bin\DiXit.exe.config
 D:\C#\DiXit\DiXit\bin\DiXit.exe
 D:\C#\DiXit\DiXit\bin\DiXit.pdb
+D:\DiXit\DiXit\obj\Debug\DiXit.Form5.resources

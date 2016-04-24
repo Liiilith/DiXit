@@ -152,6 +152,11 @@ namespace DiXit
 
         }
 
+        public bool selfVote()// czy gracz głosował na siebie, może sie przyda
+        {
+            if (cards[0] == cards[1] || cards[0] == cards[1]) return true;
+            return false;
+        }
         public int getMyCard()//zwraca kartę rzucną przez gracza
         {
             return cards[0];
@@ -182,6 +187,7 @@ namespace DiXit
         {
             if (type == playerType.guesser)
             {
+                
                 if (cards[1] == win || cards[2] == win) return true; //gracz głosował na daną kartę
             }
             return false;
