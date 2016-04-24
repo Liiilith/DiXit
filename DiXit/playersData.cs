@@ -134,10 +134,18 @@ namespace DiXit
                     playersList[j].checkVoteElse(playersList[i].getMyCard());
                     playersList[i].updateVotingList(playersList[j]);
                 }
-
+                playersList[i].setFinalScore();
             }
 
 
+        }
+
+        public void clearRound()
+        {
+            for (int j = 0; j < playersList.Count; j++)
+            {
+                playersList[j].resetRound();
+            }
         }
     }
 }
