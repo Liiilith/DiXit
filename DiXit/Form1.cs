@@ -88,7 +88,7 @@ namespace DiXit
         private void button2_Click(object sender, EventArgs e)
         {
             Form3 F3 = new Form3(pl);
-            
+
             F3.Show();
             this.Hide();
             F3.Visible = true;//

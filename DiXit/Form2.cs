@@ -68,6 +68,7 @@ namespace DiXit
                     this.Hide();
                     F1.Visible = true;
                     srv = new Server(player1);
+                   
                 }
             }
             else { textBox2.Text = "No valid IP"; }
