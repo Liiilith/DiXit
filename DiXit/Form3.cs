@@ -13,13 +13,16 @@ namespace DiXit
     public partial class Form3 : Form
     {
         // deklaracja zmiennych dla Ekranu 3
-        Player player1 = new Player("22","11");        // to tak naprawdę zostanie stworzone wyżej
+        Player player1;        // to tak naprawdę zostanie stworzone wyżej
 
 
-        public Form3()
+        public Form3(Player pl)
         {
             InitializeComponent();
             buttonsLook();         // nazwy buttonów i inne
+
+            player1 = pl;
+
         }
 
         private void Form3_Load(object sender, EventArgs e)
@@ -35,6 +38,13 @@ namespace DiXit
 
 
             {
+                Form votingScreen = new Form4(12 ,true,player1);             // ta liczna graczy musi byc wzieta z serwera
+
+                votingScreen.Show();
+
+
+                this.Hide();
+
                 // tu if jesteś serverem to odpalaj server a inaczej klienta
                 // startujemy nową forme 4, z ustawianiami w zależności od typu gracza 
             }
@@ -42,8 +52,14 @@ namespace DiXit
             else if (player1.getType() == playerType.guesser)
             {
 
+                Form votingScreen = new Form4(12, false, player1);             // ta liczna graczy musi byc wzieta z serwera
+
+                votingScreen.Show();
+                this.Hide();
+
+
                 // jw  
-           
+
             }
         }
 

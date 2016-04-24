@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 namespace DiXit
 {
 
-    enum playerType
+  public enum playerType
     {
         challanger, guesser, unsign
     };
 
 
 
-    class Player
+  public class Player
     {
 
         private playerType type = playerType.unsign; //zaczynamy od typu nieokreslonego

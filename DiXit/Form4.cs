@@ -15,54 +15,60 @@ namespace DiXit
 
         int playersNumb;                                             // forma 4 to ekran głosowania, liczba graczy powinna się zawrzeć w konstruktorze 
         bool challenger;                                             // zmienna informująca czy gracz zadaje kartę czy zgaduje 
+        List<Button> listOfButtons = new List<Button>();             // lista buttonow do lepszego zarządzania
+        Player myPlayer;
 
-        public Form4(int playersNumber, bool playerType)                             // konstruktor dla formy 4
+
+        public Form4(int playersNumber, bool playerType, Player pl)                             // konstruktor dla formy 4
         {
             InitializeComponent();
 
+            myPlayer = pl;
             playersNumb = playersNumber;
             challenger = playerType;
+            setLabels(playerType);
 
             CreateButtons(playersNumb);                        // tu juz powinienem znac info o ilosci graczy ktorzy uczestnicza w rozgrywce
 
 
         }
 
-        protected void setLabels ()
+        protected void setLabels (bool type)
 
         {
             Label informm = new Label();
+            informm.Left = 100;
+            informm.Top = 20;
+           
 
-            informm.Text = "Zagłosuj na kartę";
+            this.Controls.Add(informm);
 
-            informm.Text = " Podaj swoją kartę";
+            if (type == false)
+                informm.Text = "VOTE";
+
+            else
+
+            {
+                informm.Text = " MARK YOUR CARD";
+            }
+
         }
-
 
         protected void button_Click(object sender, EventArgs e)
         {
-            Button button = sender as Button;
-            // identify which button was clicked and perform necessary actions
+            Button button = sender as Button;              // tutaj identyfikacja kliknietego buttona
 
 
-            //  ColectData(button);
+            if (challenger)
+            {
+                markChoiseChallange(button);
+            }
+                else
+            {
+                markChoise(button);
+            }
 
-            //    ConfirmButton();
-
-
-
-
-        }
-
-        protected void button_Clk(object sender, EventArgs e)
-        {
-            Button button = sender as Button;
-            // identify which button was clicked and perform necessary actions
-
-
-            //    ColectDataChallange(button);
-
-            //    ConfirmButton();
+            ConfirmButton();
 
 
 
@@ -71,7 +77,7 @@ namespace DiXit
 
         private void CreateButtons(int numbers)
         {
-            int top = 50;
+            int top = 70;
             int left = 100;
             int height = 80;
             int widht = 80;
@@ -79,6 +85,7 @@ namespace DiXit
             for (int i = 1; i <= numbers; i++)
             {
                 Button button = new Button();
+                listOfButtons.Add(button);
                 button.BackColor = Color.GreenYellow;
                 button.Width = widht;
                 button.Height = height;
@@ -98,11 +105,10 @@ namespace DiXit
             }
         }
 
-
         protected void ConfirmButton()
         {
             Button confirm = new Button();
-            confirm.Top = 500;
+            confirm.Top = 520;
             confirm.Left = 100;
             Controls.Add(confirm);
             confirm.Text = "SEND";
@@ -113,20 +119,157 @@ namespace DiXit
             confirm.Click += (object send, EventArgs ee) =>
             {
 
+                if (challenger)
+                {
+                    myPlayer.updatePlayer(collectData(), playerType.challanger);          // w przypadku podającego kartę
+                }
 
-
+                else
+                {
+                    collectVoteData();                           // głosy oddane przez playera zostają zapisane  
+                }
+                                         
             };
 
 
         }
 
-        protected void ColectData(Button b, int glosy)
+        protected int collectData ()
+
         {
+            int vote = 0;
+
+            for (int i = 0; i < playersNumb; i++)
+            {
+             
+
+                if (listOfButtons[i].BackColor == Color.Blue)
+
+                {
+                  vote = Int32.Parse(listOfButtons[i].Name);
+                   
+                }
+
+            }
+
+            return vote;
+        }
+
+        protected int collectVoteData ()
+
+        {
+            List<int> vote = new List<int>();
+
+            for (int i = 0; i<playersNumb; i++)
+            {
+                if (listOfButtons[i].BackColor == Color.Blue)
+
+                {
+                    string temp = listOfButtons[i].Name;
+                    vote.Add(Int32.Parse(temp));
+                }
+            }
+
+            int s = vote.Count();
+
+            switch (s)
+            {
+              case 1:
+
+                    myPlayer.updateVote(Int32.Parse(listOfButtons[0].Name));
+                    break;
+               case 2:
+
+                    myPlayer.updateVote(Int32.Parse(listOfButtons[0].Name));
+                    myPlayer.updateVote(Int32.Parse(listOfButtons[0].Name));
+                    break;
+               
+            }
+
+            return vote.Count();
+
+
+        }
+
+        protected void markChoiseChallange(Button b)
+
+        {
+            if (b.BackColor == Color.Blue)
+            {
+                // cofamy głos kolor niebieski staje sie zielonym
+                manageColors(b, true);
+            }
+
+
+            else
+            {
+                if (scanColors() < 1)
+                {
+                    //  zaznaczamy głos kolor zielony staje się niebieski
+                    manageColors(b, false);
+                }
+            }
+        }
+
+        protected void markChoise(Button b)
+        {
+            if (b.BackColor == Color.Blue)
+            {
+                                                      // cofamy głos kolor niebieski staje sie zielonym
+                manageColors(b,true);
+            }
+
+           
+            else {
+                if (scanColors() < 2)
+                {
+                    //  zaznaczamy głos kolor zielony staje się niebieski
+                 manageColors(b, false);
+                }
+            }
 
 
 
         }
 
+        protected int scanColors ()
+
+
+        {
+            int blueButtonsCount=0;
+
+            for (int i=0; i < playersNumb; i++)
+            {
+                if (listOfButtons[i].BackColor == Color.Blue)
+
+
+                {
+                    blueButtonsCount++;
+                }
+
+            }
+
+            return blueButtonsCount;
+
+        }
+
+        protected void manageColors (Button v,bool change)
+
+        {
+
+            if (change)
+            {
+                v.BackColor = Color.GreenYellow;
+            }
+
+            else
+            {
+
+                v.BackColor = Color.Blue;
+            }
+
+
+        }
 
         private void Form4_Load(object sender, EventArgs e)
         {
