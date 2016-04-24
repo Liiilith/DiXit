@@ -63,9 +63,9 @@ namespace DiXit.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap aaa {
+        internal static System.Drawing.Bitmap b {
             get {
-                object obj = ResourceManager.GetObject("aaa", resourceCulture);
+                object obj = ResourceManager.GetObject("b", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace DiXit.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap b {
+        internal static System.Drawing.Bitmap b1 {
             get {
-                object obj = ResourceManager.GetObject("b", resourceCulture);
+                object obj = ResourceManager.GetObject("b1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -96,26 +96,6 @@ namespace DiXit.Properties {
         internal static System.Drawing.Bitmap background {
             get {
                 object obj = ResourceManager.GetObject("background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap boys {
-            get {
-                object obj = ResourceManager.GetObject("boys", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap cat {
-            get {
-                object obj = ResourceManager.GetObject("cat", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,16 +133,6 @@ namespace DiXit.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap dixit_2_przygody_gra_planszowa_bydgoszcz {
-            get {
-                object obj = ResourceManager.GetObject("dixit-2-przygody-gra-planszowa-bydgoszcz", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap e_oczekiwania {
             get {
                 object obj = ResourceManager.GetObject("e_oczekiwania", resourceCulture);
@@ -183,29 +153,9 @@ namespace DiXit.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap punkt {
+        internal static System.Drawing.Bitmap punktyy {
             get {
-                object obj = ResourceManager.GetObject("punkt", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap punkt5 {
-            get {
-                object obj = ResourceManager.GetObject("punkt5", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap skz {
-            get {
-                object obj = ResourceManager.GetObject("skz", resourceCulture);
+                object obj = ResourceManager.GetObject("punktyy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -226,16 +176,6 @@ namespace DiXit.Properties {
         internal static System.Drawing.Bitmap voting_background {
             get {
                 object obj = ResourceManager.GetObject("voting_background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap vvvvvbdf {
-            get {
-                object obj = ResourceManager.GetObject("vvvvvbdf", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
