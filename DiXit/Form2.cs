@@ -63,7 +63,7 @@ namespace DiXit
                 if (b.Tag == "SRV") isServer = true;
                 if (textBox1.Text != "")
                 {
-                    Form1 F1 = new Form1(player1.PlayerID, player1.getIpAddress(), isServer, player1);
+                    Form1 F1 = new Form1(isServer, player1, this.Location);
                     F1.Show();
                     this.Hide();
                     F1.Visible = true;
