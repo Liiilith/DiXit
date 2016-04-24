@@ -18,6 +18,8 @@ namespace DiXit
     {
         private bool isServer=false;
         private Server srv;
+        private Player pl= new Player("unknown", "unknown");
+        Form1 F1;
         public Form2()
         {
 
@@ -25,6 +27,7 @@ namespace DiXit
             InitializeComponent();
           
             textBox2.Text = Constance.GetLocalIPAddress();
+            F1 = new Form1(isServer, pl, this.Location, this);
         }
 
 
@@ -59,15 +62,17 @@ namespace DiXit
             Button b = sender as Button;
             if (Constance.IsIPv4(textBox2.Text))
             {
-                Player player1 = new Player(textBox1.Text, textBox2.Text);
+                Player p = new Player(textBox1.Text, textBox2.Text);
+                pl = p;
                 if (b.Tag == "SRV") isServer = true;
                 if (textBox1.Text != "")
                 {
-                    Form1 F1 = new Form1(isServer, player1, this.Location);
+                    F1.updatee(isServer, pl, this.Location, this);
+                    F1.Update();
                     F1.Show();
                     this.Hide();
                     F1.Visible = true;
-                    srv = new Server(player1);
+                    srv = new Server(pl);
                    
                 }
             }
@@ -76,6 +81,17 @@ namespace DiXit
 
         }
 
+        public void goBack(bool srv, Player p, Point loc, Form1 f1)
+        {
+            isServer = srv;
+            this.Show();
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = loc;
+            pl = p;
+            F1 = F1;
+            this.Visible = true;
+
+        }
         private void button3_Click(object sender, EventArgs e)
         {
            this.Close();

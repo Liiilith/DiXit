@@ -16,37 +16,42 @@ namespace DiXit
     {
         //bedzie już istnieć
         bool server = false;
+        Form2 F2;
         Player pl;
         // Player player1 = new Player("22", "gracz1");       
         //  Player player2 = new Player("22", "gracz2");   
 
 
 
-        public Form1(bool srv, Player p,Point loc)
+        public Form1(bool srv, Player p,Point loc, Form2 f2)
         {
             server = srv;
             InitializeComponent();
+            F2 = f2;
             buttonsLook(p.getIpAddress(), p.PlayerID);
             this.Show();
             this.StartPosition = FormStartPosition.Manual;
             this.Location = loc;
             pl = p;
 
-        /*    //test połączenia
-            Thread serwerThread = new Thread(new ThreadStart(serverStart));     // wyrzucamy serwer do innego wątku 
-            serwerThread.Start();*/
-
+            //test połączenia
+        /*    if (server)
+            {
+                Thread serwerThread = new Thread(new ThreadStart(serverStart));     // wyrzucamy serwer do innego wątku 
+                serwerThread.Start();
+            }*/
         }
         ////test połączenia
-    /*    private void serverStart()
+       /* private void serverStart()
         {
             Player player1 = new Player(Constance.GetLocalIPAddress(), "gracz1");
             Server serwer = new Server(player1);                   // czekamy na odbiór wyników
             string my = serwer.runServer();
-            if (my == "test")
+           /* if (my == "test")
             {
                 textBox1.Text = "test";
-            }
+            }*/
+        /*    textBox1.Text = my;
         }*/
 
         public void serverSet(bool set)
@@ -79,11 +84,11 @@ namespace DiXit
 
             updatePlayerList();
             //test połączenia
-        /*    if (!server)
+       /*     if (!server)
             {
                 Player pl = new Player("22", "gracz2");
                 Client client = new Client(pl);
-                client.runClient("test");
+                client.runClient(textBox1.Text);
             }*/
         }
 
@@ -101,6 +106,10 @@ namespace DiXit
         {
             button2.Visible = server;
             button2.Enabled = server;
+            if (server)
+            {
+                this.BackgroundImage = global::DiXit.Properties.Resources.globe;
+            }
             button2.Text = "START";
             label1.Text = gameIP;
             label2.Text = plID;
@@ -144,6 +153,7 @@ namespace DiXit
                 label.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
                 label.Location = new System.Drawing.Point(10 + posx, 10 + posy);
                 label.Name = "label";
+                label.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
                 label.RightToLeft = System.Windows.Forms.RightToLeft.No;
                 label.Size = new System.Drawing.Size(100, 25);
                 label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -161,6 +171,25 @@ namespace DiXit
         {
              // przed zamknięciem trzeba ubić wątki
             this.Close();
+        }
+
+        public void updatee(bool srv, Player p, Point loc, Form2 f1)
+        {
+            server = srv;
+            //this.Show();
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = loc;
+            pl = p;
+            buttonsLook(p.getIpAddress(), p.PlayerID);
+            F2 = f1;
+            this.Visible = true;
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            F2.goBack(server, pl, this.Location, this);
+            //trzeba ubic server
         }
     }
 }

@@ -176,6 +176,42 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\punkt.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\punkt5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aaa.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dixit-2-przygody-gra-planszowa-bydgoszcz.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\e_oczekiwania.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vvvvvbdf.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\boys.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cat.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\globe.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tree.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skz.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\b.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
