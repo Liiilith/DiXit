@@ -67,7 +67,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::DiXit.Properties.Resources.background;
+            this.BackgroundImage = global::DiXit.Properties.Resources.bacck;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(484, 661);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);

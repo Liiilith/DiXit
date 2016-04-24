@@ -20,7 +20,7 @@ namespace DiXit
         {
             InitializeComponent();
             buttonsLook();         // nazwy buttonów i inne
-
+         //   this.BackgroundImageLayout = ImageLayout.Stretch;
             player1 = pl;
 
         }
