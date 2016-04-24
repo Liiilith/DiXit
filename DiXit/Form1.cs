@@ -56,7 +56,7 @@ namespace DiXit
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Player player1 = new Player("22", "gracz1");
+           
             Button bt = sender as Button;
             System.Drawing.Color c = new System.Drawing.Color();
             DialogResult result = colorDialog1.ShowDialog();
@@ -69,7 +69,7 @@ namespace DiXit
                 //{
 
                 bt.BackColor = colorDialog1.Color;
-                player1.Color = colorDialog1.Color;
+                pl.Color = colorDialog1.Color;
                 // }
 
             }
@@ -107,8 +107,8 @@ namespace DiXit
         }
         public void updatePlayerList()// List<Player> players) vs nie przyjmuje listy jako arg przez ograniczenia dostepu (?)
         {
-            Player player1 = new Player("22", "gracz1");
-            Player player2 = new Player("22", "gracz2");
+           Player player1 = new Player("22", "gracz");
+           /* Player player2 = new Player("22", "gracz2");
             player2.Color = System.Drawing.Color.Black;
             List<Player> tempeGracze = new List<Player>();
             tempeGracze.Add(player1);
@@ -118,7 +118,7 @@ namespace DiXit
             foreach (Player p in tempeGracze)
             {
                 //wyswietlanie listy graczy
-            }
+            }*/
             //tymczasowe wyswietlanie
             for (int i = 0; i < 12; i++)
             {
