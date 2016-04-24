@@ -22,12 +22,14 @@ namespace DiXit
 
 
 
-        public Form1(string gameIP, string plID, bool srv, Player p)
+        public Form1(bool srv, Player p,Point loc)
         {
             server = srv;
             InitializeComponent();
-            buttonsLook(gameIP, plID);
+            buttonsLook(p.getIpAddress(), p.PlayerID);
             this.Show();
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = loc;
             pl = p;
 
         /*    //test połączenia
@@ -87,7 +89,7 @@ namespace DiXit
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form3 F3 = new Form3(pl);
+            Form3 F3 = new Form3(pl, this.Location);
 
             F3.Show();
             this.Hide();

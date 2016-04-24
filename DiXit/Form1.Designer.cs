@@ -144,6 +144,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DiXit";
             this.ResumeLayout(false);
             this.PerformLayout();
