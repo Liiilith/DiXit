@@ -16,9 +16,12 @@ namespace DiXit
         Player player1;        // to tak naprawdę zostanie stworzone wyżej
 
 
-        public Form3(Player pl)
+        public Form3(Player pl, Point location)
         {
             InitializeComponent();
+
+            this.Location = location; 
+
             buttonsLook();         // nazwy buttonów i inne
          //   this.BackgroundImageLayout = ImageLayout.Stretch;
             player1 = pl;
@@ -38,7 +41,7 @@ namespace DiXit
 
 
             {
-                Form votingScreen = new Form4(12 ,true,player1);             // ta liczna graczy musi byc wzieta z serwera
+                Form votingScreen = new Form4(12 ,true,player1, this.Location);             // ta liczna graczy musi byc wzieta z serwera
 
                 votingScreen.Show();
 

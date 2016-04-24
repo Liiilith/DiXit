@@ -19,7 +19,7 @@ namespace DiXit
         Player myPlayer;
 
 
-        public Form4(int playersNumber, bool playerType, Player pl)                             // konstruktor dla formy 4
+        public Form4(int playersNumber, bool playerType, Player pl, Point locat)                             // konstruktor dla formy 4
         {
             InitializeComponent();
 
@@ -27,6 +27,7 @@ namespace DiXit
             playersNumb = playersNumber;
             challenger = playerType;
             setLabels(playerType);
+            this.Location = locat;
 
             CreateButtons(playersNumb);                        // tu juz powinienem znac info o ilosci graczy ktorzy uczestnicza w rozgrywce
 
@@ -127,6 +128,13 @@ namespace DiXit
                 else
                 {
                     collectVoteData();                           // głosy oddane przez playera zostają zapisane  
+
+                   
+                    Form5 showCardGuesser = new Form5(playersNumb, myPlayer,  this.Location);
+                    showCardGuesser.Show();
+                    this.Hide();
+
+                   
                 }
                                          
             };

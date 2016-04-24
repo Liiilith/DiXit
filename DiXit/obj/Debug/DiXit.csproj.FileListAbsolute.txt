@@ -24,3 +24,4 @@ D:\DiXit\DiXit\obj\Debug\DiXit.csprojResolveAssemblyReference.cache
 D:\DiXit\DiXit\obj\Debug\DiXit.Form6.resources
 D:\C#\DiXit\DiXit\obj\Debug\DiXit.csprojResolveAssemblyReference.cache
 D:\C#\DiXit\DiXit\obj\Debug\DiXit.Form6.resources
+D:\C#\DiXit\DiXit\obj\Debug\DiXit.Form5.resources
