@@ -55,7 +55,7 @@ namespace DiXit
             else if (player1.getType() == playerType.guesser)
             {
 
-                Form votingScreen = new Form4(12, false, player1);             // ta liczna graczy musi byc wzieta z serwera
+                Form votingScreen = new Form4(12, false, player1,this.Location);             // ta liczna graczy musi byc wzieta z serwera
 
                 votingScreen.Show();
                 this.Hide();

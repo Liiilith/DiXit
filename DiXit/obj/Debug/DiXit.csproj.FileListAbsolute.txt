@@ -1,6 +1,3 @@
-D:\C#\DiXit\DiXit\bin\Debug\DiXit.exe.config
-D:\C#\DiXit\DiXit\bin\Debug\DiXit.exe
-D:\C#\DiXit\DiXit\bin\Debug\DiXit.pdb
 D:\C#\DiXit\DiXit\obj\Debug\DiXit.Form1.resources
 D:\C#\DiXit\DiXit\obj\Debug\DiXit.Form2.resources
 D:\C#\DiXit\DiXit\obj\Debug\DiXit.Form3.resources
@@ -25,3 +22,7 @@ D:\DXTbin\DiXit.exe.config
 D:\DiXit\DiXit\bin\DiXit.exe.config
 D:\DiXit\DiXit\bin\DiXit.exe
 D:\DiXit\DiXit\bin\DiXit.pdb
+D:\C#\DiXit\DiXit\obj\Debug\DiXit.Form5.resources
+D:\C#\DiXit\DiXit\bin\DiXit.exe.config
+D:\C#\DiXit\DiXit\bin\DiXit.exe
+D:\C#\DiXit\DiXit\bin\DiXit.pdb
