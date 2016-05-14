@@ -16,6 +16,7 @@ namespace DiXit
     {
         //bedzie już istnieć
         Server ss;
+        Client cc;
         bool server = false;
         Form2 F2;
         Player pl;
@@ -69,6 +70,8 @@ namespace DiXit
 
         private void clientStart()
         {
+            cc = new Client(pl);
+            cc.runClient(msg.Data);
 
 
         }

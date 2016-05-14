@@ -24,7 +24,7 @@ namespace DiXit
             try
             {
                 TcpClient tcpclnt = new TcpClient();
-                tcpclnt.Connect("89.79.186.247", 50201);            // tutaj się łaczymy z serwerem na odpowiednim porcie i z IP            
+                tcpclnt.Connect("89.70.34.25", 50201);            // tutaj się łaczymy z serwerem na odpowiednim porcie i z IP            
                 Stream stm = tcpclnt.GetStream();                  // streamer (?) który prześle dane po połączeniu
                 stm.Write(data, 0, data.Length);                   // tu już wrzucamy dane wczesniej zserializowane do buffora
                 tcpclnt.Close();
