@@ -44,7 +44,7 @@ namespace DiXit
 
         public static PlayerL takeM(Message message)
         {
-
+            if (message == null) return null;
             object obj = SRL.Deserialize(message);
             if (obj is PlayerL)
                 return obj as PlayerL;

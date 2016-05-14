@@ -62,10 +62,12 @@ namespace DiXit
             Button b = sender as Button;
             if (Constance.IsIPv4(textBox2.Text))
             {
-                F1 = new Form1(isServer, pl, this.Location, this);
-                Player p = new Player(textBox1.Text, textBox2.Text);
-                pl = p;
+                Player p = new Player(textBox2.Text, textBox1.Text);
                 if (b.Tag == "SRV") isServer = true;
+                F1 = new Form1(isServer, p, this.Location, this);
+                
+                pl = p;
+                
                 if (textBox1.Text != "")
                 {
                     F1.updatee(isServer, pl, this.Location, this);

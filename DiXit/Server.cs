@@ -22,6 +22,8 @@ namespace DiXit
             try
             {
                 IPAddress ipAd = IPAddress.Parse(gameIP);
+                ipAd = IPAddress.Parse("192.168.1.10");
+               
                 // use local m/c IP address, and 
                 // use the same in the client
 
