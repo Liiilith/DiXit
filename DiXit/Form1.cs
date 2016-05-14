@@ -64,8 +64,9 @@ namespace DiXit
             
             ss = new Server(pl);                 // czekamy na odbiór wyników
             msg.Data = ss.runServer();
-           
-            
+            processMSG();
+
+
         }
 
         private void clientStart()
