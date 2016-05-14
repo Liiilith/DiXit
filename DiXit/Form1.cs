@@ -40,7 +40,7 @@ namespace DiXit
             this.Location = loc;
             pl = p;
             plData.AddToPlayerList(pl);
-            //test połączenia
+           
             if (server)
             {
                
