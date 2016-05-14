@@ -41,6 +41,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Cursor = System.Windows.Forms.Cursors.AppStarting;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label4.Location = new System.Drawing.Point(144, 22);
             this.label4.Name = "label4";
             this.label4.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -52,6 +53,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button1.Location = new System.Drawing.Point(34, 548);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(420, 56);
@@ -63,6 +65,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 120F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button2.Location = new System.Drawing.Point(152, 91);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(168, 180);
@@ -84,6 +87,7 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button3.Location = new System.Drawing.Point(409, 610);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(45, 43);
@@ -96,13 +100,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::DiXit.Properties.Resources.background;
+            this.BackgroundImage = global::DiXit.Properties.Resources.punktyy;
             this.ClientSize = new System.Drawing.Size(484, 662);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
+            this.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.Name = "Form6";
             this.Text = "DiXiT";
             this.ResumeLayout(false);

@@ -131,13 +131,40 @@ namespace DiXit
             {
                 for (int j = 0; j < playersList.Count; j++)
                 {
-                    playersList[j].checkVoteElse(playersList[i].getMyCard());
-                    playersList[i].updateVotingList(playersList[j]);
+                    if (j != i)
+                    {
+                        playersList[j].checkVoteElse(playersList[i].getMyCard());
+                        playersList[i].updateVotingList(playersList[j]);
+                    }
                 }
                 playersList[i].setFinalScore();
             }
 
 
+        }
+
+
+
+        public bool checkOwnCards(Player pl)     // czy ownCardy są różne ?
+
+        {
+            int[] t = new int[playersList.Count + 1];
+            if (playersList.Count > 0)//inaczej rzuca index out of range 
+            {
+                for (int i = 0; i < playersList.Count; i++)
+                {
+                    t[playersList[i].getMyCard()]++;
+
+                }
+
+                for (int i = 1; i <= playersList.Count; i++)
+                {
+                    if (t[i] != 1) return false;
+                    // if (t[i] > 1) return false; //t[i]=0 => t[j]>1
+                }
+
+            }
+            return true;
         }
 
         public void clearRound()
