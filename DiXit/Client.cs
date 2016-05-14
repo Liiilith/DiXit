@@ -18,34 +18,15 @@ namespace DiXit
         {
         }
 
-        public void runClient(string data)
+        public void runClient(byte[] data)
         {
 
             try
             {
                 TcpClient tcpclnt = new TcpClient();
-                Console.WriteLine("Connecting.....");
-                tcpclnt.Connect("89.79.186.247", 50201);
-                // use the ipaddress as in the server program
-
-                Console.WriteLine("Connected");
-                Console.Write("Enter the string to be transmitted : ");
-
-
-                Stream stm = tcpclnt.GetStream();
-
-                ASCIIEncoding asen = new ASCIIEncoding();
-                byte[] ba = asen.GetBytes(data);
-                Console.WriteLine("Transmitting.....");
-
-                stm.Write(ba, 0, ba.Length);
-
-                byte[] bb = new byte[100];
-                int k = stm.Read(bb, 0, 100);
-
-                for (int i = 0; i < k; i++)
-                    Console.Write(Convert.ToChar(bb[i]));
-
+                tcpclnt.Connect("89.79.186.247", 50201);            // tutaj się łaczymy z serwerem na odpowiednim porcie i z IP            
+                Stream stm = tcpclnt.GetStream();                  // streamer (?) który prześle dane po połączeniu
+                stm.Write(data, 0, data.Length);                   // tu już wrzucamy dane wczesniej zserializowane do buffora
                 tcpclnt.Close();
             }
 
