@@ -192,6 +192,33 @@
   <ItemGroup>
     <None Include="Resources\b.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\alter.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kkk.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ghg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aw.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\adry.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\awdr.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tgh.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aw1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aw2.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

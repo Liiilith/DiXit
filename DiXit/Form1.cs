@@ -23,7 +23,7 @@ namespace DiXit
         PlayerL ppp;
         PlayerL pppp2;
         playersData plData;
-        Message msg;
+ 
         // Player player1 = new Player("22", "gracz1");       
         //  Player player2 = new Player("22", "gracz2");   
 
@@ -63,19 +63,24 @@ namespace DiXit
             Message msg2 = new Message();
             ss = new Server(pl);                 // czekamy na odbiór wyników
             msg2.Data = ss.runServer();
-            if (msg2 != null)
+            if (msg2.Data != null)
             {
-                processMSG();
+                processMSG(msg2);
                 // label3.Text = ppp.lista[0].playerID;
-                UPD_srv(pppp2);
+                UPD_srv(pppp2.lista);
             }
         }
 
         private void clientStart()
         {
             ppp = new PlayerL(pl);
-            ppp.AddToPL(pl);
-             Message msg1 = SRL.doM(ppp); // w msg.Data jest obiekt do wysłania 
+            for (int i = 0; i < 11; i++)
+            { 
+            Player p = new Player("127.0.0.1", "aaa" + i.ToString());
+
+            ppp.AddToPL(p);
+        }
+            Message msg1 = SRL.Serialize(ppp); // w msg.Data jest obiekt do wysłania 
 
             cc = new Client(pl);
             cc.runClient(msg1.Data);
@@ -87,9 +92,9 @@ namespace DiXit
           //  UPD_srv(ppp2);
             }
 
-        private void processMSG()
+        private void processMSG(Message m)
         {
-            pppp2 = SRL.takeM(msg);
+            pppp2 = SRL.takeM(m);
             if (pppp2 != null)
             {
                 if (pppp2.lista != null)
@@ -100,6 +105,7 @@ namespace DiXit
                         {
                            if(p.iPadd != pl.iPadd)
                             {
+                                //trzeba zrobic logike dodawania
                                 plData.AddToPlayerList(p);
                             }
                         }
@@ -167,7 +173,7 @@ namespace DiXit
             button2.Enabled = server;
             if (server)
             {
-                this.BackgroundImage = global::DiXit.Properties.Resources.globe;
+                this.BackgroundImage = global::DiXit.Properties.Resources.aw2;
             }
             button2.Text = "START";
             label1.Text = gameIP;
@@ -236,7 +242,7 @@ namespace DiXit
                  //wyswietlanie listy graczy
              }*/
             //tymczasowe wyswietlanie
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 14; i++)
             {
                 int posy = (i / 2) * 40;
                 int posx = (i % 2) * 250;
@@ -276,7 +282,7 @@ namespace DiXit
 
         }
 
-        public void UPD_srv(PlayerL ppp2)
+        public void UPD_srv(List<Player> p)
         {
             panel1.Invoke(new Action(delegate ()
             {
@@ -292,7 +298,7 @@ namespace DiXit
                     button.Location = new System.Drawing.Point(160 + posx, 10 + posy);
                     button.Name = "button";
                     button.Size = new System.Drawing.Size(30, 30);
-                    if (ppp.lista.Count > i)
+                    if (p.Count > i)
                     {
                         button.UseVisualStyleBackColor = true;
                         button.BackColor = System.Drawing.Color.IndianRed;
@@ -310,7 +316,7 @@ namespace DiXit
                         label.Size = new System.Drawing.Size(100, 25);
                         label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
-                        label.Text = ppp2.lista[i].PlayerID;
+                        label.Text = p[i].PlayerID;
                         panel1.Controls.Add(label);
                         panel1.Controls.Add(button);
                     }
@@ -342,6 +348,11 @@ namespace DiXit
         {
             //F2.goBack(server, pl, this.Location, this);
             //trzeba ubic server
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

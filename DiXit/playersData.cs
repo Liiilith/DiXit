@@ -10,6 +10,13 @@ namespace DiXit
     {
 
         List<Player> playersList = new List<Player>();
+        public List<Player> PlayersList
+        {
+            get{
+                 return playersList;
+            }
+        }
+
 
         public void AddToPlayerList(Player pl)                                 // tutaj sobie dodajemy do listy graczy 
 

@@ -23,7 +23,7 @@ namespace DiXit
             {
                 IPAddress ipAd = IPAddress.Parse(gameIP);
                 ipAd = IPAddress.Parse("192.168.1.10");
-               
+                Message d = new Message();
                 // use local m/c IP address, and 
                 // use the same in the client
 
@@ -41,14 +41,14 @@ namespace DiXit
                 Socket s = myList.AcceptSocket();
                 //      Console.WriteLine("Connection accepted from " + s.RemoteEndPoint);
 
-             
+              
 
                 byte[] b = new byte[65535];
                 int k = s.Receive(b);
-               
 
+                if (k == 0) return null;
 
-                ASCIIEncoding asen = new ASCIIEncoding();
+               // ASCIIEncoding asen = new ASCIIEncoding();
                // s.Send(asen.GetBytes("The string was recieved by the server."));
                 //   Console.WriteLine("\nSent Acknowledgement");
                 /* clean up */
