@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 using System.IO;
+using System.Threading;
 
 namespace DiXit
 {
     class Server:Game
     {
+        protected List<Thread> threadList;
         public Server(Player pl) : base(pl)
         {
 
         }
-        public string runServer()
+        public byte[] runServer()
         {
             try
             {
@@ -37,37 +39,28 @@ namespace DiXit
                 Socket s = myList.AcceptSocket();
                 //      Console.WriteLine("Connection accepted from " + s.RemoteEndPoint);
 
-                string[] sended = new string[100];
+             
 
-                byte[] b = new byte[100];
+                byte[] b = new byte[65535];
                 int k = s.Receive(b);
-                Console.WriteLine("Recieved...");
-                for (int i = 0; i < k; i++)
-                {
-                    // Console.Write(Convert.ToChar(b[i]));
-                    sended[i] = Convert.ToChar(b[i]).ToString();
-
-
-                }
-
-                string result = string.Join("", sended);
-
+               
 
 
                 ASCIIEncoding asen = new ASCIIEncoding();
-                s.Send(asen.GetBytes("The string was recieved by the server."));
+               // s.Send(asen.GetBytes("The string was recieved by the server."));
                 //   Console.WriteLine("\nSent Acknowledgement");
                 /* clean up */
                 s.Close();
                 myList.Stop();
 
-                return result;
+                return b;
 
             }
             catch (Exception e)
             {
                 Console.WriteLine("Error..... " + e.StackTrace);
-                return "0";
+                byte[] c = new byte[1];
+                return c;
 
             }
         }

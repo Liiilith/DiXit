@@ -15,9 +15,11 @@ namespace DiXit
     public partial class Form1 : Form
     {
         //bedzie już istnieć
+        Server ss;
         bool server = false;
         Form2 F2;
         Player pl;
+        Message msg;
         // Player player1 = new Player("22", "gracz1");       
         //  Player player2 = new Player("22", "gracz2");   
 
@@ -26,6 +28,7 @@ namespace DiXit
         public Form1(bool srv, Player p,Point loc, Form2 f2)
         {
             server = srv;
+           
             InitializeComponent();
             F2 = f2;
             buttonsLook(p.getIpAddress(), p.PlayerID);
@@ -35,24 +38,33 @@ namespace DiXit
             pl = p;
 
             //test połączenia
-        /*    if (server)
+            if (server)
             {
+               
                 Thread serwerThread = new Thread(new ThreadStart(serverStart));     // wyrzucamy serwer do innego wątku 
                 serwerThread.Start();
-            }*/
+            }
+            else
+            {
+                Thread clientThread = new Thread(new ThreadStart(clientStart));     // wyrzucamy serwer do innego wątku 
+                clientThread.Start();
+
+            }
         }
         ////test połączenia
-       /* private void serverStart()
+       private void serverStart()
         {
             Player player1 = new Player(Constance.GetLocalIPAddress(), "gracz1");
-            Server serwer = new Server(player1);                   // czekamy na odbiór wyników
-            string my = serwer.runServer();
-           /* if (my == "test")
-            {
-                textBox1.Text = "test";
-            }*/
-        /*    textBox1.Text = my;
-        }*/
+            ss = new Server(pl);                 // czekamy na odbiór wyników
+            msg.Data = ss.runServer();
+           
+        }
+
+        private void clientStart()
+        {
+            
+
+        }
 
         public void serverSet(bool set)
         {
@@ -111,8 +123,8 @@ namespace DiXit
                 this.BackgroundImage = global::DiXit.Properties.Resources.globe;
             }
             button2.Text = "START";
-            label1.Text = gameIP;
-            label2.Text = plID;
+            label2.Text = gameIP;
+            label1.Text = plID;
         }
         public void updatePlayerList()// List<Player> players) vs nie przyjmuje listy jako arg przez ograniczenia dostepu (?)
         {

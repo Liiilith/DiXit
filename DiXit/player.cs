@@ -16,14 +16,14 @@ namespace DiXit
     };
 
 
-
+    [SerializableAttribute]
     public class Player
     {
 
-        private playerType type = playerType.unsign; //zaczynamy od typu nieokreslonego
+        public playerType type = playerType.unsign; //zaczynamy od typu nieokreslonego
 
-        private string iPadd;
-        private string playerID;
+        public string iPadd;
+        public string playerID;
         public string PlayerID
         {
             get
@@ -31,7 +31,7 @@ namespace DiXit
                 return playerID;
             }
         }
-        private System.Drawing.Color rabbitColor;
+        public System.Drawing.Color rabbitColor;
         public System.Drawing.Color Color
         {
             get
@@ -44,8 +44,8 @@ namespace DiXit
             }
         }
 
-        List<Player> votedOnMe;
-        private int result;// ilość punktów w rundzie
+        public List<Player> votedOnMe;
+        public int result;// ilość punktów w rundzie
         public int Result
         {
             get
@@ -53,16 +53,9 @@ namespace DiXit
                 return result;
             }
         }
-        private int myVotes;
-        private int[] cards;
-        /*
-        cards[0]- własna karta
-        cards[1] cards[2] głosy gracza
->>>>>>> 8356a40847c86025f3e28e343f9a81cc888f550a
-
-
-
-        */
+        public int myVotes;
+        public int[] cards;
+      
 
         public Player(string ip, string login)
         {
