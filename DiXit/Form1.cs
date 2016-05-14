@@ -50,6 +50,9 @@ namespace DiXit
             else
             {
                 Thread clientThread = new Thread(new ThreadStart(clientStart));     // wyrzucamy serwer do innego wątku 
+                PlayerL ppp = new PlayerL(pl);
+                msg = SRL.doM(ppp); // w msg.Data jest obiekt do wysłania 
+
                 clientThread.Start();
 
             }
@@ -57,12 +60,19 @@ namespace DiXit
         ////test połączenia
        private void serverStart()
         {
-            Player player1 = new Player(Constance.GetLocalIPAddress(), "gracz1");
+            
             ss = new Server(pl);                 // czekamy na odbiór wyników
             msg.Data = ss.runServer();
            
             
         }
+
+        private void clientStart()
+        {
+
+
+        }
+
         private void processMSG()
         {
             PlayerL ppp = SRL.takeM(msg);
@@ -87,11 +97,7 @@ namespace DiXit
 
    
 
-        private void clientStart()
-        {
-            
-
-        }
+     
 
         public void serverSet(bool set)
         {

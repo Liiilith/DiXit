@@ -35,7 +35,7 @@ namespace DiXit
         }
 
 
-        public static Message getM(PlayerL player)
+        public static Message doM(PlayerL player)
         {
             Message message = SRL.Serialize(player);
 
@@ -68,13 +68,23 @@ namespace DiXit
         public PlayerL()
         {
         }
-        public PlayerL(int i)
+        public PlayerL(Player i)
         {
 
             lista = new List<Player>();
-
+            lista.Add(i);
         }
 
+        public void AddToPL(Player pl)                                 // tutaj sobie dodajemy do listy graczy 
+
+        {
+                if (lista.IndexOf(pl)==-1)
+                {
+                    lista.Add(pl);
+                }
+
+            
+        }
 
         public String getPlayers()
         {
