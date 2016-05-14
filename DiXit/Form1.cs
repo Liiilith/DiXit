@@ -20,6 +20,7 @@ namespace DiXit
         bool server = false;
         Form2 F2;
         Player pl;
+        PlayerL ppp;
         playersData plData;
         Message msg;
         // Player player1 = new Player("22", "gracz1");       
@@ -65,7 +66,7 @@ namespace DiXit
             ss = new Server(pl);                 // czekamy na odbiór wyników
             msg.Data = ss.runServer();
             processMSG();
-
+            updatePlayerList2(ppp.lista);
 
         }
 
@@ -79,7 +80,7 @@ namespace DiXit
 
         private void processMSG()
         {
-            PlayerL ppp = SRL.takeM(msg);
+            ppp = SRL.takeM(msg);
             if (ppp != null)
             {
                 if (ppp.lista != null)
@@ -287,7 +288,7 @@ namespace DiXit
 
         private void button4_Click(object sender, EventArgs e)
         {
-            F2.goBack(server, pl, this.Location, this);
+            //F2.goBack(server, pl, this.Location, this);
             //trzeba ubic server
         }
     }

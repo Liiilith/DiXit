@@ -27,7 +27,7 @@ namespace DiXit
             InitializeComponent();
           
             textBox2.Text = Constance.GetLocalIPAddress();
-            F1 = new Form1(isServer, pl, this.Location, this);
+           
         }
 
 
@@ -62,6 +62,7 @@ namespace DiXit
             Button b = sender as Button;
             if (Constance.IsIPv4(textBox2.Text))
             {
+                F1 = new Form1(isServer, pl, this.Location, this);
                 Player p = new Player(textBox1.Text, textBox2.Text);
                 pl = p;
                 if (b.Tag == "SRV") isServer = true;
@@ -88,7 +89,7 @@ namespace DiXit
             this.StartPosition = FormStartPosition.Manual;
             this.Location = loc;
             pl = p;
-            F1 = F1;
+            F1 = f1;
             this.Visible = true;
 
         }
