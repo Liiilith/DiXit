@@ -77,19 +77,15 @@ namespace DiXit
                            if(p.iPadd != pl.iPadd)
                             {
                                 plData.AddToPlayerList(p);
-
                             }
                         }
+                        updatePlayerList2(ppp.lista);
                     }
                 }
             }
         }
 
-        private void showPayers()
-        {
-
-
-        }
+   
 
         private void clientStart()
         {
@@ -125,7 +121,7 @@ namespace DiXit
             //  bt.BackColor = c;
             // player1.Color = c;
 
-            updatePlayerList();
+           // updatePlayerList();
             //test połączenia
        /*     if (!server)
             {
@@ -159,18 +155,18 @@ namespace DiXit
         }
         public void updatePlayerList()// List<Player> players) vs nie przyjmuje listy jako arg przez ograniczenia dostepu (?)
         {
-           Player player1 = new Player("22", "gracz");
-           /* Player player2 = new Player("22", "gracz2");
-            player2.Color = System.Drawing.Color.Black;
-            List<Player> tempeGracze = new List<Player>();
-            tempeGracze.Add(player1);
-            tempeGracze.Add(player2);
-            tempeGracze.Remove(player1);
+            Player player1 = new Player("22", "gracz");
+            /* Player player2 = new Player("22", "gracz2");
+             player2.Color = System.Drawing.Color.Black;
+             List<Player> tempeGracze = new List<Player>();
+             tempeGracze.Add(player1);
+             tempeGracze.Add(player2);
+             tempeGracze.Remove(player1);
 
-            foreach (Player p in tempeGracze)
-            {
-                //wyswietlanie listy graczy
-            }*/
+             foreach (Player p in tempeGracze)
+             {
+                 //wyswietlanie listy graczy
+             }*/
             //tymczasowe wyswietlanie
             for (int i = 0; i < 12; i++)
             {
@@ -204,7 +200,57 @@ namespace DiXit
                 panel1.Controls.Add(label);
                 panel1.Controls.Add(button);
             }
+        }
+        public void updatePlayerList2(List<Player> p)// List<Player> players) vs nie przyjmuje listy jako arg przez ograniczenia dostepu (?)
+        {
+           
+            /* Player player2 = new Player("22", "gracz2");
+             player2.Color = System.Drawing.Color.Black;
+             List<Player> tempeGracze = new List<Player>();
+             tempeGracze.Add(player1);
+             tempeGracze.Add(player2);
+             tempeGracze.Remove(player1);
 
+             foreach (Player p in tempeGracze)
+             {
+                 //wyswietlanie listy graczy
+             }*/
+            //tymczasowe wyswietlanie
+            for (int i = 0; i < 12; i++)
+            {
+                int posy = (i / 2) * 40;
+                int posx = (i % 2) * 250;
+                System.Windows.Forms.Button button;
+                System.Windows.Forms.Label label;
+                button = new System.Windows.Forms.Button();
+                label = new System.Windows.Forms.Label();
+
+                button.Location = new System.Drawing.Point(160 + posx, 10 + posy);
+                button.Name = "button";
+                button.Size = new System.Drawing.Size(30, 30);
+                if (p.Count > i)
+                {
+                    button.UseVisualStyleBackColor = true;
+                    button.BackColor = System.Drawing.Color.IndianRed;
+                    button.Text = "";
+
+
+                    label.AutoSize = true;
+                    label.BackColor = System.Drawing.Color.Transparent;
+                    label.Cursor = System.Windows.Forms.Cursors.AppStarting;
+                    label.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+                    label.Location = new System.Drawing.Point(10 + posx, 10 + posy);
+                    label.Name = "label";
+                    label.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+                    label.RightToLeft = System.Windows.Forms.RightToLeft.No;
+                    label.Size = new System.Drawing.Size(100, 25);
+                    label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+
+                    label.Text = p[i].PlayerID;
+                    panel1.Controls.Add(label);
+                    panel1.Controls.Add(button);
+                }
+            }
 
 
 
