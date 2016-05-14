@@ -19,6 +19,7 @@ namespace DiXit
         bool server = false;
         Form2 F2;
         Player pl;
+        playersData plData;
         Message msg;
         // Player player1 = new Player("22", "gracz1");       
         //  Player player2 = new Player("22", "gracz2");   
@@ -30,13 +31,15 @@ namespace DiXit
             server = srv;
            
             InitializeComponent();
+            plData = new playersData();
+           
             F2 = f2;
             buttonsLook(p.getIpAddress(), p.PlayerID);
             this.Show();
             this.StartPosition = FormStartPosition.Manual;
             this.Location = loc;
             pl = p;
-
+            plData.AddToPlayerList(pl);
             //test połączenia
             if (server)
             {
@@ -58,6 +61,34 @@ namespace DiXit
             ss = new Server(pl);                 // czekamy na odbiór wyników
             msg.Data = ss.runServer();
            
+            
+        }
+        private void processMSG()
+        {
+            PlayerL ppp = SRL.takeM(msg);
+            if (ppp != null)
+            {
+                if (ppp.lista != null)
+                {
+                    if (ppp.lista.Count > 0)
+                    {
+                        foreach (Player p in ppp.lista)
+                        {
+                           if(p.iPadd != pl.iPadd)
+                            {
+                                plData.AddToPlayerList(p);
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void showPayers()
+        {
+
+
         }
 
         private void clientStart()

@@ -12,6 +12,9 @@ namespace DiXit
     public class Message
     {
         public byte[] Data { get; set; }
+
+
+
     }
 
     class SRL
@@ -30,6 +33,24 @@ namespace DiXit
             using (var memoryStream = new MemoryStream(message.Data))
                 return (new BinaryFormatter()).Deserialize(memoryStream);
         }
+
+
+        public static Message getM(PlayerL player)
+        {
+            Message message = SRL.Serialize(player);
+
+            return message;
+        }
+
+        public static PlayerL takeM(Message message)
+        {
+
+            object obj = SRL.Deserialize(message);
+            if (obj is PlayerL)
+                return obj as PlayerL;
+            else return null;
+        }
+
 
     }
 
