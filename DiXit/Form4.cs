@@ -50,7 +50,7 @@ namespace DiXit
             else
 
             {
-                informm.Text = " MARK YOUR CARD";
+                informm.Text = "MARK YOUR CARD";
             }
 
         }
