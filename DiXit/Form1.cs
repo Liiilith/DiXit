@@ -202,6 +202,10 @@ namespace DiXit
                 this.BackgroundImage = global::DiXit.Properties.Resources.aw2;
 
             }
+            else
+            {
+                this.BackgroundImage = global::DiXit.Properties.Resources.aw;
+            }
             button2.Text = "START";
             label1.Text = gameIP;
             label2.Text = plID;
