@@ -44,10 +44,10 @@ namespace DiXit
 
 
 
-                byte[] bb = new byte[100];                        // nowa tablica do przechowania danych od serwera
+                byte[] bb = new byte[65535];                        // nowa tablica do przechowania danych od serwera
                 
                  
-                int k = stm.Read(bb, 0, 100);                    //  zczytamy to co zostawił nam serwer w bufforze         
+                int k = stm.Read(bb, 0, 65535);                    //  zczytamy to co zostawił nam serwer w bufforze         
 
 
                 if (k == 0) return null;                         //  sprawdzimy czy wogóle coś zostawił 

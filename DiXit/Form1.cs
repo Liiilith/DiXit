@@ -63,37 +63,48 @@ namespace DiXit
         {
             Message msg2 = new Message();
             ss = new Server(pl);
-            Socket s = ss.socketSart();
+          ss.socketSart();
             // czekamy na odbiór wyników
-            msg2.Data = ss.getMSG(s);
+            msg2.Data = ss.getMSG();
             if (msg2.Data != null)
             {
                 processMSG(msg2);
                 // label3.Text = ppp.lista[0].playerID;
-                UPD_srv(pppp2.lista);
+                UPD_plList(pppp2.lista);
+                pppp2.lista.Add(pl);
+                Message m = response(pppp2);
+                ss.sendMSG(m);
+
             }
-            s.Close();
+            ss.socketClose();
+        }
+
+        public Message response(PlayerL p)
+        {
+            Message d = SRL.Serialize(p);
+
+            return d;
         }
 
         private void clientStart()
         {
             ppp = new PlayerL(pl);
-            for (int i = 0; i < 11; i++)
+            for (int i = 0; i < 8; i++)
             { 
             Player p = new Player("127.0.0.1", "aaa" + i.ToString());
 
             ppp.AddToPL(p);
-        }
+            }
             Message msg1 = SRL.Serialize(ppp); // w msg.Data jest obiekt do wysłania 
 
             cc = new Client(pl);
-            cc.runClient(msg1.Data);
-        //   PlayerL ppp2 = SRL.takeM(msg);
+            Message ms = new Message();
+            
+            ms.Data= cc.runClient(msg1.Data, cc.cltStart("192.168.1.10", 21));
+             PlayerL ppp2 = SRL.takeM(ms);
             //  String s= ppp2.getPlayers();
-            // label3.Text = s;
-            // updatePlayerList2(ppp.lista);
-            // label3.Invoke(new Action(delegate () { label3.Text = ppp2.getPlayers(); }));
-          //  UPD_srv(ppp2);
+            
+            UPD_plList(ppp2.lista);
             }
 
         private void processMSG(Message m)
@@ -286,7 +297,7 @@ namespace DiXit
 
         }
 
-        public void UPD_srv(List<Player> p)
+        public void UPD_plList(List<Player> p)
         {
             panel1.Invoke(new Action(delegate ()
             {
