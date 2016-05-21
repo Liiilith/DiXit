@@ -63,7 +63,7 @@ namespace DiXit
         {
             Message msg2 = new Message();
             ss = new Server(pl);
-          ss.socketSart();
+            ss.socketSart();
             // czekamy na odbiór wyników
             msg2.Data = ss.getMSG();
             if (msg2.Data != null)
@@ -90,6 +90,7 @@ namespace DiXit
 
         private void clientStart()
         {
+        
             ppp = new PlayerL(pl);
 
             for (int i = 0; i < 8; i++)
@@ -109,7 +110,11 @@ namespace DiXit
             //  String s= ppp2.getPlayers();
             
             UPD_plList(plData.getList());
-            }
+
+            ms.Data=cc.checkIfGameStarted();
+            PlayerL togame = SRL.takeM(ms);
+            check_MSG(togame);
+        }
 
         private void processMSG(Message m)
         {
@@ -180,7 +185,11 @@ namespace DiXit
         {
             startGame();
 
+            PlayerL sss = new PlayerL();
+            sss.type = msgType.startGame;
 
+           Message m = response(sss);
+            ss.sendMSG(m);
         }
 
 
@@ -192,6 +201,10 @@ namespace DiXit
             {
                 this.BackgroundImage = global::DiXit.Properties.Resources.aw2;
 
+            }
+            else
+            {
+                this.BackgroundImage = global::DiXit.Properties.Resources.aw;
             }
             button2.Text = "START";
             label1.Text = gameIP;
