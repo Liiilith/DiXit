@@ -37,17 +37,7 @@ namespace DiXit
                 /* Initializes the Listener */
                 Message d = new Message();
                
-                /* Start Listeneting at the specified port */
-
-
-                //      Console.WriteLine("The server is running at port 8001...");
-                //      Console.WriteLine("The local End point is  :" +
-                //                        myList.LocalEndpoint);
-                //      Console.WriteLine("Waiting for a connection.....");
-
-                //s = myList.AcceptSocket();
-                //      Console.WriteLine("Connection accepted from " + s.RemoteEndPoint);
-
+             
 
 
 
@@ -56,13 +46,8 @@ namespace DiXit
 
                 if (k == 0) return null;
 
-                // ASCIIEncoding asen = new ASCIIEncoding();
-                // s.Send(asen.GetBytes("The string was recieved by the server."));
-                //   Console.WriteLine("\nSent Acknowledgement");
-                /* clean up */
-                // s.Close();
-                // myList.Stop();
-               // s.Close();
+              
+                
                 return b;
 
             }

@@ -78,7 +78,7 @@ namespace DiXit
                 ss.sendMSG(m);
 
             }
-            ss.socketClose();
+            //ss.socketClose();
         }
 
         public Message response(PlayerL p)
@@ -183,13 +183,14 @@ namespace DiXit
 
         private void button2_Click(object sender, EventArgs e)
         {
-            startGame();
+            
 
             PlayerL sss = new PlayerL();
             sss.type = msgType.startGame;
 
-           Message m = response(sss);
+            Message m = response(sss);
             ss.sendMSG(m);
+            startGame();
         }
 
 
