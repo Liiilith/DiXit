@@ -9,7 +9,7 @@ using System.IO;
 
 namespace DiXit
 {
-    class Game
+    public class Game
     {
         protected playersData playersList;
         protected string gameIP;
