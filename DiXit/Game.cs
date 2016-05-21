@@ -11,7 +11,7 @@ namespace DiXit
 {
     public class Game
     {
-        protected playersData playersList;
+        playersData playersList;
         protected string gameIP;
         protected string ownIP;
         public Game(Player pl)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DiXit
 {
-    class playersData               // klasa przechowująca dane o graczach - listę obiektów graczy, updatowana przez serwer i rozsyłana do wszystkich
+    public class playersData               // klasa przechowująca dane o graczach - listę obiektów graczy, updatowana przez serwer i rozsyłana do wszystkich
     {
 
         List<Player> playersList = new List<Player>();
