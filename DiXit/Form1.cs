@@ -99,8 +99,8 @@ namespace DiXit
 
             cc = new Client(pl);
             Message ms = new Message();
-            
-            ms.Data= cc.runClient(msg1.Data, cc.cltStart("192.168.1.10", 21));
+
+            ms.Data = cc.runClient(msg1.Data, cc.cltStart("89.70.34.25", 50201));
              PlayerL ppp2 = SRL.takeM(ms);
             //  String s= ppp2.getPlayers();
             
