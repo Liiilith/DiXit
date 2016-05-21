@@ -24,6 +24,7 @@ namespace DiXit
         PlayerL ppp;
         PlayerL pppp2;
         playersData plData;
+        PlayerL f3pl; 
  
         // Player player1 = new Player("22", "gracz1");       
         //  Player player2 = new Player("22", "gracz2");   
@@ -108,13 +109,25 @@ namespace DiXit
             ms.Data = cc.runClient(msg1.Data);
             processMSG(ms);
             //  String s= ppp2.getPlayers();
-            
+           
             UPD_plList(plData.getList());
-
+         //   startGame();
             ms.Data=cc.checkIfGameStarted();
             PlayerL togame = SRL.takeM(ms);
+            f3pl = SRL.takeM(ms);
             check_MSG(togame);
-         
+            /*   Thread serwerThread = new Thread(new ThreadStart(run_F3));     
+               serwerThread.Start();
+            //   
+            /*   this.Invoke(new Action(delegate ()
+               {
+                   this.Hide();
+               }));*/
+
+        }
+        public void run_F3()
+        {
+            check_MSG(f3pl);
         }
 
         private void processMSG(Message m)
@@ -182,16 +195,31 @@ namespace DiXit
             }*/
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        public void button2_Click(object sender, EventArgs e)
         {
-            
 
+            if (server) { 
             PlayerL sss = new PlayerL();
             sss.type = msgType.startGame;
 
             Message m = response(sss);
             ss.sendMSG(m);
-            startGame();
+            }
+            Form F3;
+            if (server)
+                F3 = new Form3(pl, this.Location, server);//, ss);
+            else
+            {
+                F3 = new Form3(pl, this.Location, server);//, cc);
+
+                // this.Hide();
+                F3.Enabled = true;
+                F3.Visible = true;//
+                F3.Show();
+            }
+          //  startGame();
+            //this.Hide();}
+           
         }
 
 
@@ -391,26 +419,29 @@ namespace DiXit
         private void startGame()
         {
             Form F3;
-            if (server) 
-            F3 = new Form3(pl, this.Location, server, ss);
-            else  F3 = new Form3(pl, this.Location, server, cc);
-            F3.Show();
-            F3.Visible = true;//
-            this.Invoke(new Action(delegate ()
-            {
-                this.Hide();
-            }));
+            if (server)
+                F3 = new Form3(pl, this.Location, server);//, ss);
+            else { F3 = new Form3(pl, this.Location, server);//, cc);
 
-           
+            // this.Hide();
+            F3.Enabled = true;
+            F3.Visible = true;//
+            F3.Show();
+                }
+
         }
 
 
         public void check_MSG(PlayerL plL)
         {
+
+            
             switch (plL.type)
             {
+
                 case msgType.startGame:
-                    startGame();
+                    //startGame();
+                    button2.PerformClick();
                     break;
                 default:
                     Console.WriteLine("Default case");

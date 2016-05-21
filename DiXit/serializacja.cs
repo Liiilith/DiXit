@@ -11,9 +11,9 @@ namespace DiXit
 
     public enum msgType
     {
-        addPlayer,removePlayer,startGame
+       empty,addPlayer,removePlayer,startGame
     };
-
+   
 
     public class Message
     {
@@ -57,6 +57,22 @@ namespace DiXit
             else return null;
         }
 
+        public static Message doC(cCLick player)
+        {
+            Message message = SRL.Serialize(player);
+
+            return message;
+        }
+
+        public static cCLick takeC(Message message)
+        {
+            if (message.Data == null) return null;
+            object obj = SRL.Deserialize(message);
+            if (obj is cCLick)
+                return obj as cCLick;
+            else return null;
+        }
+
 
     }
 
@@ -83,10 +99,11 @@ namespace DiXit
 
         public PlayerL()
         {
+            type = msgType.empty;
         }
         public PlayerL(Player i)
         {
-
+            type = msgType.addPlayer;
             lista = new List<Player>();
             lista.Add(i);
         }
@@ -120,6 +137,11 @@ namespace DiXit
         }
     }
 
-
+    [SerializableAttribute]
+    public class cCLick
+    {
+        object sender { get; set; }
+        EventArgs e { get; set; }
+    }
 
 }
