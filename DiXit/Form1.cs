@@ -77,6 +77,11 @@ namespace DiXit
                     sss.lista= plData.getList();
                Message m = response(sss);
                 ss.sendMSG(m);
+               /* button5.Invoke(new Action(delegate ()
+                {
+                    button5.performClick();
+                }));*/
+
 
             }
             //ss.socketClose();
@@ -115,7 +120,13 @@ namespace DiXit
             ms.Data=cc.checkIfGameStarted();
             PlayerL togame = SRL.takeM(ms);
             f3pl = SRL.takeM(ms);
-            check_MSG(togame);
+                //
+                 button5.Invoke(new Action(delegate ()
+                 {
+                     button5.PerformClick();
+                 }));
+
+          //  check_MSG(togame);
             /*   Thread serwerThread = new Thread(new ThreadStart(run_F3));     
                serwerThread.Start();
             //   
@@ -211,12 +222,12 @@ namespace DiXit
             else
             {
                 F3 = new Form3(pl, this.Location, server);//, cc);
-
+            }
                 // this.Hide();
                 F3.Enabled = true;
                 F3.Visible = true;//
                 F3.Show();
-            }
+            
           //  startGame();
             //this.Hide();}
            
@@ -449,6 +460,38 @@ namespace DiXit
             }
 
 
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            Form F3;
+            if (server)
+                F3 = new Form3(pl, this.Location, server);//, ss);
+            else
+            {
+                F3 = new Form3(pl, this.Location, server);//, cc);
+
+                // this.Hide();
+                F3.Enabled = true;
+                F3.Visible = true;//
+                F3.Show();
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Form F3;
+            if (server)
+                F3 = new Form3(pl, this.Location, server);//, ss);
+            else
+            {
+                F3 = new Form3(pl, this.Location, server);//, cc);
+
+                // this.Hide();
+                F3.Enabled = true;
+                F3.Visible = true;//
+                F3.Show();
+            }
         }
     }
 }
