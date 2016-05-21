@@ -71,8 +71,10 @@ namespace DiXit
                 processMSG(msg2);
                 // label3.Text = ppp.lista[0].playerID;
                 UPD_plList(plData.getList());
-               pppp2.lista= plData.getList();
-               Message m = response(pppp2);
+                PlayerL sss = new PlayerL();
+            
+                    sss.lista= plData.getList();
+               Message m = response(sss);
                 ss.sendMSG(m);
 
             }
