@@ -21,11 +21,11 @@ namespace DiXit
         }
 
 
-        public TcpClient cltStart(string IPtoConnect, int port)
+        public void cltStart(string IPtoConnect, int port)
         {
             
             tcpclnt.Connect(IPtoConnect, port);
-            return tcpclnt;
+          
         }
 
 
