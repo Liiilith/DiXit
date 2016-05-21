@@ -119,23 +119,8 @@ namespace DiXit
          //   startGame();
             ms.Data=cc.checkIfGameStarted();
             PlayerL togame = SRL.takeM(ms);
-            f3pl = SRL.takeM(ms);
-                //
-                 button5.Invoke(new Action(delegate ()
-                 {
-                     button5.Show();
-                     button5.PerformClick();
-                     button5.Hide();
-                 }));
+            check_MSG(togame);
 
-          //  check_MSG(togame);
-            /*   Thread serwerThread = new Thread(new ThreadStart(run_F3));     
-               serwerThread.Start();
-            //   
-            /*   this.Invoke(new Action(delegate ()
-               {
-                   this.Hide();
-               }));*/
 
         }
         public void run_F3()
@@ -220,12 +205,12 @@ namespace DiXit
             }
             Form F3;
             if (server)
-                F3 = new Form3(pl, this.Location, server);//, ss);
+                F3 = new Form3(pl, this.Location, server, ss);
             else
             {
-                F3 = new Form3(pl, this.Location, server);//, cc);
+                F3 = new Form3(pl, this.Location, server, cc);
             }
-                // this.Hide();
+                this.Hide();
                 F3.Enabled = true;
                 F3.Visible = true;//
                 F3.Show();
@@ -434,8 +419,8 @@ namespace DiXit
         {
             Form F3;
             if (server)
-                F3 = new Form3(pl, this.Location, server);//, ss);
-            else { F3 = new Form3(pl, this.Location, server);//, cc);
+                F3 = new Form3(pl, this.Location, server, ss);
+            else { F3 = new Form3(pl, this.Location, server, cc);
 
             // this.Hide();
             F3.Enabled = true;
@@ -454,8 +439,18 @@ namespace DiXit
             {
 
                 case msgType.startGame:
-                    //startGame();
-                    button2.PerformClick();
+                    button5.Invoke(new Action(delegate ()
+                    {
+                        button5.Show();
+                        button5.PerformClick();
+                        button5.Hide();
+                    }));
+
+
+                    this.Invoke(new Action(delegate ()
+                    {
+                        this.Hide();
+                    }));
                     break;
                 default:
                     Console.WriteLine("Default case");
@@ -464,6 +459,20 @@ namespace DiXit
 
 
         }
+
+        public bool check_Start(PlayerL plL)
+        {
+
+
+            if (plL.type == msgType.startGame)
+                return true;
+            else return false;
+                   
+            
+
+
+        }
+
 
         private void label6_Click(object sender, EventArgs e)
         {
