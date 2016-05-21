@@ -18,28 +18,40 @@ namespace DiXit
         {
         }
 
-        public void runClient(byte[] data)
+        public byte[] runClient(byte[] data)
         {
 
             try
             {
                // IPEndPoint ip = new IPEndPoint(IPAddress.Parse("192.168.1.10"), 21);
-               TcpClient tcpclnt = new TcpClient();
+               TcpClient tcpclnt = new TcpClient();                                                 // tworzymy clienta do komunikacji z serwem
              
                tcpclnt.Connect("89.70.34.25", 50201);
-             //  tcpclnt.Connect("192.168.1.10", 21); // tutaj się łaczymy z serwerem na odpowiednim porcie i z IP            
+             //  tcpclnt.Connect("192.168.1.10", 21);               // tutaj się łaczymy z serwerem na odpowiednim porcie i z IP            
                 Stream stm = tcpclnt.GetStream();                  // streamer (?) który prześle dane po połączeniu
               
                 stm.Write(data, 0, data.Length);                   // tu już wrzucamy dane wczesniej zserializowane do buffora
-             
 
-                tcpclnt.Close();
 
+
+                byte[] bb = new byte[100];                        // nowa tablica do przechowania danych od serwera
+                
+                 
+                int k = stm.Read(bb, 0, 100);                    //  zczytamy to co zostawił nam serwer w bufforze         
+
+
+                if (k == 0) return null;                         //  sprawdzimy czy wogóle coś zostawił 
+
+            
+                tcpclnt.Close();                                // tutaj zamykamy clienta  (trzeba to wyrzucić do osobnej metody)
+
+                return bb;                                     // oddamy to co odebraliśmy od serwera do serializacji (lista playerów).
             }
 
             catch (Exception e)
             {
                 Console.WriteLine("Error..... " + e.StackTrace);
+                return null;
             }
         }
 
