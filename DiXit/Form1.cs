@@ -103,8 +103,8 @@ namespace DiXit
 
             cc = new Client(pl);
             Message ms = new Message();
-
-            ms.Data = cc.runClient(msg1.Data, cc.cltStart("89.70.34.25", 50201));
+            cc.cltStart("89.70.34.25", 50201);
+            ms.Data = cc.runClient(msg1.Data);
             processMSG(ms);
             //  String s= ppp2.getPlayers();
             
@@ -178,7 +178,9 @@ namespace DiXit
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form3 F3 = new Form3(pl, this.Location);
+            Game obj= ss;
+           
+            Form3 F3 = new Form3(pl, this.Location,server, ss);
 
             F3.Show();
             this.Hide();
@@ -193,6 +195,7 @@ namespace DiXit
             if (server)
             {
                 this.BackgroundImage = global::DiXit.Properties.Resources.aw2;
+
             }
             button2.Text = "START";
             label1.Text = gameIP;
