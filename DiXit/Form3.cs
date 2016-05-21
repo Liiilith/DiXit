@@ -17,7 +17,7 @@ namespace DiXit
         bool serwer;
         Game game;
 
-        public Form3(Player pl, Point location,bool connection, Game game1)
+        public Form3(Player pl, Point location,bool connection)
         {
             InitializeComponent();
 
