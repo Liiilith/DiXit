@@ -178,15 +178,11 @@ namespace DiXit
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Game obj= ss;
-           
-            Form3 F3 = new Form3(pl, this.Location,server, ss);
+            startGame();
 
-            F3.Show();
-            this.Hide();
-            F3.Visible = true;//
-            
+
         }
+
 
         private void buttonsLook(string gameIP, string plID)
         {
@@ -374,6 +370,33 @@ namespace DiXit
 
         private void label5_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void startGame()
+        {
+            Form F3;
+            if (server) 
+            F3 = new Form3(pl, this.Location, server, ss);
+            else  F3 = new Form3(pl, this.Location, server, cc);
+            F3.Show();
+            this.Hide();
+            F3.Visible = true;//
+        }
+
+
+        public void check_MSG(PlayerL plL)
+        {
+            switch (plL.type)
+            {
+                case msgType.startGame:
+                    startGame();
+                    break;
+                default:
+                    Console.WriteLine("Default case");
+                    break;
+            }
+
 
         }
     }
