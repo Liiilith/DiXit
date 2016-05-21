@@ -114,6 +114,7 @@ namespace DiXit
             ms.Data=cc.checkIfGameStarted();
             PlayerL togame = SRL.takeM(ms);
             check_MSG(togame);
+         
         }
 
         private void processMSG(Message m)
@@ -394,8 +395,13 @@ namespace DiXit
             F3 = new Form3(pl, this.Location, server, ss);
             else  F3 = new Form3(pl, this.Location, server, cc);
             F3.Show();
-            this.Hide();
             F3.Visible = true;//
+            this.Invoke(new Action(delegate ()
+            {
+                this.Hide();
+            }));
+
+           
         }
 
 
