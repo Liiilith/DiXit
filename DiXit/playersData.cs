@@ -10,12 +10,7 @@ namespace DiXit
     {
 
         List<Player> playersList = new List<Player>();
-        public List<Player> PlayersList
-        {
-            get{
-                 return playersList;
-            }
-        }
+        
 
 
         public void AddToPlayerList(Player pl)                                 // tutaj sobie dodajemy do listy graczy 
@@ -30,6 +25,10 @@ namespace DiXit
                     playersList.Add(pl);
                 }
 
+            }
+            else
+            {
+                playersList.Add(pl);
             }
         }
               
@@ -48,6 +47,18 @@ namespace DiXit
                     }
                 }
             }
+        }
+
+        public List<Player> getList()
+        {
+            List<Player> pp = new List<Player>();
+            foreach (Player p in playersList)
+            {
+               
+                    pp.Add(p);
+                
+            }
+            return pp;
         }
 
         public Player getPlayerByIp (string ip)                                    // zwróci nam playera z podanym IP gracza
