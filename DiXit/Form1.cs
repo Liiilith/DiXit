@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -61,14 +62,17 @@ namespace DiXit
        private void serverStart()
         {
             Message msg2 = new Message();
-            ss = new Server(pl);                 // czekamy na odbiór wyników
-            msg2.Data = ss.getMSG();
+            ss = new Server(pl);
+            Socket s = ss.socketSart();
+            // czekamy na odbiór wyników
+            msg2.Data = ss.getMSG(s);
             if (msg2.Data != null)
             {
                 processMSG(msg2);
                 // label3.Text = ppp.lista[0].playerID;
                 UPD_srv(pppp2.lista);
             }
+            s.Close();
         }
 
         private void clientStart()

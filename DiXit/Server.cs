@@ -15,14 +15,14 @@ namespace DiXit
         protected List<Thread> threadList;
         TcpListener myList;
         IPAddress ipAd;
-
+       // Socket s 
         public Server(Player pl) : base(pl)
         {
            // ipAd = IPAddress.Parse(gameIP);
             ipAd = IPAddress.Parse("192.168.1.10");
             
             myList = new TcpListener(ipAd, 21);
-            myList.Start();
+            
         }
         public byte[] getMSG(Socket s)
         {
@@ -36,9 +36,9 @@ namespace DiXit
 
                 /* Initializes the Listener */
                 Message d = new Message();
-
+               
                 /* Start Listeneting at the specified port */
-                
+
 
                 //      Console.WriteLine("The server is running at port 8001...");
                 //      Console.WriteLine("The local End point is  :" +
@@ -48,7 +48,7 @@ namespace DiXit
                 //s = myList.AcceptSocket();
                 //      Console.WriteLine("Connection accepted from " + s.RemoteEndPoint);
 
-              
+
 
                 byte[] b = new byte[65535];
                 int k = s.Receive(b);
@@ -61,7 +61,7 @@ namespace DiXit
                 /* clean up */
                 // s.Close();
                 // myList.Stop();
-                s.Close();
+               // s.Close();
                 return b;
 
             }
@@ -85,10 +85,10 @@ namespace DiXit
 
             s.Close();
         }
-        public Socket  socketSart(TcpListener myList )
+        public Socket  socketSart()
         {
-
-           Socket s = myList.AcceptSocket();
+            myList.Start();
+            Socket s = myList.AcceptSocket();
             return s;
         }
 
