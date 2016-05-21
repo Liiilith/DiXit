@@ -12,8 +12,8 @@ namespace DiXit
     class Client:Game
     {
         //private string ownIP;
-        TcpClient tcpclnt = new TcpClient();
 
+        TcpClient t;
 
 
         public Client(Player pl) : base(pl)
@@ -23,16 +23,16 @@ namespace DiXit
 
         public void cltStart(string IPtoConnect, int port)
         {
-            
+            TcpClient tcpclnt = new TcpClient();
             tcpclnt.Connect(IPtoConnect, port);
-          
+            t = tcpclnt;
         }
 
 
 
         public void cltStop()
 
-        { tcpclnt.Close(); }
+        { t.Close(); }
 
 
 
@@ -44,7 +44,7 @@ namespace DiXit
 
             try
             {
-                Stream stm = tcpclnt.GetStream();                  // streamer (?) który prześle dane po połączeniu              
+                Stream stm = t.GetStream();                  // streamer (?) który prześle dane po połączeniu              
                 stm.Write(data, 0, data.Length);                   // tu już wrzucamy dane wczesniej zserializowane do buffora
                 byte[] bb = new byte[65535];                        // nowa tablica do przechowania danych od serwera
                 int k = stm.Read(bb, 0, 65535);                    //  zczytamy to co zostawił nam serwer w bufforze         
@@ -66,7 +66,7 @@ namespace DiXit
 
             try
             {
-                Stream stm = tcpclnt.GetStream();                  // streamer (?) który prześle dane po połączeniu              
+                Stream stm = t.GetStream();                  // streamer (?) który prześle dane po połączeniu              
                 byte[] bb = new byte[65535];                        // nowa tablica do przechowania danych od serwera
                 int k = 0;
                 while (k == 0)
