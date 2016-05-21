@@ -18,17 +18,27 @@ namespace DiXit
         {
         }
 
-        public byte[] runClient(byte[] data)
+
+        public TcpClient cltStart(string IPtoConnect, int port)
+        {
+            TcpClient tcpclnt = new TcpClient();
+            tcpclnt.Connect(IPtoConnect, port);
+            return tcpclnt;
+        }
+
+
+        public byte[] runClient(byte[] data, TcpClient cli)
         {
 
             try
             {
                // IPEndPoint ip = new IPEndPoint(IPAddress.Parse("192.168.1.10"), 21);
-               TcpClient tcpclnt = new TcpClient();                                                 // tworzymy clienta do komunikacji z serwem
+        //       TcpClient tcpclnt = new TcpClient();                                                 // tworzymy clienta do komunikacji z serwem
              
-               tcpclnt.Connect("89.70.34.25", 50201);
-             //  tcpclnt.Connect("192.168.1.10", 21);               // tutaj się łaczymy z serwerem na odpowiednim porcie i z IP            
-                Stream stm = tcpclnt.GetStream();                  // streamer (?) który prześle dane po połączeniu
+        //       tcpclnt.Connect("89.70.34.25", 50201);
+             //  tcpclnt.Connect("192.168.1.10", 21);   
+                                  
+                Stream stm = cli.GetStream();                  // streamer (?) który prześle dane po połączeniu
               
                 stm.Write(data, 0, data.Length);                   // tu już wrzucamy dane wczesniej zserializowane do buffora
 
@@ -43,7 +53,7 @@ namespace DiXit
                 if (k == 0) return null;                         //  sprawdzimy czy wogóle coś zostawił 
 
             
-                tcpclnt.Close();                                // tutaj zamykamy clienta  (trzeba to wyrzucić do osobnej metody)
+                cli.Close();                                // tutaj zamykamy clienta  (trzeba to wyrzucić do osobnej metody)
 
                 return bb;                                     // oddamy to co odebraliśmy od serwera do serializacji (lista playerów).
             }
