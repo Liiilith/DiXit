@@ -24,7 +24,7 @@ namespace DiXit
             myList = new TcpListener(ipAd, 21);
             myList.Start();
         }
-        public byte[] getMSG()
+        public byte[] getMSG(Socket s)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace DiXit
                 //                        myList.LocalEndpoint);
                 //      Console.WriteLine("Waiting for a connection.....");
 
-                Socket s = myList.AcceptSocket();
+                //s = myList.AcceptSocket();
                 //      Console.WriteLine("Connection accepted from " + s.RemoteEndPoint);
 
               
@@ -74,10 +74,23 @@ namespace DiXit
             }
         }
 
-        public void sClose()
+        public void srvClose()
         {
-           
+
             myList.Stop();
         }
+
+        public void socketClose(Socket s)
+        {
+
+            s.Close();
+        }
+        public Socket  socketSart(TcpListener myList )
+        {
+
+           Socket s = myList.AcceptSocket();
+            return s;
+        }
+
     }
 }
