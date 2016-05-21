@@ -123,7 +123,9 @@ namespace DiXit
                 //
                  button5.Invoke(new Action(delegate ()
                  {
+                     button5.Show();
                      button5.PerformClick();
+                     button5.Hide();
                  }));
 
           //  check_MSG(togame);
@@ -250,6 +252,7 @@ namespace DiXit
             button2.Text = "START";
             label1.Text = gameIP;
             label2.Text = plID;
+            button5.Hide();
         }
         public void updatePlayerList()// List<Player> players) vs nie przyjmuje listy jako arg przez ograniczenia dostepu (?)
         {
