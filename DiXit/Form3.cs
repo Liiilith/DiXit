@@ -14,9 +14,10 @@ namespace DiXit
     {
         // deklaracja zmiennych dla Ekranu 3
         Player player1;        // to tak naprawdę zostanie stworzone wyżej
+        bool serwer;
+        Game game;
 
-
-        public Form3(Player pl, Point location)
+        public Form3(Player pl, Point location,bool connection, Game game1)
         {
             InitializeComponent();
 
@@ -24,8 +25,9 @@ namespace DiXit
 
             buttonsLook();         // nazwy buttonów i inne
          //   this.BackgroundImageLayout = ImageLayout.Stretch;
-            player1 = pl;
-
+            player1 = pl;          
+            game = game1;
+            serwer = connection;             // czy jestem serwerem czy clientem
         }
 
         private void Form3_Load(object sender, EventArgs e)
@@ -33,7 +35,7 @@ namespace DiXit
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)          // to button startu   
         {
 
 
