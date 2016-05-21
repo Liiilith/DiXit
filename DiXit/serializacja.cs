@@ -62,6 +62,17 @@ namespace DiXit
 
 
         public List<Player> lista { get; set; }
+        public List<Player> Lista
+        {
+            get
+            {
+                return lista;
+            }
+            set
+            {
+                lista = value;
+            }
+        }
         public bool listflag = false;
 
 

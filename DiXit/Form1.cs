@@ -70,9 +70,9 @@ namespace DiXit
             {
                 processMSG(msg2);
                 // label3.Text = ppp.lista[0].playerID;
-                UPD_plList(pppp2.lista);
-                pppp2.lista.Add(pl);
-                Message m = response(pppp2);
+                UPD_plList(plData.getList());
+               pppp2.lista= plData.getList();
+               Message m = response(pppp2);
                 ss.sendMSG(m);
 
             }
@@ -89,11 +89,13 @@ namespace DiXit
         private void clientStart()
         {
             ppp = new PlayerL(pl);
+
             for (int i = 0; i < 8; i++)
             { 
-            Player p = new Player("127.0.0.1", "aaa" + i.ToString());
+            Player p = new Player("127.0.0."+ i.ToString(), "aaa" + i.ToString());
 
             ppp.AddToPL(p);
+               
             }
             Message msg1 = SRL.Serialize(ppp); // w msg.Data jest obiekt do wysłania 
 
@@ -101,22 +103,22 @@ namespace DiXit
             Message ms = new Message();
 
             ms.Data = cc.runClient(msg1.Data, cc.cltStart("89.70.34.25", 50201));
-             PlayerL ppp2 = SRL.takeM(ms);
+            processMSG(ms);
             //  String s= ppp2.getPlayers();
             
-            UPD_plList(ppp2.lista);
+            UPD_plList(plData.getList());
             }
 
         private void processMSG(Message m)
         {
-            pppp2 = SRL.takeM(m);
-            if (pppp2 != null)
+            PlayerL ppppp2 = SRL.takeM(m);
+            if (ppppp2 != null)
             {
-                if (pppp2.lista != null)
+                if (ppppp2.lista != null)
                 {
-                    if (pppp2.lista.Count > 0)
+                    if (ppppp2.lista.Count > 0)
                     {
-                        foreach (Player p in pppp2.lista)
+                        foreach (Player p in ppppp2.lista)
                         {
                            if(p.iPadd != pl.iPadd)
                             {
