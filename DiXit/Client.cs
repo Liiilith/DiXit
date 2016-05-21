@@ -12,49 +12,44 @@ namespace DiXit
     class Client:Game
     {
         //private string ownIP;
+        TcpClient tcpclnt = new TcpClient();
 
 
-     public Client(Player pl) : base(pl)
+
+        public Client(Player pl) : base(pl)
         {
         }
 
 
         public TcpClient cltStart(string IPtoConnect, int port)
         {
-            TcpClient tcpclnt = new TcpClient();
+            
             tcpclnt.Connect(IPtoConnect, port);
             return tcpclnt;
         }
 
 
-        public byte[] runClient(byte[] data, TcpClient cli)
+
+        public void cltStop()
+
+        { tcpclnt.Close(); }
+
+
+
+
+
+
+        public byte[] runClient(byte[] data)            // do komuikacji zapytanie - odpowiedz
         {
 
             try
             {
-               // IPEndPoint ip = new IPEndPoint(IPAddress.Parse("192.168.1.10"), 21);
-        //       TcpClient tcpclnt = new TcpClient();                                                 // tworzymy clienta do komunikacji z serwem
-             
-        //       tcpclnt.Connect("89.70.34.25", 50201);
-             //  tcpclnt.Connect("192.168.1.10", 21);   
-                                  
-                Stream stm = cli.GetStream();                  // streamer (?) który prześle dane po połączeniu
-              
+                Stream stm = tcpclnt.GetStream();                  // streamer (?) który prześle dane po połączeniu              
                 stm.Write(data, 0, data.Length);                   // tu już wrzucamy dane wczesniej zserializowane do buffora
-
-
-
                 byte[] bb = new byte[65535];                        // nowa tablica do przechowania danych od serwera
-                
-                 
                 int k = stm.Read(bb, 0, 65535);                    //  zczytamy to co zostawił nam serwer w bufforze         
-
-
                 if (k == 0) return null;                         //  sprawdzimy czy wogóle coś zostawił 
-
-            
-                cli.Close();                                // tutaj zamykamy clienta  (trzeba to wyrzucić do osobnej metody)
-
+           
                 return bb;                                     // oddamy to co odebraliśmy od serwera do serializacji (lista playerów).
             }
 
@@ -64,6 +59,31 @@ namespace DiXit
                 return null;
             }
         }
+
+
+        public byte[] checkIfGameStarted()            // do komuikacji sprawdzaj czy coś zostało wpisane
+        {
+
+            try
+            {
+                Stream stm = tcpclnt.GetStream();                  // streamer (?) który prześle dane po połączeniu              
+                byte[] bb = new byte[65535];                        // nowa tablica do przechowania danych od serwera
+                int k = 0;
+                while (k == 0)
+                {k = stm.Read(bb, 0, 65535); }                    //  zczytamy to co zostawił nam serwer w bufforze        
+                return bb;
+
+            }
+
+            catch (Exception e)
+            {
+                Console.WriteLine("Error..... " + e.StackTrace);
+                return null;
+            }
+        }
+
+
+
 
         public string GetLocalIPAddress()
         {
