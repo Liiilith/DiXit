@@ -90,6 +90,7 @@ namespace DiXit
 
         private void clientStart()
         {
+        
             ppp = new PlayerL(pl);
 
             for (int i = 0; i < 8; i++)
