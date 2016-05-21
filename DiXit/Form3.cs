@@ -16,7 +16,7 @@ namespace DiXit
         Player player1;        // to tak naprawdę zostanie stworzone wyżej
 
 
-        public Form3(Player pl, Point location)
+        public Form3(Player pl, Point location,bool serv, Game game)
         {
             InitializeComponent();
 

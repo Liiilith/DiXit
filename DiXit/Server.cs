@@ -78,32 +78,7 @@ namespace DiXit
         {
             try
             {
-                //IPAddress ipAd = IPAddress.Parse(gameIP);
-                // ipAd = IPAddress.Parse("192.168.1.10");
-                // Message d = new Message();
-                // use local m/c IP address, and 
-                // use the same in the client
-
-                /* Initializes the Listener */
                
-
-                /* Start Listeneting at the specified port */
-
-
-                //      Console.WriteLine("The server is running at port 8001...");
-                //      Console.WriteLine("The local End point is  :" +
-                //                        myList.LocalEndpoint);
-                //      Console.WriteLine("Waiting for a connection.....");
-
-                //s = myList.AcceptSocket();
-                //      Console.WriteLine("Connection accepted from " + s.RemoteEndPoint);
-
-
-
-             //   byte[] b = new byte[65535];
-               // int k = s.Receive(b);
-
-                //if (k == 0) 
 
                s.Send(d.Data);
                 return true;
