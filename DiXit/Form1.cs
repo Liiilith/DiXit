@@ -62,7 +62,7 @@ namespace DiXit
         {
             Message msg2 = new Message();
             ss = new Server(pl);                 // czekamy na odbiór wyników
-            msg2.Data = ss.runServer();
+            msg2.Data = ss.getMSG();
             if (msg2.Data != null)
             {
                 processMSG(msg2);
@@ -301,7 +301,7 @@ namespace DiXit
                     if (p.Count > i)
                     {
                         button.UseVisualStyleBackColor = true;
-                        button.BackColor = System.Drawing.Color.IndianRed;
+                        button.BackColor = p[i].Color;
                         button.Text = "";
 
 

@@ -13,25 +13,32 @@ namespace DiXit
     class Server:Game
     {
         protected List<Thread> threadList;
+        TcpListener myList;
+        IPAddress ipAd;
+
         public Server(Player pl) : base(pl)
         {
-
+           // ipAd = IPAddress.Parse(gameIP);
+            ipAd = IPAddress.Parse("192.168.1.10");
+            
+            myList = new TcpListener(ipAd, 21);
+            myList.Start();
         }
-        public byte[] runServer()
+        public byte[] getMSG()
         {
             try
             {
-                IPAddress ipAd = IPAddress.Parse(gameIP);
-                ipAd = IPAddress.Parse("192.168.1.10");
-                Message d = new Message();
+                //IPAddress ipAd = IPAddress.Parse(gameIP);
+                // ipAd = IPAddress.Parse("192.168.1.10");
+                // Message d = new Message();
                 // use local m/c IP address, and 
                 // use the same in the client
 
                 /* Initializes the Listener */
-                TcpListener myList = new TcpListener(ipAd, 21);
+                Message d = new Message();
 
                 /* Start Listeneting at the specified port */
-                myList.Start();
+                
 
                 //      Console.WriteLine("The server is running at port 8001...");
                 //      Console.WriteLine("The local End point is  :" +
@@ -48,13 +55,13 @@ namespace DiXit
 
                 if (k == 0) return null;
 
-               // ASCIIEncoding asen = new ASCIIEncoding();
-               // s.Send(asen.GetBytes("The string was recieved by the server."));
+                // ASCIIEncoding asen = new ASCIIEncoding();
+                // s.Send(asen.GetBytes("The string was recieved by the server."));
                 //   Console.WriteLine("\nSent Acknowledgement");
                 /* clean up */
+                // s.Close();
+                // myList.Stop();
                 s.Close();
-                myList.Stop();
-
                 return b;
 
             }
@@ -67,5 +74,10 @@ namespace DiXit
             }
         }
 
+        public void sClose()
+        {
+           
+            myList.Stop();
+        }
     }
 }
