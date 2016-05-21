@@ -9,6 +9,12 @@ using System.Threading.Tasks;
 namespace DiXit
 {
 
+    public enum msgType
+    {
+        addPlayer,removePlayer,startGame
+    };
+
+
     public class Message
     {
         public byte[] Data { get; set; }
@@ -58,8 +64,7 @@ namespace DiXit
     public class PlayerL
     {
 
-        public playerType type = playerType.unsign; //zaczynamy od typu nieokreslonego
-
+        public msgType type { get; set; }
 
         public List<Player> lista { get; set; }
         public List<Player> Lista
