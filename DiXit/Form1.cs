@@ -274,6 +274,8 @@ namespace DiXit
         public void button2_Click(object sender, EventArgs e)//button START
         {
 
+            PlayerL p = new PlayerL();
+                p.lista = plData.getList();
             if (server) { 
             PlayerL sss = new PlayerL();
             sss.type = msgType.startGame;
@@ -283,10 +285,11 @@ namespace DiXit
             }
             Form F3;
             if (server)
-                F3 = new Form3(pl, this.Location, server);//, ss);
+                
+                F3 = new Form3(pl, this.Location, server, ss,p);
             else
             {
-                F3 = new Form3(pl, this.Location, server);//, cc);
+                F3 = new Form3(pl, this.Location, server, cc);
             }
                 this.Hide();
                 F3.Enabled = true;
@@ -437,10 +440,12 @@ namespace DiXit
 
         private void startGame()
         {
+            PlayerL p = new PlayerL();
+            p.lista = plData.getList();
             Form F3;
             if (server)
-                F3 = new Form3(pl, this.Location, server);//, ss);
-            else { F3 = new Form3(pl, this.Location, server);//, cc);
+                F3 = new Form3(pl, this.Location, server, ss,p);
+            else { F3 = new Form3(pl, this.Location, server, cc);
 
                 // this.Hide();
                 F3.Enabled = true;
@@ -527,28 +532,19 @@ namespace DiXit
 
         private void label6_Click(object sender, EventArgs e)
         {
-            Form F3;
-            if (server)
-                F3 = new Form3(pl, this.Location, server);//, ss);
-            else
-            {
-                F3 = new Form3(pl, this.Location, server);//, cc);
-
-                // this.Hide();
-                F3.Enabled = true;
-                F3.Visible = true;//
-                F3.Show();
-            }
+            
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
+            PlayerL p = new PlayerL();
+            p.lista = plData.getList();
             Form F3;
             if (server)
-                F3 = new Form3(pl, this.Location, server);//, ss);
+                F3 = new Form3(pl, this.Location, server, ss,p);
             else
             {
-                F3 = new Form3(pl, this.Location, server);//, cc);
+                F3 = new Form3(pl, this.Location, server, cc);
 
                 // this.Hide();
                 F3.Enabled = true;

@@ -10,8 +10,12 @@ namespace DiXit
     {
 
         List<Player> playersList = new List<Player>() ;
-        
-        
+
+        public playersData()
+        {
+            
+        }
+
         public playersData (List<Player> list)
         {
             playersList = list;
