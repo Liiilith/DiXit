@@ -23,10 +23,11 @@ namespace DiXit
 
         
 
-        public Form3(Player pl, Point location,bool connection, Server serv)
+        public Form3(Player pl, Point location,bool connection, Server serv, PlayerL actualList)
         {
             InitializeComponent();
 
+            recentList = actualList;
             player1 = pl;
             ss = serv;
             serwer = connection;             // czy jestem serwerem czy clientem     
@@ -34,22 +35,20 @@ namespace DiXit
             this.Show();
             buttonsLook();         // nazwy buttonów i inne
                                   
-            button1.Click += myButton_EventHandler;
+            button1.Click += startClick_EventHandler;
             exchangePlayerData(connection);
         }
 
+        private readonly ManualResetEvent waitForclick = new ManualResetEvent(false);   
 
-        private readonly ManualResetEvent waitForclick = new ManualResetEvent(false);
-        private void myButton_EventHandler(object sender, EventArgs e)
+        private void startClick_EventHandler(object sender, EventArgs e)
         {
             waitForclick.Set();
         }
 
-
         public Form3(Player pl, Point location, bool connection, Client cli)
         {
             InitializeComponent();
-
 
             player1 = pl;
             cc = cli;
@@ -65,12 +64,10 @@ namespace DiXit
 
         }
 
-
         private void Form3_Load(object sender, EventArgs e)
         {
 
         }
-
 
         private void exchangePlayerData (bool typeServer )
 
@@ -84,37 +81,51 @@ namespace DiXit
 
                   processMSG(TypeData);                // wrzucamy message do obrobki 
 
-                   waitForclick.WaitOne();             // poczekaj az serwer kliknie !!!
+                   waitForclick.WaitOne();             // poczekaj z weryfikacja az serwer kliknie !!!
 
                  if(veryfyList(recentList))             // veryfikujemy liste (to bedzie inaczej wygladac w przypadku wielu graczy)
                 {
 
-              //      ss.sendMSG ( message z lista gdzie jest pozwolenie na gre )
-                                                         // jak w porzadku to wysylamy do klient ze lecimy dalej
+                    //      ss.sendMSG ( message z lista gdzie jest pozwolenie na gre )
+                    // jak w porzadku to wysylamy do klient ze lecimy dalej
+
+                    createNewForm();
                 }
  
                  else
                 {
 
-           //         ss.sendMSG ( Message z lista gdzie nie zezwala sie na gre                                   // a jak nie to gra jest wsrzymana 
-                }            
-              
+                                //         ss.sendMSG ( Message z lista gdzie nie zezwala sie na gre       
+                                // a jak nie to gra jest wsrzymana i wybieramy jeszcze raz 
+                }
 
+               
             }
 
             else
 
             {
 
+                waitForclick.WaitOne();     // zanim klient sie ruszy to musi poczekac az zostana dane wpisane
 
-                // do seralizacji
-                // wysyłamy zserializowane dane 
+                PlayerL listTosend = new PlayerL(player1);          // do seralizacji zabieramy aktualnego playera 
 
-                cc.checkIfGameStarted();    // tu jest tablica z danymi do zweryfikowania    
+                Message singlePlayer = SRL.Serialize(listTosend);   // serializujemygo i budujemy message  
 
-                // vczekamy na weryfikacje danych 
+                cc.sendToServer(singlePlayer.Data);                // wysylamy go 
+
+                Message dataVer = new Message();
+
+                dataVer.Data = cc.checkIfGameStarted();     // tu jest tablica z danymi do zweryfikowania 
+
+                if (veryfiStart(dataVer))                      // vczekamy na weryfikacje danych 
+
+                { createNewForm(); }
+
+                else
+                { } // wybierzcie jeszcze raz}  
             }
-         
+           
         }
 
 
@@ -139,6 +150,33 @@ namespace DiXit
                 }
             }
         
+        protected void createNewForm ()
+
+
+        {
+
+            if (player1.getType() == playerType.challanger)
+            {
+
+                Form votingScreen = new Form4(12, true, player1, this.Location);             // ta liczna graczy musi byc wzieta z serwera
+                votingScreen.Show();
+                this.Hide();
+
+                // startujemy nową forme 4, z ustawianiami w zależności od typu gracza 
+            }
+
+            else if (player1.getType() == playerType.guesser)
+            {
+                Form votingScreen = new Form4(12, false, player1, this.Location);             // ta liczna graczy musi byc wzieta z serwera
+                votingScreen.Show();
+                this.Hide();
+                // jw  
+            }
+
+
+
+        }
+
 
 
         private bool veryfyList (PlayerL actuallist)
@@ -149,26 +187,28 @@ namespace DiXit
             return listForVer.veryfiPlayersTypes();           
         }
 
+        private bool veryfiStart(Message m)
 
-
-        private void button1_Click(object sender, EventArgs e)          // to button startu, lecą dane do serwera    
         {
-            if (player1.getType() == playerType.challanger)
-            {
-                Form votingScreen = new Form4(12 ,true,player1, this.Location);             // ta liczna graczy musi byc wzieta z serwera
-                votingScreen.Show();
-                this.Hide();
-             
-                // startujemy nową forme 4, z ustawianiami w zależności od typu gracza 
-            }
+            PlayerL recivedList = SRL.takeM(m);
 
-            else if (player1.getType() == playerType.guesser)
+            if (recivedList != null)
             {
-                Form votingScreen = new Form4(12, false, player1,this.Location);             // ta liczna graczy musi byc wzieta z serwera
-                votingScreen.Show();
-                this.Hide();
-                // jw  
+                if (recivedList.lista != null)             // sprawdzamy czy otrzymana lista jest niepusta
+                {
+                    playersData data = new playersData(recentList.lista);
+                    if (true)
+                    { return false; }
+                         
+                }
             }
+        
+            return true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)          // to button startu, lecą dane do serwera i od clienta   
+        {
+           
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -189,6 +229,10 @@ namespace DiXit
             {
 
                 player1.setTyp(playerType.challanger);
+
+                
+                
+
                 button2.BackColor = Color.Blue;
                 button3.BackColor = Color.DarkGray;
             }
