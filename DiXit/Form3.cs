@@ -21,8 +21,6 @@ namespace DiXit
         Client cc;
         PlayerL recentList;
 
-        
-
         public Form3(Player pl, Point location,bool connection, Server serv, PlayerL actualList)
         {
             InitializeComponent();
@@ -128,7 +126,6 @@ namespace DiXit
            
         }
 
-
         private void processMSG(Message m)
         {
             PlayerL recivedList = SRL.takeM(m);            // tutaj tylko jednoelementowa lista 
@@ -176,8 +173,6 @@ namespace DiXit
 
 
         }
-
-
 
         private bool veryfyList (PlayerL actuallist)
 
@@ -247,8 +242,6 @@ namespace DiXit
             }
 
         }
-
-
 
         private void buttonsLook()
         {
