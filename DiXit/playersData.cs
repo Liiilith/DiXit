@@ -141,8 +141,9 @@ namespace DiXit
         public bool veryfiPlayersTypes ()                                         // do sprawdzenia czy nie ma dwoch chalengerow
 
         {
-            bool verdict = true;
+         
             int challengerCount=0;
+            bool verdict = true;
             if (playersList.Count > 0)//inaczej rzuca index out of range 
             {
                 for (int i = 0; i < playersList.Count; i++)
