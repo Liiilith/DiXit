@@ -75,29 +75,27 @@ namespace DiXit
 
                 Message TypeData = new Message();
 
-                 TypeData.Data =  ss.getMSG();        // czekamy na message, odbieramy // deserializujemy
+               TypeData.Data =  ss.getMSG();        // czekamy na message, odbieramy // deserializujemy
 
-                  processMSG(TypeData);                // wrzucamy message do obrobki 
+                processMSG(TypeData);                // wrzucamy message do obrobki 
 
-                   waitForclick.WaitOne();             // poczekaj z weryfikacja az serwer kliknie !!!
+                waitForclick.WaitOne();             // poczekaj z weryfikacja az serwer kliknie !!!
 
-                 if(veryfyList(recentList))             // veryfikujemy liste (to bedzie inaczej wygladac w przypadku wielu graczy)
+                PlayerL confirmGame = new PlayerL();
+
+                if (veryfyList(recentList))             // veryfikujemy liste (to bedzie inaczej wygladac w przypadku wielu graczy)
                 {
-
-                    //      ss.sendMSG ( message z lista gdzie jest pozwolenie na gre )
-                    // jak w porzadku to wysylamy do klient ze lecimy dalej
-
+                     // ( message z lista gdzie jest pozwolenie na gre )
+                        // jak w porzadku to wysylamy do klient ze lecimy dalej
                     createNewForm();
                 }
  
                  else
                 {
-
-                                //         ss.sendMSG ( Message z lista gdzie nie zezwala sie na gre       
-                                // a jak nie to gra jest wsrzymana i wybieramy jeszcze raz 
-                }
-
-               
+                    confirmGame.type = msgType.empty;
+                    //         ss.sendMSG ( Message z lista gdzie nie zezwala sie na gre       
+                    // a jak nie to gra jest wsrzymana i wybieramy jeszcze raz 
+                }             
             }
 
             else
@@ -116,7 +114,10 @@ namespace DiXit
 
                 dataVer.Data = cc.checkIfGameStarted();     // tu jest tablica z danymi do zweryfikowania 
 
-                if (veryfiStart(dataVer))                      // vczekamy na weryfikacje danych 
+                PlayerL ver = SRL.takeM(dataVer);
+
+
+                if (checkD(ver))                      // vczekamy na weryfikacje danych 
 
                 { createNewForm(); }
 
@@ -124,6 +125,15 @@ namespace DiXit
                 { } // wybierzcie jeszcze raz}  
             }
            
+        }
+
+        protected bool checkD (PlayerL pla)
+
+        {
+            if (pla.type == msgType.startGame)
+                return true;
+            else
+                return false;
         }
 
         private void processMSG(Message m)
