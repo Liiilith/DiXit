@@ -35,6 +35,7 @@ namespace DiXit
             button1.Click += startClick_EventHandler;
 
             Thread communication = new Thread(new ThreadStart(exchangePlayerData));     // wyrzucamy serwer do innego wątku 
+            communication.Start();
         }
 
         private readonly ManualResetEvent waitForclick = new ManualResetEvent(false);   
