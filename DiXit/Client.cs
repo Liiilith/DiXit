@@ -9,7 +9,7 @@ using System.IO;
 
 namespace DiXit
 {
-    class Client:Game
+  public class Client:Game
     {
         //private string ownIP;
 
@@ -66,11 +66,13 @@ namespace DiXit
 
             try
             {
-                Stream stm = t.GetStream();                  // streamer (?) który prześle dane po połączeniu              
+                              // streamer (?) który prześle dane po połączeniu              
                 byte[] bb = new byte[65535];                        // nowa tablica do przechowania danych od serwera
                 int k = 0;
                 while (k == 0)
-                {k = stm.Read(bb, 0, 65535); }                    //  zczytamy to co zostawił nam serwer w bufforze        
+                {
+                    Stream stm = t.GetStream();
+                    k = stm.Read(bb, 0, 65535); }                    //  zczytamy to co zostawił nam serwer w bufforze        
                 return bb;
 
             }
@@ -81,6 +83,31 @@ namespace DiXit
                 return null;
             }
         }
+
+
+
+
+
+
+        public void sendToServer (byte[] data)            // do komuikacji jednostronnej do serwera
+        {
+
+            try
+            {
+                Stream stm = t.GetStream();                  // streamer (?) który prześle dane po połączeniu              
+                stm.Write(data, 0, data.Length);             // tu już wrzucamy dane wczesniej zserializowane do buffora               
+            }
+
+            catch (Exception e)
+            {
+                Console.WriteLine("Error..... " + e.StackTrace);
+            }
+        }
+
+
+
+
+
 
 
 

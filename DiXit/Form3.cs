@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,19 +17,54 @@ namespace DiXit
         Player player1;        // to tak naprawdę zostanie stworzone wyżej
         bool serwer;
         Game game;
+        Server ss;
+        Client cc;
+        PlayerL recentList;
 
-        public Form3(Player pl, Point location,bool connection, Game game1)
+        
+
+        public Form3(Player pl, Point location,bool connection, Server serv)
         {
             InitializeComponent();
+
+            player1 = pl;
+            ss = serv;
+            serwer = connection;             // czy jestem serwerem czy clientem     
+            this.Location = location;
+            this.Show();
+            buttonsLook();         // nazwy buttonów i inne
+                                  
+            button1.Click += myButton_EventHandler;
+            exchangePlayerData(connection);
+        }
+
+
+        private readonly ManualResetEvent waitForclick = new ManualResetEvent(false);
+        private void myButton_EventHandler(object sender, EventArgs e)
+        {
+            waitForclick.Set();
+        }
+
+
+        public Form3(Player pl, Point location, bool connection, Client cli)
+        {
+            InitializeComponent();
+
+
+            player1 = pl;
+            cc = cli;
+            serwer = connection;             // czy jestem serwerem czy clientem
 
             this.Location = location;
             this.Show();
             buttonsLook();         // nazwy buttonów i inne
-         //   this.BackgroundImageLayout = ImageLayout.Stretch;
-            player1 = pl;          
-             game = game1;
-            serwer = connection;             // czy jestem serwerem czy clientem
+                                   //   this.BackgroundImageLayout = ImageLayout.Stretch;
+
+            exchangePlayerData(connection);
+
+
         }
+
 
         private void Form3_Load(object sender, EventArgs e)
         {
@@ -41,25 +77,78 @@ namespace DiXit
         {
             if (typeServer)
             {
-                
 
-                // czekamy na message
-                // odbieramy
-                // deserializujemy
-                // updatujemy listę graczy  
-                // weryfikujemy otrzymane dane i pozwalamy na dalszy przebieg gry
-             
+                Message TypeData = new Message();
+
+                 TypeData.Data =  ss.getMSG();        // czekamy na message, odbieramy // deserializujemy
+
+                  processMSG(TypeData);                // wrzucamy message do obrobki 
+
+                   waitForclick.WaitOne();             // poczekaj az serwer kliknie !!!
+
+                 if(veryfyList(recentList))             // veryfikujemy liste (to bedzie inaczej wygladac w przypadku wielu graczy)
+                {
+
+              //      ss.sendMSG ( message z lista gdzie jest pozwolenie na gre )
+                                                         // jak w porzadku to wysylamy do klient ze lecimy dalej
+                }
+ 
+                 else
+                {
+
+           //         ss.sendMSG ( Message z lista gdzie nie zezwala sie na gre                                   // a jak nie to gra jest wsrzymana 
+                }            
+              
+
             }
 
             else
 
             {
+
+
                 // do seralizacji
                 // wysyłamy zserializowane dane 
+
+                cc.checkIfGameStarted();    // tu jest tablica z danymi do zweryfikowania    
+
                 // vczekamy na weryfikacje danych 
             }
          
         }
+
+
+        private void processMSG(Message m)
+        {
+            PlayerL recivedList = SRL.takeM(m);            // tutaj tylko jednoelementowa lista 
+            if (recivedList != null)
+            {
+                if (recivedList.lista != null)             // sprawdzamy czy otrzymana lista jest niepusta
+                {
+                         playersData data = new playersData(recentList.lista);
+
+                    for (int i=0; i < recivedList.lista.Count();i++ )
+
+                        {                
+                            data.udpdateData(recivedList.lista[i]);                  // aktualizujemy to co dostalismy
+                        }
+
+                            recentList.lista = data.getPlayersList();               // zrzucamy liste do listy (za duzo tego)
+                        //   updatePlayerList2(ppp.lista);
+                    }
+                }
+            }
+        
+
+
+        private bool veryfyList (PlayerL actuallist)
+
+        {
+            playersData listForVer = new playersData(actuallist.lista);
+
+            return listForVer.veryfiPlayersTypes();           
+        }
+
 
 
         private void button1_Click(object sender, EventArgs e)          // to button startu, lecą dane do serwera    
@@ -69,7 +158,7 @@ namespace DiXit
                 Form votingScreen = new Form4(12 ,true,player1, this.Location);             // ta liczna graczy musi byc wzieta z serwera
                 votingScreen.Show();
                 this.Hide();
-                // tu if jesteś serverem to odpalaj server a inaczej klienta
+             
                 // startujemy nową forme 4, z ustawianiami w zależności od typu gracza 
             }
 

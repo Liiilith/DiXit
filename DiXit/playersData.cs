@@ -9,9 +9,19 @@ namespace DiXit
     public class playersData               // klasa przechowująca dane o graczach - listę obiektów graczy, updatowana przez serwer i rozsyłana do wszystkich
     {
 
-        List<Player> playersList = new List<Player>();
+        List<Player> playersList = new List<Player>() ;
         
+        
+        public playersData (List<Player> list)
+        {
+            playersList = list;
+        }
 
+        public List<Player> getPlayersList()
+
+        {
+            return playersList;
+        }
 
         public void AddToPlayerList(Player pl)                                 // tutaj sobie dodajemy do listy graczy 
 
@@ -117,6 +127,16 @@ namespace DiXit
             return foundPlayer;
         }
 
+
+        public void udpdateData (Player player)        // single player update 
+
+        {
+
+            RemoveFromPlayerList(player);
+            AddToPlayerList(player);
+
+
+        }
 
         public bool veryfiPlayersTypes ()                                         // do sprawdzenia czy nie ma dwoch chalengerow
 

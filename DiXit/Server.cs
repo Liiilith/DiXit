@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace DiXit
 {
-    class Server:Game
+  public class Server:Game                       // tutaj zmienilem na public - etomryc
     {
         protected List<Thread> threadList;
         TcpListener myList;
