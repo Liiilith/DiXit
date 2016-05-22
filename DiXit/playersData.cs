@@ -51,7 +51,7 @@ namespace DiXit
         {
             if (playersList.Count > 0)//inaczej rzuca index out of range 
             {
-                for (int i = 0; i <= playersList.Count; i++)
+                for (int i = 0; i < playersList.Count; i++)
                 {
 
                     if (pl.getIpAddress() == playersList[i].getIpAddress())
