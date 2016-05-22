@@ -17,12 +17,15 @@ namespace DiXit
         bool challenger;                                             // zmienna informująca czy gracz zadaje kartę czy zgaduje 
         List<Button> listOfButtons = new List<Button>();             // lista buttonow do lepszego zarządzania
         Player myPlayer;
+        Server ss;
+        Client cc;
 
 
-        public Form4(int playersNumber, bool playerType, Player pl, Point locat)                             // konstruktor dla formy 4
+        public Form4(int playersNumber, bool playerType, Player pl, Point locat, Server serv)                             // konstruktor dla formy 4
         {
             InitializeComponent();
 
+            ss = serv;
             myPlayer = pl;
             playersNumb = playersNumber;
             challenger = playerType;
@@ -33,6 +36,23 @@ namespace DiXit
 
 
         }
+
+        public Form4(int playersNumber, bool playerType, Player pl, Point locat, Client client)                             // konstruktor dla formy 4
+        {
+            InitializeComponent();
+
+            cc = client;
+            myPlayer = pl;
+            playersNumb = playersNumber;
+            challenger = playerType;
+            setLabels(playerType);
+            this.Location = locat;
+
+            CreateButtons(playersNumb);                        // tu juz powinienem znac info o ilosci graczy ktorzy uczestnicza w rozgrywce
+
+
+        }
+
 
         protected void setLabels (bool type)
 
