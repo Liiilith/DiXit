@@ -190,7 +190,7 @@ namespace DiXit
             this.button5.Size = new System.Drawing.Size(60, 52);
             this.button5.TabIndex = 16;
             this.button5.UseVisualStyleBackColor = false;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button5.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 

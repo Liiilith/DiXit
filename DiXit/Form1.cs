@@ -89,13 +89,13 @@ namespace DiXit
                  }));*/
                
                 }
-
+/*
             msg2.Data = ss.getMSG();
             if (msg2.Data != null)
             {
                 PlayerL ppppp2 = SRL.takeM(msg2);
                 check_MSG(ppppp2);
-            }
+            }*/
             //ss.socketClose();
         }
 
@@ -275,7 +275,7 @@ namespace DiXit
         {
 
             PlayerL p = new PlayerL();
-                p.lista = plData.getList();
+            p.lista = plData.getList();
             if (server) { 
             PlayerL sss = new PlayerL();
             sss.type = msgType.startGame;
@@ -284,20 +284,19 @@ namespace DiXit
             ss.sendMSG(m);
             }
             Form F3;
+            this.Hide();
             if (server)
                 
                 F3 = new Form3(pl, this.Location, server, ss,p);
             else
-            {
+            
                 F3 = new Form3(pl, this.Location, server, cc);
-            }
-                this.Hide();
+            
+               
                 F3.Enabled = true;
-                F3.Visible = true;//
+                F3.Visible = true;
                 F3.Show();
             
-          //  startGame();
-            //this.Hide();}
            
         }
 
@@ -535,22 +534,22 @@ namespace DiXit
             
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e)//START GRY
         {
             PlayerL p = new PlayerL();
             p.lista = plData.getList();
             Form F3;
             if (server)
-                F3 = new Form3(pl, this.Location, server, ss,p);
+                F3 = new Form3(pl, this.Location, server, ss, p);
             else
             {
                 F3 = new Form3(pl, this.Location, server, cc);
-
-                // this.Hide();
+            }
+                 this.Hide();
                 F3.Enabled = true;
                 F3.Visible = true;//
                 F3.Show();
-            }
+            
         }
     }
 }
