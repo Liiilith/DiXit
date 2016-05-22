@@ -67,7 +67,7 @@ namespace DiXit
             this.button1.Size = new System.Drawing.Size(60, 39);
             this.button1.TabIndex = 4;
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.bcolor_Click);
             // 
             // label2
             // 
@@ -94,7 +94,7 @@ namespace DiXit
             this.button2.TabIndex = 6;
             this.button2.Text = "START";
             this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.bcolor_Click);
             // 
             // label4
             // 
@@ -183,7 +183,7 @@ namespace DiXit
             // 
             // button5
             // 
-            this.button5.BackColor = Color.Transparent;
+            this.button5.BackColor = System.Drawing.Color.Transparent;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button5.Location = new System.Drawing.Point(395, 25);
             this.button5.Name = "button5";

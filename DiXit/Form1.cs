@@ -20,12 +20,13 @@ namespace DiXit
         Client cc;
         bool server = false;
         Form2 F2;
+        Form7 F7;
         Player pl;
         PlayerL ppp;
         PlayerL pppp2;
         playersData plData;
-        PlayerL f3pl; 
- 
+        PlayerL f3pl;
+        System.Drawing.Color kolor;
         // Player player1 = new Player("22", "gracz1");       
         //  Player player2 = new Player("22", "gracz2");   
 
@@ -59,6 +60,10 @@ namespace DiXit
 
             }
         }
+        public void setColor(System.Drawing.Color k)//ustaw kolor dla gracza
+        {
+            kolor = k;
+        }
         ////test połączenia
        private void serverStart()
         {
@@ -69,7 +74,8 @@ namespace DiXit
             msg2.Data = ss.getMSG();
             if (msg2.Data != null)
             {
-                processMSG(msg2);
+                PlayerL ppppp2 = SRL.takeM(msg2);
+                MSGAddPlayers(ppppp2);
                 // label3.Text = ppp.lista[0].playerID;
                 UPD_plList(plData.getList());
                 PlayerL sss = new PlayerL();
@@ -77,23 +83,32 @@ namespace DiXit
                     sss.lista= plData.getList();
                Message m = response(sss);
                 ss.sendMSG(m);
-               /* button5.Invoke(new Action(delegate ()
-                {
-                    button5.performClick();
-                }));*/
+                /* button5.Invoke(new Action(delegate ()
+                 {
+                     button5.performClick();
+                 }));*/
+               
+                }
 
-
+            msg2.Data = ss.getMSG();
+            if (msg2.Data != null)
+            {
+                PlayerL ppppp2 = SRL.takeM(msg2);
+                check_MSG(ppppp2);
             }
             //ss.socketClose();
         }
 
-        public Message response(PlayerL p)
+        public Message response(PlayerL p)//serializuje dane do wysłania
         {
             Message d = SRL.Serialize(p);
 
             return d;
         }
-
+        public bool srv_Check()
+        {
+            return server;
+        }
         private void clientStart()
         {
         
@@ -112,9 +127,10 @@ namespace DiXit
             Message ms = new Message();
             cc.cltStart("89.70.34.25", 50201);
             ms.Data = cc.runClient(msg1.Data);
-            processMSG(ms);
+            PlayerL ppppp2 = SRL.takeM(ms);
+            MSGAddPlayers(ppppp2);
             //  String s= ppp2.getPlayers();
-           
+
             UPD_plList(plData.getList());
          //   startGame();
             ms.Data=cc.checkIfGameStarted();
@@ -123,14 +139,12 @@ namespace DiXit
 
 
         }
-        public void run_F3()
-        {
-            check_MSG(f3pl);
-        }
 
-        private void processMSG(Message m)
+
+       
+        private void MSGAddPlayers(PlayerL ppppp2)//updatuje playersData o otrzymaną listę graczy
         {
-            PlayerL ppppp2 = SRL.takeM(m);
+             
             if (ppppp2 != null)
             {
                 if (ppppp2.lista != null)
@@ -139,61 +153,125 @@ namespace DiXit
                     {
                         foreach (Player p in ppppp2.lista)
                         {
-                           if(p.iPadd != pl.iPadd)
+                            if (p.iPadd != pl.iPadd)
                             {
                                 //trzeba zrobic logike dodawania
                                 plData.AddToPlayerList(p);
                             }
                         }
-                     //   updatePlayerList2(ppp.lista);
+                        //   updatePlayerList2(ppp.lista);
                     }
                 }
             }
         }
 
-   
 
-     
+       
+
+        private void MSGUpdPlayers(PlayerL ppppp2)//updatuje playersData o otrzymaną listę graczy
+        {
+            
+            if (ppppp2 != null)
+            {
+                if (ppppp2.lista != null)
+                {
+                    if (ppppp2.lista.Count > 0)
+                    {
+                        foreach (Player p in ppppp2.lista)
+                        {
+                            plData.UpdatePlayerID(p);
+                        }
+
+                    }
+                }
+            }
+        }
 
         public void serverSet(bool set)
         {
             server = set;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public bool updOwnColor()
         {
-           
-            Button bt = sender as Button;
-            System.Drawing.Color c = new System.Drawing.Color();
-            DialogResult result = colorDialog1.ShowDialog();
-            // See if user pressed ok.
-            if (result == DialogResult.OK)
-            {   //trzeba bedzie sprawdzic jakos czy kolor jest dostepny
-                //while(! gra.Check_rabbit( c)){//potrzebna jest klasa nadrzedna monitorująca całość
-                // result = colorDialog1.ShowDialog();
-                // if (result == DialogResult.OK)
-                //{
-
-                bt.BackColor = colorDialog1.Color;
-                pl.Color = colorDialog1.Color;
-                // }
-
-            }
-
-            //  bt.BackColor = c;
-            // player1.Color = c;
-
-           // updatePlayerList();
-            //test połączenia
-       /*     if (!server)
+            Player p = plData.getPlayerByLogin(pl.playerID);
+            // Player p = plData.getPlayerByIp(pl.playerID);
+            bool res = false;
+            if (plData.checkColor(kolor))
             {
-                Player pl = new Player("22", "gracz2");
-                Client client = new Client(pl);
-                client.runClient(textBox1.Text);
-            }*/
+                pl.rabbitColor = kolor;
+               
+                plData.UpdatePlayerID(pl);
+                res = true;
+                
+            }
+            return res;
         }
 
-        public void button2_Click(object sender, EventArgs e)
+        public void SendColorUpd()
+        {
+            Thread clientThread = new Thread(new ThreadStart(SENDcolor));     // wyrzucamy serwer do innego wątku 
+            clientThread.Start();
+        }
+
+       
+        public void SENDcolor()
+        {
+            if (!server)
+            {
+                PlayerL sss = new PlayerL(pl);
+
+                sss.type = msgType.colorUpd;
+                Message m = response(sss);
+                Message ms = new Message();
+                ms.Data = cc.runClient(m.Data);
+            }
+        }
+
+        public void SendColorRes(msgType cres)//zwrotka na zmianę koloru
+        {
+            if (server)
+            {
+                PlayerL sss = new PlayerL();
+                sss.Lista = plData.getList();
+                sss.type = cres;
+                Message m = response(sss);
+                Message ms = new Message();
+                ss.sendMSG(m);
+            }
+        }
+
+
+        public void updButtonColor()
+        {
+            button1.Invoke(new Action(delegate ()
+            {
+                button1.BackColor = kolor;
+                button1.Text = "";
+            }));
+        }
+        public void updButtonColorWRONG()
+        {
+            kolor = System.Drawing.Color.LemonChiffon;
+           
+            
+            button1.Invoke(new Action(delegate ()
+            {
+                button1.BackColor = kolor;
+                button1.Text = "X";
+            }));
+        }
+
+        private void bcolor_Click(object sender, EventArgs e)//wybór koloru
+        {
+            List<System.Drawing.Color> col = plData.getColors();
+            F7 = new Form7(col,this);
+            F7.Show();
+            
+                
+        }
+
+        public void button2_Click(object sender, EventArgs e)//button START
         {
 
             if (server) { 
@@ -205,10 +283,10 @@ namespace DiXit
             }
             Form F3;
             if (server)
-                F3 = new Form3(pl, this.Location, server, ss);
+                F3 = new Form3(pl, this.Location, server);//, ss);
             else
             {
-                F3 = new Form3(pl, this.Location, server, cc);
+                F3 = new Form3(pl, this.Location, server);//, cc);
             }
                 this.Hide();
                 F3.Enabled = true;
@@ -221,7 +299,7 @@ namespace DiXit
         }
 
 
-        private void buttonsLook(string gameIP, string plID)
+        private void buttonsLook(string gameIP, string plID)//update formy
         {
             button2.Visible = server;
             button2.Enabled = server;
@@ -239,69 +317,11 @@ namespace DiXit
             label2.Text = plID;
             button5.Hide();
         }
-        public void updatePlayerList()// List<Player> players) vs nie przyjmuje listy jako arg przez ograniczenia dostepu (?)
-        {
-            Player player1 = new Player("22", "gracz");
-            /* Player player2 = new Player("22", "gracz2");
-             player2.Color = System.Drawing.Color.Black;
-             List<Player> tempeGracze = new List<Player>();
-             tempeGracze.Add(player1);
-             tempeGracze.Add(player2);
-             tempeGracze.Remove(player1);
-
-             foreach (Player p in tempeGracze)
-             {
-                 //wyswietlanie listy graczy
-             }*/
-            //tymczasowe wyswietlanie
-            for (int i = 0; i < 12; i++)
-            {
-                int posy = (i / 2) * 40;
-                int posx = (i % 2) * 250;
-                System.Windows.Forms.Button button;
-                System.Windows.Forms.Label label;
-                button = new System.Windows.Forms.Button();
-                label = new System.Windows.Forms.Label();
-
-                button.Location = new System.Drawing.Point(160 + posx, 10 + posy);
-                button.Name = "button";
-                button.Size = new System.Drawing.Size(30, 30);
-
-                button.UseVisualStyleBackColor = true;
-                button.BackColor = System.Drawing.Color.IndianRed;
-                button.Text = "";
-
-
-                label.AutoSize = true;
-                label.BackColor = System.Drawing.Color.Transparent;
-                label.Cursor = System.Windows.Forms.Cursors.AppStarting;
-                label.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-                label.Location = new System.Drawing.Point(10 + posx, 10 + posy);
-                label.Name = "label";
-                label.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-                label.RightToLeft = System.Windows.Forms.RightToLeft.No;
-                label.Size = new System.Drawing.Size(100, 25);
-                label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                label.Text = player1.PlayerID;
-                panel1.Controls.Add(label);
-                panel1.Controls.Add(button);
-            }
-        }
-        public void updatePlayerList2(List<Player> p)// List<Player> players) vs nie przyjmuje listy jako arg przez ograniczenia dostepu (?)
+       
+        public void updatePlayerList2(List<Player> p)//update listy graczy
         {
            
-            /* Player player2 = new Player("22", "gracz2");
-             player2.Color = System.Drawing.Color.Black;
-             List<Player> tempeGracze = new List<Player>();
-             tempeGracze.Add(player1);
-             tempeGracze.Add(player2);
-             tempeGracze.Remove(player1);
-
-             foreach (Player p in tempeGracze)
-             {
-                 //wyswietlanie listy graczy
-             }*/
-            //tymczasowe wyswietlanie
+            
             for (int i = 0; i < 14; i++)
             {
                 int posy = (i / 2) * 40;
@@ -342,7 +362,7 @@ namespace DiXit
 
         }
 
-        public void UPD_plList(List<Player> p)
+        public void UPD_plList(List<Player> p)//update listy graczy z innego wątku
         {
             panel1.Invoke(new Action(delegate ()
             {
@@ -391,7 +411,7 @@ namespace DiXit
             F2.Close();
         }
 
-        public void updatee(bool srv, Player p, Point loc, Form2 f1)
+        public void updatee(bool srv, Player p, Point loc, Form2 f1)//update pozycji
         {
             server = srv;
             //this.Show();
@@ -419,11 +439,11 @@ namespace DiXit
         {
             Form F3;
             if (server)
-                F3 = new Form3(pl, this.Location, server, ss);
-            else { F3 = new Form3(pl, this.Location, server, cc);
+                F3 = new Form3(pl, this.Location, server);//, ss);
+            else { F3 = new Form3(pl, this.Location, server);//, cc);
 
-            // this.Hide();
-            F3.Enabled = true;
+                // this.Hide();
+                F3.Enabled = true;
             F3.Visible = true;//
             F3.Show();
                 }
@@ -452,6 +472,34 @@ namespace DiXit
                         this.Hide();
                     }));
                     break;
+
+                case msgType.colorUpd:
+                    if (plData.checkColor(plL.Lista[0].Color)){
+                        MSGUpdPlayers(plL);
+                        UPD_plList(plData.getList());
+                        SendColorRes(msgType.okColor);
+                    }
+                    else
+                    {
+                        SendColorRes(msgType.wrongColor);
+                    }
+                    
+                    break;
+
+                case msgType.wrongColor:
+                    
+                    updButtonColorWRONG();
+                    MSGUpdPlayers(plL);
+
+                    break;
+
+                case msgType.okColor:
+
+                    updOwnColor();
+                    updButtonColor();
+                    MSGUpdPlayers(plL);
+
+                    break;
                 default:
                     Console.WriteLine("Default case");
                     break;
@@ -459,6 +507,9 @@ namespace DiXit
 
 
         }
+
+
+
 
         public bool check_Start(PlayerL plL)
         {

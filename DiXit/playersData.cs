@@ -141,9 +141,9 @@ namespace DiXit
         public bool veryfiPlayersTypes ()                                         // do sprawdzenia czy nie ma dwoch chalengerow
 
         {
-         
             int challengerCount=0;
-            bool verdict = true;
+			bool verdict = true;
+            
             if (playersList.Count > 0)//inaczej rzuca index out of range 
             {
                 for (int i = 0; i < playersList.Count; i++)
@@ -197,6 +197,21 @@ namespace DiXit
             }
             return result;
         }
+
+        public List<System.Drawing.Color> getColors()//czy możemy wybrać sobie kolor
+        {
+            List<System.Drawing.Color> col = new List<System.Drawing.Color>();
+            if (playersList.Count > 0)//inaczej rzuca index out of range 
+            {
+                for (int i = 0; i < playersList.Count; i++)
+                {
+                   col.Add(playersList[i].Color);
+                }
+
+            }
+            return col;
+        }
+
 
         public void sumUpMainCard()
         {
@@ -259,5 +274,33 @@ namespace DiXit
                 playersList[j].resetRound();
             }
         }
+
+        public bool UpdatePlayerID(Player pl)//update gracza o danym loginie
+        {
+            bool res = false;
+            Player p = getPlayerByLogin(pl.playerID);
+            if (p.iPadd != "unknown")
+            {
+                RemoveFromPlayerList(p);
+                AddToPlayerList(pl);
+                res = true;
+            }
+
+            return res;
+        }
+        public bool UpdatePlayerIP(Player pl)//update gracza o danym IP
+        {
+            bool res = false;
+            Player p = getPlayerByIp(pl.iPadd);
+            if (p.iPadd != "unknown")
+            {
+                RemoveFromPlayerList(p);
+                AddToPlayerList(pl);
+                res = true;
+            }
+
+            return res;
+        }
+
     }
 }
