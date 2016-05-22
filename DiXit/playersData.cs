@@ -117,6 +117,52 @@ namespace DiXit
             return foundPlayer;
         }
 
+
+        public bool veryfiPlayersTypes ()                                         // do sprawdzenia czy nie ma dwoch chalengerow
+
+        {
+            bool verdict = true;
+            int challengerCount=0;
+            if (playersList.Count > 0)//inaczej rzuca index out of range 
+            {
+                for (int i = 0; i < playersList.Count; i++)
+                {                  
+                   if( playersList[i].getType() == playerType.challanger)
+                    {
+                        challengerCount++;
+                        if (challengerCount > 1) { verdict = false; break; }
+                    }
+                }
+            }
+            return verdict;
+        }
+
+
+
+        public bool checkIfallAlreadyPresent()                                         // do sprawdzenia wszyscy gracze maja okreslony typ
+
+        {
+            bool verdict = true;
+         
+            if (playersList.Count > 0)//inaczej rzuca index out of range 
+            {
+                for (int i = 0; i < playersList.Count; i++)
+                {
+                    if (playersList[i].getType() == playerType.unsign)
+                    {
+                      
+                    verdict = false;
+                      break; 
+                    }
+                }
+            }
+            return verdict;
+        }
+
+
+
+
+
         public bool checkColor(System.Drawing.Color c)//czy możemy wybrać sobie kolor
         {
             bool result = true;

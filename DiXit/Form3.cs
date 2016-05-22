@@ -17,16 +17,16 @@ namespace DiXit
         bool serwer;
         Game game;
 
-        public Form3(Player pl, Point location,bool connection)
+        public Form3(Player pl, Point location,bool connection, Game game1)
         {
             InitializeComponent();
 
-            this.Location = location; 
-
+            this.Location = location;
+            this.Show();
             buttonsLook();         // nazwy buttonów i inne
          //   this.BackgroundImageLayout = ImageLayout.Stretch;
             player1 = pl;          
-            game = game1;
+             game = game1;
             serwer = connection;             // czy jestem serwerem czy clientem
         }
 
@@ -35,36 +35,50 @@ namespace DiXit
 
         }
 
-        private void button1_Click(object sender, EventArgs e)          // to button startu   
+
+        private void exchangePlayerData (bool typeServer )
+
         {
+            if (typeServer)
+            {
+                
 
+                // czekamy na message
+                // odbieramy
+                // deserializujemy
+                // updatujemy listę graczy  
+                // weryfikujemy otrzymane dane i pozwalamy na dalszy przebieg gry
+             
+            }
 
-            if (player1.getType() == playerType.challanger)
-
+            else
 
             {
+                // do seralizacji
+                // wysyłamy zserializowane dane 
+                // vczekamy na weryfikacje danych 
+            }
+         
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)          // to button startu, lecą dane do serwera    
+        {
+            if (player1.getType() == playerType.challanger)
+            {
                 Form votingScreen = new Form4(12 ,true,player1, this.Location);             // ta liczna graczy musi byc wzieta z serwera
-
                 votingScreen.Show();
-
-
                 this.Hide();
-
                 // tu if jesteś serverem to odpalaj server a inaczej klienta
                 // startujemy nową forme 4, z ustawianiami w zależności od typu gracza 
             }
 
             else if (player1.getType() == playerType.guesser)
             {
-
                 Form votingScreen = new Form4(12, false, player1,this.Location);             // ta liczna graczy musi byc wzieta z serwera
-
                 votingScreen.Show();
                 this.Hide();
-
-
                 // jw  
-
             }
         }
 
@@ -112,9 +126,6 @@ namespace DiXit
             button2.BackColor = Color.DarkGray;
             button3.BackColor = Color.DarkGray;
         }
-
-      
-     
     }
 
 }
