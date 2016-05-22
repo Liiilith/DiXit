@@ -16,7 +16,6 @@ namespace DiXit
         // deklaracja zmiennych dla Ekranu 3
         Player player1;        // to tak naprawdę zostanie stworzone wyżej
         bool serwer;
-        Game game;
         Server ss;
         Client cc;
         PlayerL recentList;
@@ -34,7 +33,8 @@ namespace DiXit
             buttonsLook();         // nazwy buttonów i inne
                                   
             button1.Click += startClick_EventHandler;
-            exchangePlayerData(connection);
+
+            Thread communication = new Thread(new ThreadStart(exchangePlayerData));     // wyrzucamy serwer do innego wątku 
         }
 
         private readonly ManualResetEvent waitForclick = new ManualResetEvent(false);   
@@ -56,8 +56,9 @@ namespace DiXit
             this.Show();
             buttonsLook();         // nazwy buttonów i inne
                                    //   this.BackgroundImageLayout = ImageLayout.Stretch;
+            button1.Click += startClick_EventHandler;
 
-            exchangePlayerData(connection);
+            Thread communication  = new Thread(new ThreadStart(exchangePlayerData));     // wyrzucamy serwer do innego wątku 
 
 
         }
@@ -67,10 +68,10 @@ namespace DiXit
 
         }
 
-        private void exchangePlayerData (bool typeServer )
+        private void exchangePlayerData ( )
 
         {
-            if (typeServer)
+            if (serwer)
             {
 
                 Message TypeData = new Message();
@@ -87,7 +88,7 @@ namespace DiXit
                 {
                      // ( message z lista gdzie jest pozwolenie na gre )
                         // jak w porzadku to wysylamy do klient ze lecimy dalej
-                    createNewForm();
+                    createNewForm(true);
                 }
  
                  else
@@ -119,7 +120,7 @@ namespace DiXit
 
                 if (checkD(ver))                      // vczekamy na weryfikacje danych 
 
-                { createNewForm(); }
+                { createNewForm(false); }
 
                 else
                 { } // wybierzcie jeszcze raz}  
@@ -157,30 +158,51 @@ namespace DiXit
                 }
             }
         
-        protected void createNewForm ()
+        protected void createNewForm (bool server)
 
 
         {
 
-            if (player1.getType() == playerType.challanger)
+            if (server)
             {
+                if (player1.getType() == playerType.challanger)
+                {
 
-                Form votingScreen = new Form4(12, true, player1, this.Location);             // ta liczna graczy musi byc wzieta z serwera
-                votingScreen.Show();
-                this.Hide();
+                    Form votingScreen = new Form4(12, true, player1, this.Location, ss);             // ta liczna graczy musi byc wzieta z serwera
+                    votingScreen.Show();
+                    this.Hide();
 
-                // startujemy nową forme 4, z ustawianiami w zależności od typu gracza 
+                    // startujemy nową forme 4, z ustawianiami w zależności od typu gracza 
+                }
+
+                else if (player1.getType() == playerType.guesser)
+                {
+                    Form votingScreen = new Form4(12, false, player1, this.Location,ss);             // ta liczna graczy musi byc wzieta z serwera
+                    votingScreen.Show();
+                    this.Hide();
+                    // jw  
+                }
             }
-
-            else if (player1.getType() == playerType.guesser)
+            else
             {
-                Form votingScreen = new Form4(12, false, player1, this.Location);             // ta liczna graczy musi byc wzieta z serwera
-                votingScreen.Show();
-                this.Hide();
-                // jw  
+                if (player1.getType() == playerType.challanger)
+                {
+
+                    Form votingScreen = new Form4(12, true, player1, this.Location, cc);             // ta liczna graczy musi byc wzieta z serwera
+                    votingScreen.Show();
+                    this.Hide();
+
+                    // startujemy nową forme 4, z ustawianiami w zależności od typu gracza 
+                }
+
+                else if (player1.getType() == playerType.guesser)
+                {
+                    Form votingScreen = new Form4(12, false, player1, this.Location, cc);             // ta liczna graczy musi byc wzieta z serwera
+                    votingScreen.Show();
+                    this.Hide();
+                    // jw  
+                }
             }
-
-
 
         }
 
