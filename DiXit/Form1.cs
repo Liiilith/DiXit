@@ -201,11 +201,13 @@ namespace DiXit
             {
                 pl.rabbitColor = kolor;
                
-                plData.UpdatePlayerID(pl);
+              //  plData.UpdatePlayerID(pl);
+                plData.Change_Color(pl, kolor);
                 res = true;
                 
             }
             return res;
+
         }
 
         public void SendColorUpd()
@@ -225,6 +227,7 @@ namespace DiXit
                 Message m = response(sss);
                 Message ms = new Message();
                 ms.Data = cc.runClient(m.Data);
+
             }
         }
 
@@ -269,6 +272,11 @@ namespace DiXit
             F7.Show();
             
                 
+        }
+
+        public void UPD_players_F7()
+        {
+            UPD_plList(plData.getList());
         }
 
         public void button2_Click(object sender, EventArgs e)//button START
@@ -368,6 +376,16 @@ namespace DiXit
         {
             panel1.Invoke(new Action(delegate ()
             {
+
+                foreach (Control item in panel1.Controls.OfType<Button>())
+                {
+                    panel1.Controls.Remove(item);
+                }
+                foreach (Control item in panel1.Controls.OfType<Label>())
+                {
+                    panel1.Controls.Remove(item);
+                }
+
                 for (int i = 0; i < 12; i++)
                 {
                     int posy = (i / 2) * 40;

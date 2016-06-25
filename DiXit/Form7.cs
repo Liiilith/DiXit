@@ -25,10 +25,13 @@ namespace DiXit
         {
             Button b = sender as Button;
            F1.setColor( b.BackColor);
-            if (F1.updOwnColor()) {
+            if (F1.updOwnColor())
+            {
                 F1.updButtonColor();
-                if (F1.srv_Check()) F1.SendColorUpd();
-                    }
+                if (!F1.srv_Check()) F1.SendColorUpd();
+                else F1.UPD_players_F7();
+            }
+           
             this.Close();
         }
         public Color getColor()
