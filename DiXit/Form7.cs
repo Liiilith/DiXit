@@ -29,7 +29,7 @@ namespace DiXit
             {
                 F1.updButtonColor();
                 if (!F1.srv_Check()) F1.SendColorUpd();
-                else F1.UPD_players_F7();
+                else F1.UPD_srv_col();
             }
            
             this.Close();

@@ -282,7 +282,8 @@ namespace DiXit
         public bool UpdatePlayerID(Player pl)//update gracza o danym loginie
         {
             bool res = false;
-            Player p = getPlayerByLogin(pl.playerID);
+          //  Player p = getPlayerByLogin(pl.playerID);
+            Player p = getPlayerByIp(pl.iPadd);
             if (p.iPadd != "unknown")
             {
                 RemoveFromPlayerList(p);

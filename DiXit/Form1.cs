@@ -70,34 +70,23 @@ namespace DiXit
             Message msg2 = new Message();
             ss = new Server(pl);
             ss.socketSart();
-            // czekamy na odbiór wyników
-            msg2.Data = ss.getMSG();
-            if (msg2.Data != null)
-            {
-                PlayerL ppppp2 = SRL.takeM(msg2);
-                MSGAddPlayers(ppppp2);
-                // label3.Text = ppp.lista[0].playerID;
-                UPD_plList(plData.getList());
-                PlayerL sss = new PlayerL();
-            
-                    sss.lista= plData.getList();
-               Message m = response(sss);
-                ss.sendMSG(m);
-                /* button5.Invoke(new Action(delegate ()
-                 {
-                     button5.performClick();
-                 }));*/
-               
-                }
-/*
+            processMSG();
+            processMSG();//odbierz update koloru
+
+
+        }
+
+        public void processMSG()
+        {
+            Message msg2 = new Message();
             msg2.Data = ss.getMSG();
             if (msg2.Data != null)
             {
                 PlayerL ppppp2 = SRL.takeM(msg2);
                 check_MSG(ppppp2);
-            }*/
-            //ss.socketClose();
+            }
         }
+        
 
         public Message response(PlayerL p)//serializuje dane do wysłania
         {
@@ -114,18 +103,22 @@ namespace DiXit
         
             ppp = new PlayerL(pl);
 
-            for (int i = 0; i < 8; i++)
+           for (int i = 0; i < 3; i++)
             { 
-            Player p = new Player("127.0.0."+ i.ToString(), "aaa" + i.ToString());
+           Player p = new Player("127.0.0."+ i.ToString(),pl.playerID);
+                p.rabbitColor = pl.rabbitColor;
 
             ppp.AddToPL(p);
                
             }
-            Message msg1 = SRL.Serialize(ppp); // w msg.Data jest obiekt do wysłania 
+            ppp.type = msgType.addPlayer;
 
+            Message msg1 = SRL.Serialize(ppp); // w msg.Data jest obiekt do wysłania 
+            
             cc = new Client(pl);
             Message ms = new Message();
             cc.cltStart("89.70.34.25", 50201);
+            
             ms.Data = cc.runClient(msg1.Data);
             PlayerL ppppp2 = SRL.takeM(ms);
             MSGAddPlayers(ppppp2);
@@ -222,7 +215,14 @@ namespace DiXit
             if (!server)
             {
                 PlayerL sss = new PlayerL(pl);
+                for (int i = 0; i < 3; i++)
+                {
+                    Player p = new Player("127.0.1." + i.ToString(), pl.playerID);
+                    p.rabbitColor = pl.rabbitColor;
 
+                    sss.AddToPL(p);
+
+                }
                 sss.type = msgType.colorUpd;
                 Message m = response(sss);
                 Message ms = new Message();
@@ -274,9 +274,19 @@ namespace DiXit
                 
         }
 
-        public void UPD_players_F7()
+        public void UPD_srv_col()//zaktualizuj i wyswietl nowe kolory i odeslij reszcie
         {
             UPD_plList(plData.getList());
+           /* PlayerL p = new PlayerL();
+            p.lista = plData.getList();
+            if (server)
+            {
+                PlayerL sss = new PlayerL();
+                sss.type = msgType.colorUpd;
+
+                Message m = response(sss);
+                ss.sendMSG(m);
+            }*/
         }
 
         public void button2_Click(object sender, EventArgs e)//button START
@@ -496,22 +506,32 @@ namespace DiXit
                     break;
 
                 case msgType.colorUpd:
-                    if (plData.checkColor(plL.Lista[0].Color)){
+                    if (server)
+                    {
+                        if (plData.checkColor(plL.Lista[0].Color))
+                        {
+                            MSGUpdPlayers(plL);
+                            UPD_plList(plData.getList());
+                            SendColorRes(msgType.okColor);
+                        }
+                        else
+                        {
+                            SendColorRes(msgType.wrongColor);
+                        }
+                    }
+                    else // klient powinien tylko zupdatowac dostanych graczy
+                    {
                         MSGUpdPlayers(plL);
                         UPD_plList(plData.getList());
-                        SendColorRes(msgType.okColor);
                     }
-                    else
-                    {
-                        SendColorRes(msgType.wrongColor);
-                    }
-                    
+                        
                     break;
 
                 case msgType.wrongColor:
                     
                     updButtonColorWRONG();
                     MSGUpdPlayers(plL);
+                    UPD_plList(plData.getList());
 
                     break;
 
@@ -520,8 +540,26 @@ namespace DiXit
                     updOwnColor();
                     updButtonColor();
                     MSGUpdPlayers(plL);
+                    UPD_plList(plData.getList());
 
                     break;
+
+                case msgType.addPlayer:
+
+                    //dodaj gracza
+                    MSGAddPlayers(plL);
+                    // label3.Text = ppp.lista[0].playerID;
+                    UPD_plList(plData.getList());
+                    PlayerL sss = new PlayerL();
+
+                    sss.lista = plData.getList();
+                    Message m = response(sss);
+                    ss.sendMSG(m);
+
+                    break;
+
+
+               
                 default:
                     Console.WriteLine("Default case");
                     break;
