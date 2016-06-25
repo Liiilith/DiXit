@@ -26,6 +26,7 @@ namespace DiXit
         PlayerL pppp2;
         playersData plData;
         PlayerL f3pl;
+        bool activegame=false;
         System.Drawing.Color kolor;
         // Player player1 = new Player("22", "gracz1");       
         //  Player player2 = new Player("22", "gracz2");   
@@ -70,9 +71,15 @@ namespace DiXit
             Message msg2 = new Message();
             ss = new Server(pl);
             ss.socketSart();
-            processMSG();
-            processMSG();//odbierz update koloru
+             while (true)
+              {
+                  processMSG();
+              }
 
+            // processMSG();//odbierz update koloru
+           // processMSG();//odbierz update koloru
+           // processMSG();//odbierz update koloru
+           // processMSG();//odbierz update koloru
 
         }
 
@@ -103,7 +110,7 @@ namespace DiXit
         
             ppp = new PlayerL(pl);
 
-          /* for (int i = 0; i < 3; i++)
+     /*      for (int i = 0; i < 3; i++)
             { 
            Player p = new Player("127.0.0."+ i.ToString(),pl.playerID);
                 p.rabbitColor = pl.rabbitColor;
@@ -121,15 +128,20 @@ namespace DiXit
             
             ms.Data = cc.runClient(msg1.Data);
             PlayerL ppppp2 = SRL.takeM(ms);
-            MSGAddPlayers(ppppp2);
+            activegame = true;
+
+            check_MSG(ppppp2);
+          //  MSGAddPlayers(ppppp2);
             //  String s= ppp2.getPlayers();
 
             UPD_plList(plData.getList());
          //   startGame();
             ms.Data=cc.checkIfGameStarted();
+          
             PlayerL togame = SRL.takeM(ms);
+      //      activegame = true;
             check_MSG(togame);
-
+            
 
         }
 
@@ -162,7 +174,7 @@ namespace DiXit
 
        
 
-            private void MSGUpdColorss(PlayerL ppppp2)//updatuje playersData o otrzymaną listę graczy
+       private void MSGUpdColorss(PlayerL ppppp2)//updatuje playersData o otrzymaną listę graczy
         {
 
             if (ppppp2 != null)
@@ -242,8 +254,11 @@ namespace DiXit
 
         public void SendColorUpd()
         {
-            Thread clientThread = new Thread(new ThreadStart(SENDcolor));     // wyrzucamy serwer do innego wątku 
-            clientThread.Start();
+            if (activegame)
+            {
+                Thread clientThread = new Thread(new ThreadStart(SENDcolor));     // wyrzucamy serwer do innego wątku 
+                clientThread.Start();
+            }
         }
 
        
@@ -315,21 +330,25 @@ namespace DiXit
         public void UPD_srv_col()//zaktualizuj i wyswietl nowe kolory i odeslij reszcie
         {
             UPD_plList(plData.getList());
-           /* PlayerL p = new PlayerL();
-            p.lista = plData.getList();
-            if (server)
+            if (activegame)
             {
-                PlayerL sss = new PlayerL();
-                sss.type = msgType.colorUpd;
+               
+                if (server)
+                {
+                    PlayerL p = new PlayerL();
+                    p.lista = plData.getList();
+                    p.type = msgType.colorUpd;
 
-                Message m = response(sss);
-                ss.sendMSG(m);
-            }*/
+                    Message m = response(p);
+                    ss.sendMSG(m);
+                }
+            
+            }
         }
 
         public void button2_Click(object sender, EventArgs e)//button START
         {
-
+            
             PlayerL p = new PlayerL();
             p.lista = plData.getList();
             if (server) { 
@@ -531,6 +550,7 @@ namespace DiXit
                 case msgType.startGame:
                     button5.Invoke(new Action(delegate ()
                     {
+                        activegame = true;
                         button5.Show();
                         button5.PerformClick();
                         button5.Hide();
@@ -560,6 +580,7 @@ namespace DiXit
                     else // klient powinien tylko zupdatowac dostanych graczy
                     {
                         MSGUpdPlayers(plL);
+                        MSGUpdColorss(plL);
                         UPD_plList(plData.getList());
                     }
                         
@@ -586,19 +607,29 @@ namespace DiXit
                 case msgType.addPlayer:
 
                     //dodaj gracza
+                    activegame = true;
                     MSGAddPlayers(plL);
                     // label3.Text = ppp.lista[0].playerID;
                     UPD_plList(plData.getList());
                     PlayerL sss = new PlayerL();
-
+                    sss.type = msgType.gameOn;
+                  
                     sss.lista = plData.getList();
                     Message m = response(sss);
                     ss.sendMSG(m);
 
                     break;
 
+                case msgType.gameOn://serwer odpowiedzial
 
-               
+                    activegame = true;
+                    MSGAddPlayers(plL);
+                  //  MSGUpdPlayers(plL);
+                  //  MSGUpdColorss(plL);//troche za duzo
+                    UPD_plList(plData.getList());
+
+                    break;
+
                 default:
                     Console.WriteLine("Default case");
                     break;

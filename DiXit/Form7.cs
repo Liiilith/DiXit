@@ -31,6 +31,7 @@ namespace DiXit
                 if (!F1.srv_Check()) F1.SendColorUpd();
                 else F1.UPD_srv_col();
             }
+
            
             this.Close();
         }
