@@ -135,13 +135,15 @@ namespace DiXit
             //  String s= ppp2.getPlayers();
 
             UPD_plList(plData.getList());
-         //   startGame();
-            ms.Data=cc.checkIfGameStarted();
-          
-            PlayerL togame = SRL.takeM(ms);
-      //      activegame = true;
-            check_MSG(togame);
-            
+            //   startGame();
+            while (true)
+            {
+                ms.Data = cc.checkIfGameStarted();
+
+                PlayerL togame = SRL.takeM(ms);
+                //      activegame = true;
+                check_MSG(togame);
+            }
 
         }
 
@@ -185,7 +187,7 @@ namespace DiXit
                     {
                         foreach (Player p in ppppp2.lista)
                         {
-                            updPayerColor(p);
+                            updPlayerColor(p);
                         }
 
                     }
@@ -233,21 +235,17 @@ namespace DiXit
             return res;
 
         }
-        public bool updPayerColor(Player pl)
+        public bool updPlayerColor(Player pl)
         {
             Player p = plData.getPlayerByLogin(pl.playerID);
             // Player p = plData.getPlayerByIp(pl.playerID);
-            bool res = false;
-            if (plData.checkColor(kolor))
-            {
-                pl.rabbitColor = kolor;
+           
+               //  plData.UpdatePlayerID(pl);
+                plData.Change_Color(pl, pl.rabbitColor);
+               
 
-                //  plData.UpdatePlayerID(pl);
-                plData.Change_Color(pl, kolor);
-                res = true;
-
-            }
-            return res;
+            
+            return true;
 
         }
 
