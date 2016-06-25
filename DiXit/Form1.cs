@@ -215,7 +215,7 @@ namespace DiXit
             if (!server)
             {
                 PlayerL sss = new PlayerL(pl);
-                for (int i = 0; i < 3; i++)
+              /*  for (int i = 0; i < 3; i++)
                 {
                     Player p = new Player("127.0.1." + i.ToString(), pl.playerID);
                     p.rabbitColor = pl.rabbitColor;
