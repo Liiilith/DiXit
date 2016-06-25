@@ -103,14 +103,14 @@ namespace DiXit
         
             ppp = new PlayerL(pl);
 
-           for (int i = 0; i < 3; i++)
+          /* for (int i = 0; i < 3; i++)
             { 
            Player p = new Player("127.0.0."+ i.ToString(),pl.playerID);
                 p.rabbitColor = pl.rabbitColor;
 
             ppp.AddToPL(p);
                
-            }
+            }*/
             ppp.type = msgType.addPlayer;
 
             Message msg1 = SRL.Serialize(ppp); // w msg.Data jest obiekt do wysłania 
@@ -159,8 +159,27 @@ namespace DiXit
         }
 
 
+
        
 
+            private void MSGUpdColorss(PlayerL ppppp2)//updatuje playersData o otrzymaną listę graczy
+        {
+
+            if (ppppp2 != null)
+            {
+                if (ppppp2.lista != null)
+                {
+                    if (ppppp2.lista.Count > 0)
+                    {
+                        foreach (Player p in ppppp2.lista)
+                        {
+                            updPayerColor(p);
+                        }
+
+                    }
+                }
+            }
+        }
         private void MSGUpdPlayers(PlayerL ppppp2)//updatuje playersData o otrzymaną listę graczy
         {
             
@@ -202,6 +221,24 @@ namespace DiXit
             return res;
 
         }
+        public bool updPayerColor(Player pl)
+        {
+            Player p = plData.getPlayerByLogin(pl.playerID);
+            // Player p = plData.getPlayerByIp(pl.playerID);
+            bool res = false;
+            if (plData.checkColor(kolor))
+            {
+                pl.rabbitColor = kolor;
+
+                //  plData.UpdatePlayerID(pl);
+                plData.Change_Color(pl, kolor);
+                res = true;
+
+            }
+            return res;
+
+        }
+
 
         public void SendColorUpd()
         {
@@ -541,6 +578,7 @@ namespace DiXit
                     updOwnColor();
                     updButtonColor();
                     MSGUpdPlayers(plL);
+                    MSGUpdColorss(plL);
                     UPD_plList(plData.getList());
 
                     break;
