@@ -222,7 +222,7 @@ namespace DiXit
 
                     sss.AddToPL(p);
 
-                }
+                }*/
                 sss.type = msgType.colorUpd;
                 Message m = response(sss);
                 Message ms = new Message();
