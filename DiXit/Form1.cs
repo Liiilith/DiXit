@@ -174,26 +174,9 @@ namespace DiXit
 
 
 
-       
 
-       private void MSGUpdColorss(PlayerL ppppp2)//updatuje playersData o otrzymaną listę graczy
-        {
+        // nie działa do konca
 
-            if (ppppp2 != null)
-            {
-                if (ppppp2.lista != null)
-                {
-                    if (ppppp2.lista.Count > 0)
-                    {
-                        foreach (Player p in ppppp2.lista)
-                        {
-                            updPlayerColor(p);
-                        }
-
-                    }
-                }
-            }
-        }
         private void MSGUpdPlayers(PlayerL ppppp2)//updatuje playersData o otrzymaną listę graczy
         {
             
@@ -218,36 +201,10 @@ namespace DiXit
             server = set;
         }
 
-        public bool updOwnColor()
-        {
-            Player p = plData.getPlayerByLogin(pl.playerID);
-            // Player p = plData.getPlayerByIp(pl.playerID);
-            bool res = false;
-            if (plData.checkColor(kolor))
-            {
-                pl.rabbitColor = kolor;
-               
-              //  plData.UpdatePlayerID(pl);
-                plData.Change_Color(pl, kolor);
-                res = true;
-                
-            }
-            return res;
+      
 
-        }
-        public bool updPlayerColor(Player pl)
-        {
-            Player p = plData.getPlayerByLogin(pl.playerID);
-            // Player p = plData.getPlayerByIp(pl.playerID);
-           
-               //  plData.UpdatePlayerID(pl);
-                plData.Change_Color(pl, pl.rabbitColor);
-               
+       
 
-            
-            return true;
-
-        }
 
 
         public void SendColorUpd()
@@ -260,61 +217,10 @@ namespace DiXit
         }
 
        
-        public void SENDcolor()
-        {
-            if (!server)
-            {
-                PlayerL sss = new PlayerL(pl);
-                /*  for (int i = 0; i < 3; i++)
-                  {
-                      Player p = new Player("127.0.1." + i.ToString(), pl.playerID);
-                      p.rabbitColor = pl.rabbitColor;
+      
 
-                      sss.AddToPL(p);
+       
 
-                  }*/
-
-                sss.type = msgType.colorUpd;
-                Message m = response(sss);
-                Message ms = new Message();
-                ms.Data = cc.runClient(m.Data);
-
-            }
-        }
-
-        public void SendColorRes(msgType cres)//zwrotka na zmianę koloru
-        {
-            if (server)
-            {
-                PlayerL sss = new PlayerL();
-                sss.Lista = plData.getList();
-                sss.type = cres;
-                Message m = response(sss);
-                Message ms = new Message();
-                ss.sendMSG(m);
-            }
-        }
-
-
-        public void updButtonColor()
-        {
-            button1.Invoke(new Action(delegate ()
-            {
-                button1.BackColor = kolor;
-                button1.Text = "";
-            }));
-        }
-        public void updButtonColorWRONG()
-        {
-            kolor = System.Drawing.Color.LemonChiffon;
-           
-            
-            button1.Invoke(new Action(delegate ()
-            {
-                button1.BackColor = kolor;
-                button1.Text = "X";
-            }));
-        }
 
         private void bcolor_Click(object sender, EventArgs e)//wybór koloru
         {
@@ -325,24 +231,7 @@ namespace DiXit
                 
         }
 
-        public void UPD_srv_col()//zaktualizuj i wyswietl nowe kolory i odeslij reszcie
-        {
-            UPD_plList(plData.getList());
-            if (activegame)
-            {
-               
-                if (server)
-                {
-                    PlayerL p = new PlayerL();
-                    p.lista = plData.getList();
-                    p.type = msgType.colorUpd;
-
-                    Message m = response(p);
-                    ss.sendMSG(m);
-                }
-            
-            }
-        }
+        
 
         public void button2_Click(object sender, EventArgs e)//button START
         {
@@ -538,106 +427,7 @@ namespace DiXit
         }
 
 
-        public void check_MSG(PlayerL plL)
-        {
-
-            
-            switch (plL.type)
-            {
-
-                case msgType.startGame:
-                    button5.Invoke(new Action(delegate ()
-                    {
-                        activegame = true;
-                        button5.Show();
-                        button5.PerformClick();
-                        button5.Hide();
-                    }));
-
-
-                    this.Invoke(new Action(delegate ()
-                    {
-                        this.Hide();
-                    }));
-                    break;
-
-                case msgType.colorUpd:
-                    if (server)
-                    {
-                        if (plData.checkColor(plL.Lista[0].Color))
-                        {
-                            MSGUpdPlayers(plL);
-                            UPD_plList(plData.getList());
-                            SendColorRes(msgType.okColor);
-                        }
-                        else
-                        {
-                            SendColorRes(msgType.wrongColor);
-                        }
-                    }
-                    else // klient powinien tylko zupdatowac dostanych graczy
-                    {
-                        MSGUpdPlayers(plL);
-                        MSGUpdColorss(plL);
-                        UPD_plList(plData.getList());
-                    }
-                        
-                    break;
-
-                case msgType.wrongColor:
-                    
-                    updButtonColorWRONG();
-                    MSGUpdPlayers(plL);
-                    UPD_plList(plData.getList());
-
-                    break;
-
-                case msgType.okColor:
-
-                    updOwnColor();
-                    updButtonColor();
-                    MSGUpdPlayers(plL);
-                    MSGUpdColorss(plL);
-                    UPD_plList(plData.getList());
-
-                    break;
-
-                case msgType.addPlayer:
-
-                    //dodaj gracza
-                    activegame = true;
-                    MSGAddPlayers(plL);
-                    // label3.Text = ppp.lista[0].playerID;
-                    UPD_plList(plData.getList());
-                    PlayerL sss = new PlayerL();
-                    sss.type = msgType.gameOn;
-                  
-                    sss.lista = plData.getList();
-                    Message m = response(sss);
-                    ss.sendMSG(m);
-
-                    break;
-
-                case msgType.gameOn://serwer odpowiedzial
-
-                    activegame = true;
-                    MSGAddPlayers(plL);
-                  //  MSGUpdPlayers(plL);
-                  //  MSGUpdColorss(plL);//troche za duzo
-                    UPD_plList(plData.getList());
-
-                    break;
-
-                default:
-                    Console.WriteLine("Default case");
-                    break;
-            }
-
-
-        }
-
-
-
+      
 
         public bool check_Start(PlayerL plL)
         {

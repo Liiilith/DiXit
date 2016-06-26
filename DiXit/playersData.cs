@@ -282,8 +282,8 @@ namespace DiXit
         public bool UpdatePlayerID(Player pl)//update gracza o danym loginie
         {
             bool res = false;
-          //  Player p = getPlayerByLogin(pl.playerID);
-            Player p = getPlayerByIp(pl.iPadd);
+          Player p = getPlayerByLogin(pl.playerID);
+            //Player p = getPlayerByIp(pl.iPadd);
             if (p.iPadd != "unknown")
             {
                 RemoveFromPlayerList(p);
@@ -294,10 +294,13 @@ namespace DiXit
             return res;
         }
 
+       
+
         public bool Change_Color(Player pl, System.Drawing.Color k)//update gracza o danym loginie
         {
             bool res = false;
-            Player p = getPlayerByLogin(pl.playerID);
+            //Player p = getPlayerByLogin(pl.playerID);
+            Player p = getPlayerByIp(pl.iPadd);
             if (p.iPadd != "unknown")
             {
                 int a = playersList.IndexOf(p);
