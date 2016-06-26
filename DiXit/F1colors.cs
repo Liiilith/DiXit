@@ -100,6 +100,17 @@ namespace DiXit
                 Message m = response(sss);
                 Message ms = new Message();
                 ms.Data = cc.runClient(m.Data);
+                while (true)
+                {
+                    Message ms1 = new Message();
+                    ms1.Data = cc.checkIfGameStarted();
+
+                    PlayerL togame = SRL.takeM(ms1);
+                    //      activegame = true;
+                    check_MSG(togame);
+                }
+
+
 
             }
         }
