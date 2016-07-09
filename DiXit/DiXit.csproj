@@ -63,6 +63,9 @@
   <ItemGroup>
     <Compile Include="Client.cs" />
     <Compile Include="Constance.cs" />
+    <Compile Include="F1colors.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +109,9 @@
       <DependentUpon>Form7.cs</DependentUpon>
     </Compile>
     <Compile Include="Game.cs" />
+    <Compile Include="MSGF1class.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="player.cs" />
     <Compile Include="playersData.cs" />
     <Compile Include="Program.cs" />
