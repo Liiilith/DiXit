@@ -33,6 +33,13 @@ namespace DiXit
             CreateButtons(playersNumb);                        // tu juz powinienem znac info o ilosci graczy ktorzy uczestnicza w rozgrywce
 
 
+
+            // wywołaj wątek komunkacyjny                   
+
+
+
+
+
         }
 
         public Form4(int playersNumber, bool playerType, Player pl, Point locat, Client client)                             // konstruktor dla formy 4
@@ -46,7 +53,7 @@ namespace DiXit
             this.Location = locat;
             CreateButtons(playersNumb);                        // tu juz powinienem znac info o ilosci graczy ktorzy uczestnicza w rozgrywce
 
-
+            //  
         }
 
 
@@ -133,11 +140,16 @@ namespace DiXit
                 if (challenger)
                 {
                     myPlayer.updatePlayer(collectData(), playerType.challanger);          // w przypadku podającego kartę
+
+                                                                                          // wyślij gracza serwerowi  
                 }
 
                 else
                 {
                     collectVoteData();                           // głosy oddane przez playera zostają zapisane  
+
+                                                                 // wyślij playera serwerowi    
+                                                                    
                     Form5 showCardGuesser = new Form5(playersNumb, myPlayer,  this.Location);
                     showCardGuesser.Show();
                     this.Hide();
@@ -279,5 +291,12 @@ namespace DiXit
         {
 
         }
+
+
+
+
+
+
+
     }
 }
