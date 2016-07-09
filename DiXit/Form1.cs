@@ -55,15 +55,16 @@ namespace DiXit
             {
 
                 thread = new Thread(new ThreadStart(serverStart));     // wyrzucamy serwer do innego wątku 
-                thread.Start();
+               
             }
             else
             {
                 sendMsg = preparesMSG(msgType.addPlayer);
                 thread = new Thread(new ThreadStart(clientStart));     // wyrzucamy serwer do innego wątku 
-                thread.Start();
+       
 
             }
+            thread.Start();
             waitForPushGame.WaitOne();                       // czekamy aż spełnione zostaną warunki 
             runForm3();
 
@@ -284,9 +285,7 @@ namespace DiXit
             p.lista = plData.getList();
 
             Form F3;
-           
-
-            this.Hide();
+                     
             if (server)
 
                 F3 = new Form3(pl, this.Location, server, ss, p);
@@ -296,7 +295,7 @@ namespace DiXit
             RequestStop();
             thread.Interrupt();
             thread.Abort();
-
+            this.Hide();
             F3.Enabled = true;
             F3.Visible = true;
             F3.Show();
