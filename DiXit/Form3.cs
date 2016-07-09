@@ -38,7 +38,7 @@ namespace DiXit
             Thread communication = new Thread(new ThreadStart(exchangePlayerData));     // wyrzucamy serwer do innego wątku 
             communication.Start();
 
-            waitForPushGame.WaitOne();
+            waitForPushGame.WaitOne();                       // czekamy aż spełnione zostaną warunki 
             createNewForm(connection);
 
         }
