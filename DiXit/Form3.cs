@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace DiXit
 {
-    public partial class Form3 : Form
+    public partial class Form3 : Form // 220516
     {
         // deklaracja zmiennych dla Ekranu 3
         Player player1;        // to tak naprawdę zostanie stworzone wyżej
