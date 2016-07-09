@@ -64,8 +64,8 @@ namespace DiXit
        
 
             }
-            thread.Start();
-            waitForPushGame.WaitOne();                       // czekamy aż spełnione zostaną warunki 
+      //      thread.Start();
+       //     waitForPushGame.WaitOne();                       // czekamy aż spełnione zostaną warunki 
             runForm3();
 
         }
