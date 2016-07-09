@@ -16,11 +16,7 @@ namespace DiXit
     public partial class Form1 : Form
     {
 
-
-
-
-
-
+        
         public void check_MSG(PlayerL plL)
         {
 
