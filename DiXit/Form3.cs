@@ -41,6 +41,7 @@ namespace DiXit
             waitForPushGame.WaitOne();                       // czekamy aż spełnione zostaną warunki 
             createNewForm(connection);
 
+            //aaaaaaaa
         }
 
         private readonly ManualResetEvent waitForclick = new ManualResetEvent(false);
