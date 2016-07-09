@@ -51,7 +51,7 @@ namespace DiXit
         {
             if (playersList.Count > 0)//inaczej rzuca index out of range 
             {
-                for (int i = 0; i <= playersList.Count; i++)
+                for (int i = 0; i < playersList.Count; i++)
                 {
 
                     if (pl.getIpAddress() == playersList[i].getIpAddress())
@@ -282,7 +282,8 @@ namespace DiXit
         public bool UpdatePlayerID(Player pl)//update gracza o danym loginie
         {
             bool res = false;
-            Player p = getPlayerByLogin(pl.playerID);
+          Player p = getPlayerByLogin(pl.playerID);
+            //Player p = getPlayerByIp(pl.iPadd);
             if (p.iPadd != "unknown")
             {
                 RemoveFromPlayerList(p);
@@ -292,6 +293,28 @@ namespace DiXit
 
             return res;
         }
+
+       
+
+        public bool Change_Color(Player pl, System.Drawing.Color k)//update gracza o danym loginie
+        {
+            bool res = false;
+            //Player p = getPlayerByLogin(pl.playerID);
+            Player p = getPlayerByIp(pl.iPadd);
+            if (p.iPadd != "unknown")
+            {
+                int a = playersList.IndexOf(p);
+                if (a != -1)
+                {
+                    playersList[a].rabbitColor = k;
+                    res = true;
+                }
+                
+            }
+
+            return res;
+        }
+
         public bool UpdatePlayerIP(Player pl)//update gracza o danym IP
         {
             bool res = false;

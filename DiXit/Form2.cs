@@ -64,16 +64,19 @@ namespace DiXit
             {
                 Player p = new Player(textBox2.Text, textBox1.Text);
                 if (b.Tag == "SRV") isServer = true;
-                F1 = new Form1(isServer, p, this.Location, this);
                 
-                pl = p;
                 
                 if (textBox1.Text != "")
                 {
+
+                    this.Hide();
+                    F1 = new Form1(isServer, p, this.Location, this);
+
+                    pl = p;
                     F1.updatee(isServer, pl, this.Location, this);
                     F1.Update();
                     F1.Show();
-                    this.Hide();
+                    
                     F1.Visible = true;
                     srv = new Server(pl);
                    

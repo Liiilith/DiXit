@@ -94,7 +94,7 @@ namespace DiXit
             this.button2.TabIndex = 6;
             this.button2.Text = "START";
             this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.bcolor_Click);
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label4
             // 
@@ -190,7 +190,7 @@ namespace DiXit
             this.button5.Size = new System.Drawing.Size(60, 52);
             this.button5.TabIndex = 16;
             this.button5.UseVisualStyleBackColor = false;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button5.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 

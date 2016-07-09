@@ -81,6 +81,26 @@ namespace DiXit
         }
 
 
+        public bool sendMSG_single(Message d)
+        {
+            try
+            {
+
+
+                s.Send(d.Data);
+                return true;
+
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error..... " + e.StackTrace);
+
+                return false;
+
+            }
+        }
+
         public void srvClose()
         {
 

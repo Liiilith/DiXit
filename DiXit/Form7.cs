@@ -25,10 +25,14 @@ namespace DiXit
         {
             Button b = sender as Button;
            F1.setColor( b.BackColor);
-            if (F1.updOwnColor()) {
+            if (F1.updOwnColor())
+            {
                 F1.updButtonColor();
-                if (F1.srv_Check()) F1.SendColorUpd();
-                    }
+                if (!F1.srv_Check()) F1.SendColorUpd();
+                else F1.UPD_srv_col();
+            }
+
+           
             this.Close();
         }
         public Color getColor()

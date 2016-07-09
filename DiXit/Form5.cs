@@ -113,15 +113,12 @@ namespace DiXit
 
             for (int i = 0; i < playersNumb; i++)
             {
-
-
                 if (listOfButtons[i].BackColor == Color.Blue)
 
                 {
                     vote = Int32.Parse(listOfButtons[i].Name);
-
                 }
-
+  
             }
 
             return vote;

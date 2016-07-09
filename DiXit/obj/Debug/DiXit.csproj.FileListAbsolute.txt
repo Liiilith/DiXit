@@ -26,3 +26,6 @@ E:\DiXit\DiXit\obj\Debug\DiXit.Form5.resources
 E:\DiXit\DiXit\obj\Debug\DiXit.Form6.resources
 E:\DiXit\DiXit\obj\Debug\DiXit.Properties.Resources.resources
 E:\DiXit\DiXit\obj\Debug\DiXit.csproj.GenerateResource.Cache
+D:\C#\DiXit\DiXit\bin\DiXit.exe.config
+D:\C#\DiXit\DiXit\obj\Debug\DiXit.exe
+D:\C#\DiXit\DiXit\obj\Debug\DiXit.pdb
