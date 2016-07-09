@@ -73,11 +73,7 @@ namespace DiXit
                                    //   this.BackgroundImageLayout = ImageLayout.Stretch;
             button1.Click += startClick_EventHandler;
 
-<<<<<<< HEAD
             Thread communication = new Thread(new ThreadStart(exchangePlayerData));     // wyrzucamy serwer do innego wątku 
-=======
-            Thread communication  = new Thread(new ThreadStart(exchangePlayerData));     // wyrzucamy serwer do innego wątku 
->>>>>>> 87d38baf600ade02c13df35f5c9157496c46bcc9
             communication.Start();
 
             waitForPushGame.WaitOne();
@@ -90,11 +86,7 @@ namespace DiXit
 
         }
 
-<<<<<<< HEAD
         private void exchangePlayerData()
-=======
-        private void exchangePlayerData ( )
->>>>>>> 87d38baf600ade02c13df35f5c9157496c46bcc9
 
         {
             if (serwer)
@@ -146,11 +138,7 @@ namespace DiXit
 
                 if (checkD(ver))                      // vczekamy na weryfikacje danych 
 
-<<<<<<< HEAD
                 { gamePush(); }
-=======
-                { gamePush (); }
->>>>>>> 87d38baf600ade02c13df35f5c9157496c46bcc9
 
                 else
                 { } // wybierzcie jeszcze raz}  
@@ -186,14 +174,9 @@ namespace DiXit
                                                                             //   updatePlayerList2(ppp.lista);
                 }
             }
-<<<<<<< HEAD
         }
 
         protected void createNewForm(bool server)
-=======
-        
-        protected void createNewForm (bool server)
->>>>>>> 87d38baf600ade02c13df35f5c9157496c46bcc9
 
 
         {
@@ -212,11 +195,7 @@ namespace DiXit
 
                 else if (player1.getType() == playerType.guesser)
                 {
-<<<<<<< HEAD
                     Form votingScreen = new Form4(12, false, player1, this.Location, ss);             // ta liczna graczy musi byc wzieta z serwera
-=======
-                    Form votingScreen = new Form4(12, false, player1, this.Location,ss);             // ta liczna graczy musi byc wzieta z serwera
->>>>>>> 87d38baf600ade02c13df35f5c9157496c46bcc9
                     votingScreen.Show();
                     this.Hide();
                     // jw  
@@ -287,19 +266,11 @@ namespace DiXit
             switchButtons(true);
         }
 
-<<<<<<< HEAD
         protected void switchButtons(bool change)
         {
             if (change)
             {
                 player1.setTyp(playerType.challanger);
-=======
-        protected void switchButtons (bool change)
-        {
-            if (change)
-            {
-                player1.setTyp(playerType.challanger);              
->>>>>>> 87d38baf600ade02c13df35f5c9157496c46bcc9
                 button2.BackColor = Color.Blue;
                 button3.BackColor = Color.DarkGray;
             }
