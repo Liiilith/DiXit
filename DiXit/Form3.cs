@@ -34,16 +34,30 @@ namespace DiXit
                                   
             button1.Click += startClick_EventHandler;
 
+
             Thread communication = new Thread(new ThreadStart(exchangePlayerData));     // wyrzucamy serwer do innego wątku 
             communication.Start();
+
+            waitForPushGame.WaitOne();
+            createNewForm(connection);
+
         }
 
-        private readonly ManualResetEvent waitForclick = new ManualResetEvent(false);   
+        private readonly ManualResetEvent waitForclick = new ManualResetEvent(false);
+
+        private readonly ManualResetEvent waitForPushGame = new ManualResetEvent(false);
+
 
         private void startClick_EventHandler(object sender, EventArgs e)
         {
             waitForclick.Set();
         }
+
+        private void gamePush()
+        {
+            waitForPushGame.Set();
+        }
+
 
         public Form3(Player pl, Point location, bool connection, Client cli)
         {
@@ -61,6 +75,9 @@ namespace DiXit
 
             Thread communication  = new Thread(new ThreadStart(exchangePlayerData));     // wyrzucamy serwer do innego wątku 
             communication.Start();
+
+            waitForPushGame.WaitOne();
+            createNewForm(connection);
 
         }
 
@@ -85,11 +102,11 @@ namespace DiXit
 
                 PlayerL confirmGame = new PlayerL();
 
-                if (veryfyList(recentList))             // veryfikujemy liste (to bedzie inaczej wygladac w przypadku wielu graczy)
+                if (veryfyList(recentList))             // weryfikujemy liste (to bedzie inaczej wygladac w przypadku wielu graczy)
                 {
-                     // ( message z lista gdzie jest pozwolenie na gre )
-                        // jak w porzadku to wysylamy do klient ze lecimy dalej
-                    createNewForm(true);
+                    // ( message z lista gdzie jest pozwolenie na gre )
+                    // jak w porzadku to wysylamy do klient ze lecimy dalej
+                    gamePush();
                 }
  
                  else
@@ -121,7 +138,7 @@ namespace DiXit
 
                 if (checkD(ver))                      // vczekamy na weryfikacje danych 
 
-                { createNewForm(false); }
+                { gamePush (); }
 
                 else
                 { } // wybierzcie jeszcze raz}  
@@ -250,24 +267,14 @@ namespace DiXit
         }
 
         protected void switchButtons (bool change)
-
-
         {
             if (change)
             {
-
-                player1.setTyp(playerType.challanger);
-
-                
-                
-
+                player1.setTyp(playerType.challanger);              
                 button2.BackColor = Color.Blue;
                 button3.BackColor = Color.DarkGray;
             }
-
             else
-
-
             {
                 player1.setTyp(playerType.guesser);
                 button3.BackColor = Color.Blue;

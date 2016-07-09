@@ -21,17 +21,15 @@ namespace DiXit
         Client cc;
 
 
-        public Form4(int playersNumber, bool playerType, Player pl, Point locat, Server serv)                             // konstruktor dla formy 4
+        public Form4(int playersNumber, bool playerType, Player pl, Point locat, Server serv)       // konstruktor dla formy 4
         {
             InitializeComponent();
-
             ss = serv;
             myPlayer = pl;
             playersNumb = playersNumber;
             challenger = playerType;
             setLabels(playerType);
             this.Location = locat;
-
             CreateButtons(playersNumb);                        // tu juz powinienem znac info o ilosci graczy ktorzy uczestnicza w rozgrywce
 
 
@@ -40,14 +38,12 @@ namespace DiXit
         public Form4(int playersNumber, bool playerType, Player pl, Point locat, Client client)                             // konstruktor dla formy 4
         {
             InitializeComponent();
-
             cc = client;
             myPlayer = pl;
             playersNumb = playersNumber;
             challenger = playerType;
             setLabels(playerType);
             this.Location = locat;
-
             CreateButtons(playersNumb);                        // tu juz powinienem znac info o ilosci graczy ktorzy uczestnicza w rozgrywce
 
 
@@ -66,7 +62,6 @@ namespace DiXit
 
             if (type == false)
                 informm.Text = "VOTE";
-
             else
 
             {
@@ -79,7 +74,6 @@ namespace DiXit
         {
             Button button = sender as Button;              // tutaj identyfikacja kliknietego buttona
 
-
             if (challenger)
             {
                 markChoiseChallange(button);
@@ -90,10 +84,6 @@ namespace DiXit
             }
 
             ConfirmButton();
-
-
-
-
         }
 
         private void CreateButtons(int numbers)
@@ -148,15 +138,10 @@ namespace DiXit
                 else
                 {
                     collectVoteData();                           // głosy oddane przez playera zostają zapisane  
-
-                   
                     Form5 showCardGuesser = new Form5(playersNumb, myPlayer,  this.Location);
                     showCardGuesser.Show();
                     this.Hide();
-
-                   
-                }
-                                         
+                }                                      
             };
 
 
@@ -166,16 +151,12 @@ namespace DiXit
 
         {
             int vote = 0;
-
             for (int i = 0; i < playersNumb; i++)
             {
-             
-
                 if (listOfButtons[i].BackColor == Color.Blue)
 
                 {
-                  vote = Int32.Parse(listOfButtons[i].Name);
-                   
+                  vote = Int32.Parse(listOfButtons[i].Name);                 
                 }
 
             }
@@ -203,15 +184,12 @@ namespace DiXit
             switch (s)
             {
               case 1:
-
                     myPlayer.updateVote(vote[0]);
                     break;
                case 2:
-
-                    myPlayer.updateVote(vote[0],vote[1]);
-                 
+                    myPlayer.updateVote(vote[0],vote[1]);    
                     break;
-               
+             
             }
 
             return vote.Count();
@@ -227,8 +205,6 @@ namespace DiXit
                 // cofamy głos kolor niebieski staje sie zielonym
                 manageColors(b, true);
             }
-
-
             else
             {
                 if (scanColors() < 1)
@@ -243,8 +219,8 @@ namespace DiXit
         {
             if (b.BackColor == Color.Blue)
             {
-                                                      // cofamy głos kolor niebieski staje sie zielonym
-                manageColors(b,true);
+                                               
+                manageColors(b,true);                     // cofamy głos kolor niebieski staje sie zielonym     
             }
 
            
