@@ -109,7 +109,7 @@ namespace DiXit
 
                     break;
 
-                case msgType.gameOn://serwer odpowiedzial
+                case msgType.gameOn://dolaczono do gry
 
                     activegame = true;
                     MSGAddPlayers(plL);
@@ -120,7 +120,7 @@ namespace DiXit
                     break;
 
 
-                case msgType.goOn://serwer odpowiedzial
+                case msgType.goOn://serwer i client przestają czekac na msg
 
 
                     if (!server)

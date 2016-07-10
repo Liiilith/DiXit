@@ -97,7 +97,7 @@ namespace DiXit
                 Message msg2 = preparesMSG(msgType.goOn);
                 ss.sendMSG(msg2);
 
-               
+
             }
             else
             {
@@ -143,8 +143,8 @@ namespace DiXit
             }
 
 
-           
-           
+
+
         }
 
         public Message response(PlayerL p)//serializuje dane do wysłania
@@ -241,7 +241,7 @@ namespace DiXit
         }
 
 
-       
+
 
 
 
@@ -264,49 +264,6 @@ namespace DiXit
             button5.Hide();
         }
 
-        public void updatePlayerList2(List<Player> p)//update listy graczy
-        {
-
-
-            for (int i = 0; i < 14; i++)
-            {
-                int posy = (i / 2) * 40;
-                int posx = (i % 2) * 250;
-                System.Windows.Forms.Button button;
-                System.Windows.Forms.Label label;
-                button = new System.Windows.Forms.Button();
-                label = new System.Windows.Forms.Label();
-
-                button.Location = new System.Drawing.Point(160 + posx, 10 + posy);
-                button.Name = "button";
-                button.Size = new System.Drawing.Size(30, 30);
-                if (p.Count > i)
-                {
-                    button.UseVisualStyleBackColor = true;
-                    button.BackColor = System.Drawing.Color.IndianRed;
-                    button.Text = "";
-
-
-                    label.AutoSize = true;
-                    label.BackColor = System.Drawing.Color.Transparent;
-                    label.Cursor = System.Windows.Forms.Cursors.AppStarting;
-                    label.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-                    label.Location = new System.Drawing.Point(10 + posx, 10 + posy);
-                    label.Name = "label";
-                    label.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-                    label.RightToLeft = System.Windows.Forms.RightToLeft.No;
-                    label.Size = new System.Drawing.Size(100, 25);
-                    label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-
-                    label.Text = p[i].PlayerID;
-                    panel1.Controls.Add(label);
-                    panel1.Controls.Add(button);
-                }
-            }
-
-
-
-        }
 
         public void UPD_plList(List<Player> p)//update listy graczy z innego wątku
         {
@@ -422,15 +379,15 @@ namespace DiXit
         public void button2_Click(object sender, EventArgs e)//button START
         {
             RequestStop();
-          
-           // runForm3();
-           
+
+            // runForm3();
+
 
         }
 
         private void start_the_game()
         {
-           
+
             if (server)
             {
                 PlayerL sss = new PlayerL();
@@ -446,8 +403,8 @@ namespace DiXit
             p.lista = plData.getList();
 
             Form F3;
-           // RequestStop();
-        thread.Abort();
+            // RequestStop();
+            thread.Abort();
             if (server)
 
                 F3 = new Form3(pl, this.Location, server, ss, p);
@@ -466,7 +423,7 @@ namespace DiXit
         {
 
             runForm3();
-          //  HideMe();
+            //  HideMe();
             /*
             PlayerL p = new PlayerL();
             p.lista = plData.getList();
@@ -502,13 +459,13 @@ namespace DiXit
             }
         }
 
-		
-		  private void clientStart1()
+
+        private void clientStart1()
         {
             cc = new Client(pl);
             Message ms = new Message();
             cc.cltStart("89.70.34.25", 50201);
-         
+
             sendClientMSG();
 
             UPD_plList(plData.getList());
@@ -525,7 +482,7 @@ namespace DiXit
             }
 
         }
-		 private void serverStart1()
+        private void serverStart1()
         {
             Message msg2 = new Message();
             ss = new Server(pl);
@@ -539,8 +496,8 @@ namespace DiXit
 
         }
 
-		
+
     }
 
-	     
+
 }
