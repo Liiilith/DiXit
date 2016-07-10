@@ -60,23 +60,6 @@ namespace DiXit
             }
         }
 
-        public void sendOnlyClient(byte[] data)            // do komuikacji zapytanie - odpowiedz
-        {
-
-            try
-            {
-                Stream stm = t.GetStream();                  // streamer (?) który prześle dane po połączeniu              
-                stm.Write(data, 0, data.Length);                   // tu już wrzucamy dane wczesniej zserializowane do buffora
-                                                  // oddamy to co odebraliśmy od serwera do serializacji (lista playerów).
-            }
-
-            catch (Exception e)
-            {
-                Console.WriteLine("Error..... " + e.StackTrace);
-                
-            }
-        }
-
 
         public byte[] checkIfGameStarted()            // do komuikacji sprawdzaj czy coś zostało wpisane
         {
@@ -102,7 +85,22 @@ namespace DiXit
         }
 
 
+        public void sendOnlyClient(byte[] data)            // do komuikacji zapytanie - odpowiedz
+        {
 
+            try
+            {
+                Stream stm = t.GetStream();                  // streamer (?) który prześle dane po połączeniu              
+                stm.Write(data, 0, data.Length);                   // tu już wrzucamy dane wczesniej zserializowane do buffora
+                                                                   // oddamy to co odebraliśmy od serwera do serializacji (lista playerów).
+            }
+
+            catch (Exception e)
+            {
+                Console.WriteLine("Error..... " + e.StackTrace);
+
+            }
+        }
 
 
 

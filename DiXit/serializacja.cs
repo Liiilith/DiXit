@@ -11,7 +11,7 @@ namespace DiXit
 
     public enum msgType
     {
-       empty,addPlayer,removePlayer,startGame,colorUpd,wrongColor,okColor,gameOn
+       empty,addPlayer,removePlayer,startGame,colorUpd,wrongColor,okColor,gameOn,goOn
     };
    
 

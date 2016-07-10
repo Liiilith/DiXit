@@ -18,6 +18,35 @@ namespace DiXit
 
 
 
+        public void SendColorUpd()
+        {
+            if (activegame)
+            {
+                sendMsg = preparesMSG(msgType.colorUpd);
+                // Thread clientThread = new Thread(new ThreadStart(SENDcolor));     // wyrzucamy serwer do innego wątku 
+                //clientThread.Start();
+                cc.sendOnlyClient(sendMsg.Data);
+            }
+
+        }
+
+
+
+        private void bcolor_Click(object sender, EventArgs e)//wybór koloru
+        {
+            List<System.Drawing.Color> col = plData.getColors();
+            F7 = new Form7(col, this);
+            F7.Show();
+
+
+        }
+
+
+        public void setColor(System.Drawing.Color k)//ustaw kolor dla gracza
+        {
+            kolor = k;
+        }
+
         private void MSGUpdColorss(PlayerL ppppp2)//updatuje playersData o otrzymaną listę graczy
         {
 
@@ -30,7 +59,7 @@ namespace DiXit
                         foreach (Player p in ppppp2.lista)
                         {
                             plData.Change_Color(p, p.rabbitColor);
-                           // updPlayerColor(p);
+                            // updPlayerColor(p);
                         }
 
                     }
@@ -38,12 +67,10 @@ namespace DiXit
             }
         }
 
-
-
         public bool updOwnColor()
         {
             //Player p = plData.getPlayerByLogin(pl.playerID);
-           
+
 
             bool res = false;
             if (plData.checkColor(kolor))
@@ -58,8 +85,6 @@ namespace DiXit
             return res;
 
         }
-
-
 
         public bool updPlayerColor(Player pp)
         {
@@ -76,45 +101,6 @@ namespace DiXit
         }
 
 
-
-
-
-        public void SENDcolor()
-        {
-            if (!server)
-            {
-                PlayerL sss = new PlayerL(pl);
-                /*  for (int i = 0; i < 3; i++)
-                  {
-                      Player p = new Player("127.0.1." + i.ToString(), pl.playerID);
-                      p.rabbitColor = pl.rabbitColor;
-
-                      sss.AddToPL(p);
-
-                  }*/
-                sss.Lista[0].playerID="test";
-                sss.Lista[0].iPadd = "127.0.1.0";// na potrzeby testów
-                sss.Lista[0].Color = kolor;
-               // LockButton1(false);
-                sss.type = msgType.colorUpd;
-                Message m = response(sss);
-                Message ms = new Message();
-                ms.Data = cc.runClient(m.Data);
-                while (true)
-                {
-                    Message ms1 = new Message();
-                    ms1.Data = cc.checkIfGameStarted();
-
-                    PlayerL togame = SRL.takeM(ms1);
-                    //      activegame = true;
-                    check_MSG(togame);
-                }
-
-
-
-            }
-        }
-
         public void SendColorRes(msgType cres)//zwrotka na zmianę koloru
         {
             if (server)
@@ -127,7 +113,6 @@ namespace DiXit
                 ss.sendMSG(m);
             }
         }
-
 
         public void LockButton1(bool p)
         {
@@ -157,9 +142,7 @@ namespace DiXit
                 button1.Text = "X";
             }));
         }
-
-
-
+        
         public void UPD_srv_col()//zaktualizuj i wyswietl nowe kolory i odeslij reszcie
         {
             UPD_plList(plData.getList());
@@ -179,6 +162,6 @@ namespace DiXit
             }
         }
 
-        
+
     }
 }

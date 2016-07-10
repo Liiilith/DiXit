@@ -32,7 +32,7 @@ namespace DiXit
                 else F1.UPD_srv_col();
             }
 
-           
+
             this.Close();
         }
         public Color getColor()
