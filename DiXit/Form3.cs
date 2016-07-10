@@ -69,7 +69,7 @@ namespace DiXit
         {
 
         }
-
+        //kask:ukrycie F3 niezalezne od watku
         private void HideMe()
         {
             if (InvokeRequired)
@@ -104,8 +104,15 @@ namespace DiXit
                 if (veryfyList(recentList))             // veryfikujemy liste (to bedzie inaczej wygladac w przypadku wielu graczy)
                 {
                     // ( message z lista gdzie jest pozwolenie na gre )
+                    //kask:zwrotka do clienta ze startem 
+                    confirmGame.type = msgType.startGame;
+                    Message back = SRL.Serialize(confirmGame);
+
+                   
+                    ss.sendMSG(back);
                     // jak w porzadku to wysylamy do klient ze lecimy dalej
                     //createNewForm(true);
+                    // kask: wywolanie F4 z głownego watku
                     invoke_B4();
                    
 
@@ -142,6 +149,7 @@ namespace DiXit
                 if (checkD(ver))                      // vczekamy na weryfikacje danych 
 
                 {
+                    //kask:wywolanie F4 z glownego watku
                     invoke_B4();
                     //createNewForm(false);
                 }
@@ -227,6 +235,7 @@ namespace DiXit
                     // jw  
                 }
             }
+            //kask:ukrycie F3 niezalezne od watku
          HideMe();
         }
 
@@ -309,7 +318,7 @@ namespace DiXit
             button3.BackColor = Color.DarkGray;
         }
 
-
+        //kask:wywolanie F4 z glownego watku
         private void invoke_B4()
         {
             button4.Invoke(new Action(delegate ()
@@ -319,7 +328,8 @@ namespace DiXit
                 button4.Hide();
             }));
         }
-
+        //kask:wywolanie F4 z glownego watku
+        //kask: button4 fake'owy button do odpalania F4
         private void button4_Click(object sender, EventArgs e)
         {
             createNewForm(serwer);
